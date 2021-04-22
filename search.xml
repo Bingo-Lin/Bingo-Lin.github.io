@@ -20,7 +20,7 @@
       
         <tags>
             
-            <tag> MacOS Nginx Mysql Php WordPress </tag>
+            <tag> MNMP WordPress </tag>
             
         </tags>
       
@@ -36,10 +36,16 @@
         <content type="html"><![CDATA[<p>从<code>MacOS Catalina</code>开始默认终端已经是<code>zsh</code>。</p><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>使用以下命令可以查看当前终端，</p><pre class=" language-bash"><code class="language-bash"><span class="token keyword">echo</span> <span class="token variable">$SHELL</span></code></pre><p><strong>如果不是<code>/bin/zsh</code>，执行以下命令切换到<code>zsh</code>，否则跳过此步。</strong></p><pre class=" language-bash"><code class="language-bash">chsh -s /bin/zsh</code></pre><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> vimbrew <span class="token function">install</span> <span class="token function">git</span><span class="token comment" spellcheck="true"># 下载oh-my-zsh</span><span class="token function">git</span> clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh<span class="token comment" spellcheck="true"># 创建一个新的配置文件</span><span class="token function">cp</span> ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc<span class="token comment" spellcheck="true"># 授权，如果不授权每次会有警告</span><span class="token function">chmod</span> 755 /usr/local/share/zsh<span class="token function">chmod</span> 755 /usr/local/share/zsh/site-functions</code></pre><p>退出并重启终端 command q</p><h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 下载命令高亮插件</span><span class="token function">git</span> clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting<span class="token comment" spellcheck="true"># 配置插件生效</span><span class="token keyword">echo</span> <span class="token string">'# 命令高亮\nsource ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'</span> <span class="token operator">>></span> ~/.zshrc<span class="token comment" spellcheck="true"># 下载命令提示插件</span><span class="token function">git</span> clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions<span class="token comment" spellcheck="true"># 配置插件生效</span><span class="token keyword">echo</span> <span class="token string">'# 命令提示\nsource ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh'</span> <span class="token operator">>></span> ~/.zshrc</code></pre>]]></content>
       
       
+      <categories>
+          
+          <category> MacOS </category>
+          
+      </categories>
+      
       
         <tags>
             
-            <tag> MacOS </tag>
+            <tag> -MacOS-Terminal </tag>
             
         </tags>
       
