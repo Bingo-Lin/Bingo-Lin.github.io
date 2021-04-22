@@ -4,6 +4,152 @@
   
     
     <entry>
+      <title>Git Github</title>
+      <link href="2021/04/22/git-github/"/>
+      <url>2021/04/22/git-github/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">git</span><span class="token function">which</span> <span class="token function">git</span> <span class="token comment" spellcheck="true">#查看git路径 确保使用最新的git</span><span class="token comment" spellcheck="true">#配置git</span><span class="token function">git</span> config --global user.name <span class="token string">"BingoLin"</span> <span class="token function">git</span> config --global user.email BingoLin@pm.me<span class="token comment" spellcheck="true">#配置ssh key</span>ssh-keygen -t rsa -C <span class="token string">"BingoLin@pm.me"</span><span class="token function">cat</span> /Users/bingolin/.ssh/id_rsa.pub <span class="token comment" spellcheck="true">#打开id_rsa.pub文件，复制里面的key 数据</span></code></pre><p>注册GitHub网站后，点击头像，setting ，找到ssh and GPG keys ,按提示添加 刚复制的 key 数据</p><pre class=" language-bash"><code class="language-bash"><span class="token function">ssh</span> -T git@github.com <span class="token comment" spellcheck="true">#验证</span></code></pre><p>出现 Hi Bingo-Lin! You’ve successfully authenticated, but GitHub does not provide shell access. 即链接成功。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> MacOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Git </tag>
+            
+            <tag> Github </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Git</title>
+      <link href="2021/04/22/git/"/>
+      <url>2021/04/22/git/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">git</span> <span class="token function">git</span> clone git@github.com:Bingo-Lin/Bingo-Lin.github.io.git  <span class="token comment" spellcheck="true">#将GitHub上的仓库克隆到本地 </span></code></pre><p>对本地仓库进行操作后</p><pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> add <span class="token keyword">.</span> <span class="token comment" spellcheck="true">#将文件添加到本地仓库（ .代表添加所有文件 ）</span><span class="token function">git</span> commit -m <span class="token string">"添加本次提交的名称"</span>  <span class="token comment" spellcheck="true">#将文件提交到本地仓库</span><span class="token function">git</span> push <span class="token comment" spellcheck="true">#上传到GitHub</span><span class="token function">git</span> pull <span class="token comment" spellcheck="true">#从Github拉取最新更新并合并到本地仓库</span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> MacOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Mysql</title>
+      <link href="2021/04/22/mysql/"/>
+      <url>2021/04/22/mysql/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> mysql mysql.server startmysql_secure_installation <span class="token comment" spellcheck="true">#根据提示设置</span></code></pre><p>注意一定要先运行第2步，再运行第3步，否则可能会出现以下错误：Error: Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)</p><h2 id="Create-user"><a href="#Create-user" class="headerlink" title="Create user"></a>Create user</h2><pre class=" language-bash"><code class="language-bash">mysql -uroot -p</code></pre><p>输入管理员密码后进入mysql界面</p><pre class=" language-bash"><code class="language-bash">create user <span class="token string">'xxx'</span>@<span class="token string">'%'</span> identified by <span class="token string">'xyz'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">#指定任何ip的名为xxx的用户登录,密码为xyz</span>grant all privileges  on *.*  to <span class="token string">"xxx"</span>@<span class="token string">'%'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">#授权xxx用户对所有数据库中文件有任何操作，此时xxx用户拥有除了grant这个命令外的所有的权限，grant这个命令是root才有的</span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> MacOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Youtube-dl</title>
+      <link href="2021/04/22/youtube-dl/"/>
+      <url>2021/04/22/youtube-dl/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Youtube-dl"><a href="#Youtube-dl" class="headerlink" title="Youtube-dl"></a>Youtube-dl</h2><p>使用<code>--output-dir</code>/<code>-o</code> 设定输出路径,</p><pre class=" language-bash"><code class="language-bash">youtube-dl -o <span class="token string">'/Volumes/BingoLinData/Downloads/%(title)s.%(ext)s'</span>  https://www.youtube.com/watch?v<span class="token operator">=</span>HOyTH0QQvwk</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Youtube-dl </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>You-get</title>
+      <link href="2021/04/22/you-get/"/>
+      <url>2021/04/22/you-get/</url>
+      
+        <content type="html"><![CDATA[<h2 id="You-get"><a href="#You-get" class="headerlink" title="You-get"></a>You-get</h2><p>使用<code>--output-dir</code>/<code>-o</code> 设定输出路径, <code>--output-filename</code>/<code>-O</code> 设定输出文件名:</p><pre class=" language-bash"><code class="language-bash">you-get -o /Volumes/BingoLinData/Downloads https://www.bilibili.com/video/BV1vv41177jq</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> MacOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> You-get </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Smartmontools</title>
+      <link href="2021/04/22/smartmontools/"/>
+      <url>2021/04/22/smartmontools/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Smartmontools"><a href="#Smartmontools" class="headerlink" title="Smartmontools"></a>Smartmontools</h2><p>在Terminal执行以下命令:</p><pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> smartmontools <span class="token comment" spellcheck="true">#安装</span>diskutil list <span class="token comment" spellcheck="true">#查找要测试「卷」的驱动器标识符</span>smartctl -a /dev/disk0 <span class="token comment" spellcheck="true">#获取指定驱动器的 SMART 状态</span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> MacOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Smartmontools </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MNMP WordPress</title>
       <link href="2021/04/22/mnmp-wordpess/"/>
       <url>2021/04/22/mnmp-wordpess/</url>
