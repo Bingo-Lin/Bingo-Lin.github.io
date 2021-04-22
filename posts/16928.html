@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Smartmontools, BingoLin">
+    <meta name="keywords" content="MNMP WordPress, BingoLin">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Smartmontools | BingoLin</title>
+    <title>MNMP WordPress | BingoLin</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/libs/awesome/css/all.css">
@@ -313,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Smartmontools</h1>
+                    <h1 class="description center-align post-title">MNMP WordPress</h1>
                 </div>
             </div>
         </div>
@@ -434,8 +434,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Smartmontools/">
-                                <span class="chip bg-color">Smartmontools</span>
+                            <a href="/tags/MNMP/">
+                                <span class="chip bg-color">MNMP</span>
+                            </a>
+                        
+                            <a href="/tags/WordPress/">
+                                <span class="chip bg-color">WordPress</span>
                             </a>
                         
                     </div>
@@ -468,14 +472,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    43
+                    510
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -495,11 +499,94 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Smartmontools"><a href="#Smartmontools" class="headerlink" title="Smartmontools"></a>Smartmontools</h2><p>在Terminal执行以下命令:</p>
-<pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> smartmontools <span class="token comment" spellcheck="true">#安装</span>
-diskutil list <span class="token comment" spellcheck="true">#查找要测试「卷」的驱动器标识符</span>
-smartctl -a /dev/disk0 <span class="token comment" spellcheck="true">#获取指定驱动器的 SMART 状态</span>
+                <h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>1.安装</p>
+<pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> nginx
+brew services start nginx
 </code></pre>
+<p>2.为方便管理，在 nginx 配置目录下的 <code>servers</code> 新增一个配置文件<a target="_blank" rel="noopener" href="http://www.conf/">www.conf</a></p>
+<pre class=" language-bash"><code class="language-bash">vim /usr/local/etc/nginx/servers/www.conf
+</code></pre>
+<p>并在<a href="http://www.conf中填充以下内容：">www.conf中填充以下内容：</a></p>
+<pre class=" language-bash"><code class="language-bash">server <span class="token punctuation">{</span>
+    listen       80<span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true"># 如果需要域名访问的话，注意需要修改 /etc/hosts 文件</span>
+    <span class="token comment" spellcheck="true"># server_name  bingolin.dev;</span>
+      <span class="token comment" spellcheck="true"># 项目根目录</span>
+    root /Users/bingolin/www<span class="token punctuation">;</span>
+
+    location / <span class="token punctuation">{</span>
+        index index.php index.html<span class="token punctuation">;</span>
+        autoindex on<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>注意：最好每个项目都单独一个配置文件。从上面的配置中可以看出将项目放在用户下的 <code>www</code> 文件夹下，在这个文件夹中新建一个 html 文件：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">mkdir</span> ~/www
+vim ~/www/index.html
+</code></pre>
+<p>重启一下 nginx 服务</p>
+<pre class=" language-bash"><code class="language-bash">brew services restart nginx
+</code></pre>
+<p>访问刚刚配置的主机，在浏览器网址输入localhost就可以访问到上面这个 html 文件</p>
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><p>1.安装</p>
+<pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> php
+brew services start php
+</code></pre>
+<p>2.替换系统自带的 php-fpm：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">echo</span> <span class="token string">'export PATH="/usr/local/opt/php/sbin:<span class="token variable">$PATH</span>"'</span> <span class="token operator">>></span> ~/.zshrc
+<span class="token function">source</span> ~/.zshrc
+</code></pre>
+<p>3.查看版本信息：</p>
+<pre class=" language-bash"><code class="language-bash">php -v
+php-fpm -v
+</code></pre>
+<p>4.修改 nginx 的主机配置，使它支持 PHP</p>
+<pre class=" language-bash"><code class="language-bash">vim /usr/local/etc/nginx/servers/www.conf
+</code></pre>
+<p>修改后的<a target="_blank" rel="noopener" href="http://www.conf/">www.conf</a> 内容为：</p>
+<pre class=" language-bash"><code class="language-bash">server <span class="token punctuation">{</span>
+    listen       80<span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true"># 如果需要域名访问的话，注意需要修改 /etc/hosts 文件</span>
+    <span class="token comment" spellcheck="true"># server_name  bingolin.dev;</span>
+      <span class="token comment" spellcheck="true"># 项目根目录</span>
+    root /Users/bingolin/www<span class="token punctuation">;</span>
+
+    location / <span class="token punctuation">{</span>
+        index index.php index.html<span class="token punctuation">;</span>
+        autoindex on<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment" spellcheck="true">#新增加的内容</span>
+    location ~ \.php$ <span class="token punctuation">{</span>
+        fastcgi_pass   127.0.0.1:9000<span class="token punctuation">;</span>
+        fastcgi_index  index.php<span class="token punctuation">;</span>
+        fastcgi_param  SCRIPT_FILENAME  <span class="token variable">$document_root</span><span class="token variable">$fastcgi_script_name</span><span class="token punctuation">;</span>
+        include        fastcgi_params<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+<span class="token punctuation">}</span>
+</code></pre>
+<p>5.重启 nginx 服务</p>
+<pre class=" language-bash"><code class="language-bash">brew services restart nginx
+</code></pre>
+<p>6.在项目根目录新增一个 php 文件</p>
+<pre class=" language-bash"><code class="language-bash">vim ~/www/index.php
+</code></pre>
+<p>内容为：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+    phpinfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>在浏览器网址输入localhost就可以访问到上面这个 php 文件</p>
+<h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><p>详见Mysql Learning.md</p>
+<p>电脑重新启动，以防止出现brew services  error </p>
+<h2 id="Wordpress"><a href="#Wordpress" class="headerlink" title="Wordpress"></a>Wordpress</h2><p>1.安装</p>
+<p>去官网下载Wordpress压缩包，并解压到之前的配置的用户下的 <code>www</code> 文件夹中</p>
+<p>2.首先在在Mysql中建立一个名为Wordpress的数据库</p>
+<pre class=" language-bash"><code class="language-bash">mysql -uBingoLin -p
+
+create database Wordpress<span class="token punctuation">;</span>
+</code></pre>
+<p>3.通过浏览器访问 <code>localhost/wordpress</code> ，就可以看到一个 Wordpress 的安装界面，输入数据库相关的信息 ，就成功安装了。</p>
 
                 
             </div>
@@ -526,7 +613,7 @@ smartctl -a /dev/disk0 <span class="token comment" spellcheck="true">#获取指�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Bingo-Lin.github.io/2021/04/22/smartmontools/">https://Bingo-Lin.github.io/2021/04/22/smartmontools/</a>
+                    <a href="https://Bingo-Lin.github.io/posts/16928.html">https://Bingo-Lin.github.io/posts/16928.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -564,8 +651,12 @@ smartctl -a /dev/disk0 <span class="token comment" spellcheck="true">#获取指�
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Smartmontools/">
-                                    <span class="chip bg-color">Smartmontools</span>
+                                <a href="/tags/MNMP/">
+                                    <span class="chip bg-color">MNMP</span>
+                                </a>
+                            
+                                <a href="/tags/WordPress/">
+                                    <span class="chip bg-color">WordPress</span>
                                 </a>
                             
                         </div>
@@ -741,13 +832,13 @@ smartctl -a /dev/disk0 <span class="token comment" spellcheck="true">#获取指�
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/04/22/you-get/">
+                <a href="/posts/7.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/0.jpg" class="responsive-img" alt="You-get">
+                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/16.jpg" class="responsive-img" alt="Smartmontools">
                         
-                        <span class="card-title">You-get</span>
+                        <span class="card-title">Smartmontools</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -775,8 +866,8 @@ smartctl -a /dev/disk0 <span class="token comment" spellcheck="true">#获取指�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/You-get/">
-                        <span class="chip bg-color">You-get</span>
+                    <a href="/tags/Smartmontools/">
+                        <span class="chip bg-color">Smartmontools</span>
                     </a>
                     
                 </div>
@@ -790,13 +881,13 @@ smartctl -a /dev/disk0 <span class="token comment" spellcheck="true">#获取指�
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/22/mnmp-wordpess/">
+                <a href="/posts/26062.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/19.jpg" class="responsive-img" alt="MNMP WordPress">
+                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/14.jpg" class="responsive-img" alt="MacOS Terminal Beautify">
                         
-                        <span class="card-title">MNMP WordPress</span>
+                        <span class="card-title">MacOS Terminal Beautify</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -824,12 +915,8 @@ smartctl -a /dev/disk0 <span class="token comment" spellcheck="true">#获取指�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MNMP/">
-                        <span class="chip bg-color">MNMP</span>
-                    </a>
-                    
-                    <a href="/tags/WordPress/">
-                        <span class="chip bg-color">WordPress</span>
+                    <a href="/tags/Terminal/">
+                        <span class="chip bg-color">Terminal</span>
                     </a>
                     
                 </div>

@@ -2,56 +2,56 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://bingo-lin.github.io/2021/04/22/git-github/</loc>
+    <loc>https://bingo-lin.github.io/posts/25144.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/2021/04/22/youtube-dl/</loc>
+    <loc>https://bingo-lin.github.io/posts/1439.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/2021/04/22/you-get/</loc>
+    <loc>https://bingo-lin.github.io/posts/21982.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/2021/04/22/smartmontools/</loc>
+    <loc>https://bingo-lin.github.io/posts/7.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/2021/04/22/mysql/</loc>
+    <loc>https://bingo-lin.github.io/posts/62688.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/2021/04/22/git/</loc>
+    <loc>https://bingo-lin.github.io/posts/25246.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/2021/04/22/mnmp-wordpess/</loc>
+    <loc>https://bingo-lin.github.io/posts/16928.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/2021/04/22/macos-terminal-beautify/</loc>
+    <loc>https://bingo-lin.github.io/posts/26062.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
@@ -100,7 +100,7 @@
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/2021/04/21/hello-world/</loc>
+    <loc>https://bingo-lin.github.io/posts/16107.html</loc>
     
     <lastmod>2021-04-21</lastmod>
     
@@ -144,13 +144,6 @@
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/tags/Mysql/</loc>
-    <lastmod>2021-04-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bingo-lin.github.io/tags/Terminal/</loc>
     <lastmod>2021-04-22</lastmod>
     <changefreq>daily</changefreq>
@@ -159,6 +152,13 @@
   
   <url>
     <loc>https://bingo-lin.github.io/tags/Smartmontools/</loc>
+    <lastmod>2021-04-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingo-lin.github.io/tags/Mysql/</loc>
     <lastmod>2021-04-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

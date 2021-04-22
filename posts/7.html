@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Git Github, BingoLin">
+    <meta name="keywords" content="Smartmontools, BingoLin">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Git Github | BingoLin</title>
+    <title>Smartmontools | BingoLin</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/libs/awesome/css/all.css">
@@ -313,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Git Github</h1>
+                    <h1 class="description center-align post-title">Smartmontools</h1>
                 </div>
             </div>
         </div>
@@ -434,12 +434,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Git/">
-                                <span class="chip bg-color">Git</span>
-                            </a>
-                        
-                            <a href="/tags/Github/">
-                                <span class="chip bg-color">Github</span>
+                            <a href="/tags/Smartmontools/">
+                                <span class="chip bg-color">Smartmontools</span>
                             </a>
                         
                     </div>
@@ -472,7 +468,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    124
+                    43
                 </div>
                 
 
@@ -499,21 +495,11 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">git</span>
-<span class="token function">which</span> <span class="token function">git</span> <span class="token comment" spellcheck="true">#查看git路径 确保使用最新的git</span>
-
-<span class="token comment" spellcheck="true">#配置git</span>
-<span class="token function">git</span> config --global user.name <span class="token string">"BingoLin"</span> 
-<span class="token function">git</span> config --global user.email BingoLin@pm.me
-
-<span class="token comment" spellcheck="true">#配置ssh key</span>
-ssh-keygen -t rsa -C <span class="token string">"BingoLin@pm.me"</span>
-<span class="token function">cat</span> /Users/bingolin/.ssh/id_rsa.pub <span class="token comment" spellcheck="true">#打开id_rsa.pub文件，复制里面的key 数据</span>
+                <h2 id="Smartmontools"><a href="#Smartmontools" class="headerlink" title="Smartmontools"></a>Smartmontools</h2><p>在Terminal执行以下命令:</p>
+<pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> smartmontools <span class="token comment" spellcheck="true">#安装</span>
+diskutil list <span class="token comment" spellcheck="true">#查找要测试「卷」的驱动器标识符</span>
+smartctl -a /dev/disk0 <span class="token comment" spellcheck="true">#获取指定驱动器的 SMART 状态</span>
 </code></pre>
-<p>注册GitHub网站后，点击头像，setting ，找到ssh and GPG keys ,按提示添加 刚复制的 key 数据</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">ssh</span> -T git@github.com <span class="token comment" spellcheck="true">#验证</span>
-</code></pre>
-<p>出现 Hi Bingo-Lin! You’ve successfully authenticated, but GitHub does not provide shell access. 即链接成功。</p>
 
                 
             </div>
@@ -540,7 +526,7 @@ ssh-keygen -t rsa -C <span class="token string">"BingoLin@pm.me"</span>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Bingo-Lin.github.io/2021/04/22/git-github/">https://Bingo-Lin.github.io/2021/04/22/git-github/</a>
+                    <a href="https://Bingo-Lin.github.io/posts/7.html">https://Bingo-Lin.github.io/posts/7.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -578,12 +564,8 @@ ssh-keygen -t rsa -C <span class="token string">"BingoLin@pm.me"</span>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Git/">
-                                    <span class="chip bg-color">Git</span>
-                                </a>
-                            
-                                <a href="/tags/Github/">
-                                    <span class="chip bg-color">Github</span>
+                                <a href="/tags/Smartmontools/">
+                                    <span class="chip bg-color">Smartmontools</span>
                                 </a>
                             
                         </div>
@@ -755,18 +737,17 @@ ssh-keygen -t rsa -C <span class="token string">"BingoLin@pm.me"</span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/04/22/git-github/">
+                <a href="/posts/21982.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/23.jpg" class="responsive-img" alt="Git Github">
+                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/0.jpg" class="responsive-img" alt="You-get">
                         
-                        <span class="card-title">Git Github</span>
+                        <span class="card-title">You-get</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -776,9 +757,9 @@ ssh-keygen -t rsa -C <span class="token string">"BingoLin@pm.me"</span>
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-22
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-22
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -791,16 +772,11 @@ ssh-keygen -t rsa -C <span class="token string">"BingoLin@pm.me"</span>
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Git/">
-                        <span class="chip bg-color">Git</span>
-                    </a>
-                    
-                    <a href="/tags/Github/">
-                        <span class="chip bg-color">Github</span>
+                    <a href="/tags/You-get/">
+                        <span class="chip bg-color">You-get</span>
                     </a>
                     
                 </div>
@@ -814,13 +790,13 @@ ssh-keygen -t rsa -C <span class="token string">"BingoLin@pm.me"</span>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/22/git/">
+                <a href="/posts/16928.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="Git">
+                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/19.jpg" class="responsive-img" alt="MNMP WordPress">
                         
-                        <span class="card-title">Git</span>
+                        <span class="card-title">MNMP WordPress</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -848,8 +824,12 @@ ssh-keygen -t rsa -C <span class="token string">"BingoLin@pm.me"</span>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Git/">
-                        <span class="chip bg-color">Git</span>
+                    <a href="/tags/MNMP/">
+                        <span class="chip bg-color">MNMP</span>
+                    </a>
+                    
+                    <a href="/tags/WordPress/">
+                        <span class="chip bg-color">WordPress</span>
                     </a>
                     
                 </div>

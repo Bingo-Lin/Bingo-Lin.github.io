@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="You-get, BingoLin">
+    <meta name="keywords" content="Mysql, BingoLin">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>You-get | BingoLin</title>
+    <title>Mysql | BingoLin</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/libs/awesome/css/all.css">
@@ -313,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">You-get</h1>
+                    <h1 class="description center-align post-title">Mysql</h1>
                 </div>
             </div>
         </div>
@@ -434,8 +434,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/You-get/">
-                                <span class="chip bg-color">You-get</span>
+                            <a href="/tags/Mysql/">
+                                <span class="chip bg-color">Mysql</span>
                             </a>
                         
                     </div>
@@ -468,7 +468,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    35
+                    149
                 </div>
                 
 
@@ -495,8 +495,16 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="You-get"><a href="#You-get" class="headerlink" title="You-get"></a>You-get</h2><p>使用<code>--output-dir</code>/<code>-o</code> 设定输出路径, <code>--output-filename</code>/<code>-O</code> 设定输出文件名:</p>
-<pre class=" language-bash"><code class="language-bash">you-get -o /Volumes/BingoLinData/Downloads https://www.bilibili.com/video/BV1vv41177jq
+                <h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> mysql 
+mysql.server start
+mysql_secure_installation <span class="token comment" spellcheck="true">#根据提示设置</span>
+</code></pre>
+<p>注意一定要先运行第2步，再运行第3步，否则可能会出现以下错误：Error: Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)</p>
+<h2 id="Create-user"><a href="#Create-user" class="headerlink" title="Create user"></a>Create user</h2><pre class=" language-bash"><code class="language-bash">mysql -uroot -p
+</code></pre>
+<p>输入管理员密码后进入mysql界面</p>
+<pre class=" language-bash"><code class="language-bash">create user <span class="token string">'xxx'</span>@<span class="token string">'%'</span> identified by <span class="token string">'xyz'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">#指定任何ip的名为xxx的用户登录,密码为xyz</span>
+grant all privileges  on *.*  to <span class="token string">"xxx"</span>@<span class="token string">'%'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">#授权xxx用户对所有数据库中文件有任何操作，此时xxx用户拥有除了grant这个命令外的所有的权限，grant这个命令是root才有的</span>
 </code></pre>
 
                 
@@ -524,7 +532,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Bingo-Lin.github.io/2021/04/22/you-get/">https://Bingo-Lin.github.io/2021/04/22/you-get/</a>
+                    <a href="https://Bingo-Lin.github.io/posts/62688.html">https://Bingo-Lin.github.io/posts/62688.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -562,8 +570,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/You-get/">
-                                    <span class="chip bg-color">You-get</span>
+                                <a href="/tags/Mysql/">
+                                    <span class="chip bg-color">Mysql</span>
                                 </a>
                             
                         </div>
@@ -739,13 +747,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/04/22/youtube-dl/">
+                <a href="/posts/25246.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="Youtube-dl">
+                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="Git">
                         
-                        <span class="card-title">Youtube-dl</span>
+                        <span class="card-title">Git</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -758,51 +766,6 @@
                         <span class="publish-date">
                             <i class="far fa-clock fa-fw icon-date"></i>2021-04-22
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Bingo Lin
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Youtube-dl/">
-                        <span class="chip bg-color">Youtube-dl</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/04/22/smartmontools/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/16.jpg" class="responsive-img" alt="Smartmontools">
-                        
-                        <span class="card-title">Smartmontools</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-22
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -818,8 +781,53 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Smartmontools/">
-                        <span class="chip bg-color">Smartmontools</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/1439.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="Youtube-dl">
+                        
+                        <span class="card-title">Youtube-dl</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Bingo Lin
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Youtube-dl/">
+                        <span class="chip bg-color">Youtube-dl</span>
                     </a>
                     
                 </div>

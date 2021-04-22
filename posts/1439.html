@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Mysql, BingoLin">
+    <meta name="keywords" content="Youtube-dl, BingoLin">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Mysql | BingoLin</title>
+    <title>Youtube-dl | BingoLin</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/libs/awesome/css/all.css">
@@ -318,7 +318,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Mysql</h1>
+                    <h1 class="description center-align post-title">Youtube-dl</h1>
                 </div>
             </div>
         </div>
@@ -434,23 +434,14 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Mysql/">
-                                <span class="chip bg-color">Mysql</span>
+                            <a href="/tags/Youtube-dl/">
+                                <span class="chip bg-color">Youtube-dl</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/MacOS/" class="post-category">
-                                MacOS
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -468,7 +459,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    149
+                    30
                 </div>
                 
 
@@ -495,16 +486,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> mysql 
-mysql.server start
-mysql_secure_installation <span class="token comment" spellcheck="true">#根据提示设置</span>
-</code></pre>
-<p>注意一定要先运行第2步，再运行第3步，否则可能会出现以下错误：Error: Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)</p>
-<h2 id="Create-user"><a href="#Create-user" class="headerlink" title="Create user"></a>Create user</h2><pre class=" language-bash"><code class="language-bash">mysql -uroot -p
-</code></pre>
-<p>输入管理员密码后进入mysql界面</p>
-<pre class=" language-bash"><code class="language-bash">create user <span class="token string">'xxx'</span>@<span class="token string">'%'</span> identified by <span class="token string">'xyz'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">#指定任何ip的名为xxx的用户登录,密码为xyz</span>
-grant all privileges  on *.*  to <span class="token string">"xxx"</span>@<span class="token string">'%'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">#授权xxx用户对所有数据库中文件有任何操作，此时xxx用户拥有除了grant这个命令外的所有的权限，grant这个命令是root才有的</span>
+                <h2 id="Youtube-dl"><a href="#Youtube-dl" class="headerlink" title="Youtube-dl"></a>Youtube-dl</h2><p>使用<code>--output-dir</code>/<code>-o</code> 设定输出路径,</p>
+<pre class=" language-bash"><code class="language-bash">youtube-dl -o <span class="token string">'/Volumes/BingoLinData/Downloads/%(title)s.%(ext)s'</span>  https://www.youtube.com/watch?v<span class="token operator">=</span>HOyTH0QQvwk
 </code></pre>
 
                 
@@ -532,7 +515,7 @@ grant all privileges  on *.*  to <span class="token string">"xxx"</span>@<span c
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Bingo-Lin.github.io/2021/04/22/mysql/">https://Bingo-Lin.github.io/2021/04/22/mysql/</a>
+                    <a href="https://Bingo-Lin.github.io/posts/1439.html">https://Bingo-Lin.github.io/posts/1439.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -570,8 +553,8 @@ grant all privileges  on *.*  to <span class="token string">"xxx"</span>@<span c
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Mysql/">
-                                    <span class="chip bg-color">Mysql</span>
+                                <a href="/tags/Youtube-dl/">
+                                    <span class="chip bg-color">Youtube-dl</span>
                                 </a>
                             
                         </div>
@@ -747,13 +730,13 @@ grant all privileges  on *.*  to <span class="token string">"xxx"</span>@<span c
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/04/22/git/">
+                <a href="/posts/62688.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="Git">
+                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="Mysql">
                         
-                        <span class="card-title">Git</span>
+                        <span class="card-title">Mysql</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -781,8 +764,8 @@ grant all privileges  on *.*  to <span class="token string">"xxx"</span>@<span c
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Git/">
-                        <span class="chip bg-color">Git</span>
+                    <a href="/tags/Mysql/">
+                        <span class="chip bg-color">Mysql</span>
                     </a>
                     
                 </div>
@@ -796,13 +779,13 @@ grant all privileges  on *.*  to <span class="token string">"xxx"</span>@<span c
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/22/youtube-dl/">
+                <a href="/posts/21982.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="Youtube-dl">
+                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/0.jpg" class="responsive-img" alt="You-get">
                         
-                        <span class="card-title">Youtube-dl</span>
+                        <span class="card-title">You-get</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -817,8 +800,12 @@ grant all privileges  on *.*  to <span class="token string">"xxx"</span>@<span c
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Bingo Lin
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MacOS/" class="post-category">
+                                    MacOS
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -826,8 +813,8 @@ grant all privileges  on *.*  to <span class="token string">"xxx"</span>@<span c
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Youtube-dl/">
-                        <span class="chip bg-color">Youtube-dl</span>
+                    <a href="/tags/You-get/">
+                        <span class="chip bg-color">You-get</span>
                     </a>
                     
                 </div>

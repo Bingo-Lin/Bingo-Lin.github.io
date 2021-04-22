@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Youtube-dl, BingoLin">
+    <meta name="keywords" content="Git Github, BingoLin">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Youtube-dl | BingoLin</title>
+    <title>Git Github | BingoLin</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/libs/awesome/css/all.css">
@@ -313,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Youtube-dl</h1>
+                    <h1 class="description center-align post-title">Git Github</h1>
                 </div>
             </div>
         </div>
@@ -434,14 +434,27 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Youtube-dl/">
-                                <span class="chip bg-color">Youtube-dl</span>
+                            <a href="/tags/Git/">
+                                <span class="chip bg-color">Git</span>
+                            </a>
+                        
+                            <a href="/tags/Github/">
+                                <span class="chip bg-color">Github</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/MacOS/" class="post-category">
+                                MacOS
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -459,7 +472,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    30
+                    124
                 </div>
                 
 
@@ -486,9 +499,21 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Youtube-dl"><a href="#Youtube-dl" class="headerlink" title="Youtube-dl"></a>Youtube-dl</h2><p>使用<code>--output-dir</code>/<code>-o</code> 设定输出路径,</p>
-<pre class=" language-bash"><code class="language-bash">youtube-dl -o <span class="token string">'/Volumes/BingoLinData/Downloads/%(title)s.%(ext)s'</span>  https://www.youtube.com/watch?v<span class="token operator">=</span>HOyTH0QQvwk
+                <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">git</span>
+<span class="token function">which</span> <span class="token function">git</span> <span class="token comment" spellcheck="true">#查看git路径 确保使用最新的git</span>
+
+<span class="token comment" spellcheck="true">#配置git</span>
+<span class="token function">git</span> config --global user.name <span class="token string">"BingoLin"</span> 
+<span class="token function">git</span> config --global user.email BingoLin@pm.me
+
+<span class="token comment" spellcheck="true">#配置ssh key</span>
+ssh-keygen -t rsa -C <span class="token string">"BingoLin@pm.me"</span>
+<span class="token function">cat</span> /Users/bingolin/.ssh/id_rsa.pub <span class="token comment" spellcheck="true">#打开id_rsa.pub文件，复制里面的key 数据</span>
 </code></pre>
+<p>注册GitHub网站后，点击头像，setting ，找到ssh and GPG keys ,按提示添加 刚复制的 key 数据</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">ssh</span> -T git@github.com <span class="token comment" spellcheck="true">#验证</span>
+</code></pre>
+<p>出现 Hi Bingo-Lin! You’ve successfully authenticated, but GitHub does not provide shell access. 即链接成功。</p>
 
                 
             </div>
@@ -515,7 +540,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://Bingo-Lin.github.io/2021/04/22/youtube-dl/">https://Bingo-Lin.github.io/2021/04/22/youtube-dl/</a>
+                    <a href="https://Bingo-Lin.github.io/posts/25144.html">https://Bingo-Lin.github.io/posts/25144.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -553,8 +578,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Youtube-dl/">
-                                    <span class="chip bg-color">Youtube-dl</span>
+                                <a href="/tags/Git/">
+                                    <span class="chip bg-color">Git</span>
+                                </a>
+                            
+                                <a href="/tags/Github/">
+                                    <span class="chip bg-color">Github</span>
                                 </a>
                             
                         </div>
@@ -726,17 +755,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/04/22/mysql/">
+                <a href="/posts/25144.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/18.jpg" class="responsive-img" alt="Mysql">
+                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/23.jpg" class="responsive-img" alt="Git Github">
                         
-                        <span class="card-title">Mysql</span>
+                        <span class="card-title">Git Github</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -746,9 +776,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -761,11 +791,16 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Mysql/">
-                        <span class="chip bg-color">Mysql</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                    <a href="/tags/Github/">
+                        <span class="chip bg-color">Github</span>
                     </a>
                     
                 </div>
@@ -779,13 +814,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/04/22/you-get/">
+                <a href="/posts/25246.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/0.jpg" class="responsive-img" alt="You-get">
+                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="Git">
                         
-                        <span class="card-title">You-get</span>
+                        <span class="card-title">Git</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -813,8 +848,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/You-get/">
-                        <span class="chip bg-color">You-get</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
                     </a>
                     
                 </div>
