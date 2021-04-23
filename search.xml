@@ -88,6 +88,12 @@
         <content type="html"><![CDATA[<h2 id="Youtube-dl"><a href="#Youtube-dl" class="headerlink" title="Youtube-dl"></a>Youtube-dl</h2><p>使用<code>--output-dir</code>/<code>-o</code> 设定输出路径,</p><pre class=" language-bash"><code class="language-bash">youtube-dl -o <span class="token string">'/Volumes/BingoLinData/Downloads/%(title)s.%(ext)s'</span>  https://www.youtube.com/watch?v<span class="token operator">=</span>HOyTH0QQvwk</code></pre>]]></content>
       
       
+      <categories>
+          
+          <category> MacOS </category>
+          
+      </categories>
+      
       
         <tags>
             
