@@ -110,7 +110,7 @@
       <link href="posts/21982.html"/>
       <url>posts/21982.html</url>
       
-        <content type="html"><![CDATA[<h2 id="You-get"><a href="#You-get" class="headerlink" title="You-get"></a>You-get</h2><p>使用<code>--output-dir</code>/<code>-o</code> 设定输出路径, <code>--output-filename</code>/<code>-O</code> 设定输出文件名:</p><pre class=" language-bash"><code class="language-bash">you-get -o /Volumes/BingoLinData/Downloads https://www.bilibili.com/video/BV1vv41177jq</code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="You-get"><a href="#You-get" class="headerlink" title="You-get"></a>You-get</h2><p>使用<code>--output-dir</code>/<code>-o</code> 设定输出路径, <code>--output-filename</code>/<code>-O</code> 设定输出文件名:</p><pre class=" language-bash"><code class="language-bash">you-get -o /Volumes/BingoLinData/Downloads --format<span class="token operator">=</span>dash-flv  https://www.bilibili.com/video/BV1vv41177jq</code></pre>]]></content>
       
       
       <categories>
