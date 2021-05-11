@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Mysql Order</title>
+      <link href="posts/51460.html"/>
+      <url>posts/51460.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h2><pre class=" language-mysql"><code class="language-mysql">show databases;</code></pre><h2 id="选择数据库"><a href="#选择数据库" class="headerlink" title="选择数据库"></a>选择数据库</h2><pre class=" language-mysql"><code class="language-mysql">use databasesName;</code></pre><h2 id="查看该数据库中有哪些表"><a href="#查看该数据库中有哪些表" class="headerlink" title="查看该数据库中有哪些表"></a>查看该数据库中有哪些表</h2><pre class=" language-mysql"><code class="language-mysql">show tables;</code></pre><h2 id="查询表中数据"><a href="#查询表中数据" class="headerlink" title="查询表中数据"></a>查询表中数据</h2><pre class=" language-mysql"><code class="language-mysql">select * from tableName;</code></pre><h2 id="退出数据库服务器"><a href="#退出数据库服务器" class="headerlink" title="退出数据库服务器"></a>退出数据库服务器</h2><pre class=" language-mysql"><code class="language-mysql">exit;</code></pre><h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><pre class=" language-mysql"><code class="language-mysql">create database databaseName;</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Git Github</title>
       <link href="posts/25144.html"/>
       <url>posts/25144.html</url>
@@ -56,7 +75,7 @@
     
     
     <entry>
-      <title>Mysql</title>
+      <title>Mysql-Install</title>
       <link href="posts/62688.html"/>
       <url>posts/62688.html</url>
       
