@@ -30,14 +30,14 @@
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/posts/7.html</loc>
+    <loc>https://bingo-lin.github.io/posts/62688.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/posts/62688.html</loc>
+    <loc>https://bingo-lin.github.io/posts/7.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
@@ -116,14 +116,14 @@
 
   
   <url>
-    <loc>https://bingo-lin.github.io/tags/Git/</loc>
+    <loc>https://bingo-lin.github.io/tags/Terminal/</loc>
     <lastmod>2021-05-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/tags/Github/</loc>
+    <loc>https://bingo-lin.github.io/tags/Git/</loc>
     <lastmod>2021-05-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -138,6 +138,20 @@
   
   <url>
     <loc>https://bingo-lin.github.io/tags/WordPress/</loc>
+    <lastmod>2021-05-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingo-lin.github.io/tags/Github/</loc>
+    <lastmod>2021-05-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingo-lin.github.io/tags/Mysql/</loc>
     <lastmod>2021-05-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -159,20 +173,6 @@
   
   <url>
     <loc>https://bingo-lin.github.io/tags/Youtube-dl/</loc>
-    <lastmod>2021-05-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bingo-lin.github.io/tags/Terminal/</loc>
-    <lastmod>2021-05-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bingo-lin.github.io/tags/Mysql/</loc>
     <lastmod>2021-05-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
