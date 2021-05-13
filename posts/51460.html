@@ -468,14 +468,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    203
+                    638
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -509,16 +509,87 @@
 </code></pre>
 <h2 id="创建数据表"><a href="#创建数据表" class="headerlink" title="创建数据表"></a>创建数据表</h2><p>以创建student表为例：</p>
 <pre class=" language-mysql"><code class="language-mysql">create table student(
-                   name VARCHAR(20),
-                   gender CHAR(1),
-                   brith DATE,
-                   death DATE );
+  id int primary key auto_increment,
+  name VARCHAR(20),
+  gender CHAR(1),
+  birth DATE,
+  death DATE );
 </code></pre>
 <p>注意：1.var()定常:哪怕存储的字符串没有达到”()”中数字的上限,var()依然会占用空格来填充空间.varchar()不定长,没有达到”()”中的上限则会自动去掉后面的空格;</p>
 <p>2.定义最后一个字段的时候不要加”,”; </p>
 <p>3.上面的”VAR”,”VARCHAR”,”DATE”可以用小写.不过最好用大写来表示区分关键字;</p>
 <p>4.切换到英语状态下半角输入；</p>
-<h2 id="查看数据表表结构"><a href="#查看数据表表结构" class="headerlink" title="查看数据表表结构"></a>查看数据表表结构</h2><pre class=" language-mysql"><code class="language-mysql">desc tableName;
+<h2 id="查看数据表表结构"><a href="#查看数据表表结构" class="headerlink" title="查看数据表表结构"></a>查看数据表表结构</h2><pre class=" language-mysql"><code class="language-mysql">desc tableName; 
+</code></pre>
+<p>以student表为例：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc student;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(20) | YES  |     | NULL    |                |
+| gender | char(1)     | YES  |     | NULL    |                |
+| birth  | date        | YES  |     | NULL    |                |
+| death  | date        | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+</code></pre>
+<p>说明：</p>
+<p>Field ：字段名称</p>
+<p>Type ：字段类型，比如 int , date , char , varchar</p>
+<p>Key   :  是否是关键字，比如可以定义为： primary key 或者 unique key </p>
+<p>Default  :  若是该字段没有主动设置值的时候,定义该字段的默认值</p>
+<p>Extra :  auto_increment 表示自增；</p>
+<h2 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h2><pre class=" language-mysql"><code class="language-mysql">insert into student values(null,'BingoLin','1','1995-01-01',null);
+</code></pre>
+<p>注意：是 null ，不是  ‘Null’  </p>
+<p>或者</p>
+<pre class=" language-mysql"><code class="language-mysql">insert into student(name,gender,birth) values('BingoLin','1','1995-01-01');
+</code></pre>
+<p>此时，已经向student增加了两条记录，这两条记录除了id 外一模一样。</p>
+<p>使用select命令查看表，显示如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> select * from student;
++----+----------+--------+------------+-------+
+| id | name     | gender | birth      | death |
++----+----------+--------+------------+-------+
+|  1 | BingoLin | 1      | 1995-01-01 | NULL  |
+|  2 | BingoLin | 1      | 1995-01-01 | NULL  |
++----+----------+--------+------------+-------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p> 注意： NULL:代表的是空,表示该字段还没有数据.</p>
+<h2 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h2><pre class=" language-mysql"><code class="language-mysql">delete from tableName where <条件>
+</code></pre>
+<p>以student 表为例:</p>
+<pre class=" language-mysql"><code class="language-mysql">delete from student where id = 2;
+</code></pre>
+<p>上诉命令，意思是删除 student 表 中  id 为 2 的记录。</p>
+<p>删除后的表查询结果如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> select * from student;
++----+----------+--------+------------+-------+
+| id | name     | gender | birth      | death |
++----+----------+--------+------------+-------+
+|  1 | BingoLin | 1      | 1995-01-01 | NULL  |
++----+----------+--------+------------+-------+
+1 row in set (0.00 sec)
+</code></pre>
+<h2 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h2><pre class=" language-mysql"><code class="language-mysql">update tableName set 字段1=值1,字段2=值2 ... where <条件>;
+</code></pre>
+<p>以student 表为例:</p>
+<pre class=" language-mysql"><code class="language-mysql">update student 
+set gender='0',
+birth = '1995-02-01' 
+where name = 'BingoLin' ;
+</code></pre>
+<p>以上例子表示： 修改student 表 中  name 字段值为 BingoLin 的记录。修改方案是将Bingo Lin所在的这条记录中 的gender字段值设置为0，birth字段值设置为1995-02-01。</p>
+<p>修改完成后，表查询结果如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> select * from student;
++----+----------+--------+------------+-------+
+| id | name     | gender | birth      | death |
++----+----------+--------+------------+-------+
+|  1 | BingoLin | 0      | 1995-02-01 | NULL  |
++----+----------+--------+------------+-------+
+1 row in set (0.00 sec)
 </code></pre>
 
                 
@@ -1000,7 +1071,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">1.5k</span>&nbsp;字
+                class="white-color">1.9k</span>&nbsp;字
             
             
             
