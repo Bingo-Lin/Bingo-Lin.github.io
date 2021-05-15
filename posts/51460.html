@@ -468,14 +468,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    638
+                    2.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    11 分
                 </div>
                 
 
@@ -504,6 +504,8 @@
 <h2 id="查询表中数据"><a href="#查询表中数据" class="headerlink" title="查询表中数据"></a>查询表中数据</h2><pre class=" language-mysql"><code class="language-mysql">select * from tableName;
 </code></pre>
 <h2 id="退出数据库服务器"><a href="#退出数据库服务器" class="headerlink" title="退出数据库服务器"></a>退出数据库服务器</h2><pre class=" language-mysql"><code class="language-mysql">exit;
+</code></pre>
+<h2 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h2><pre class=" language-mysql"><code class="language-mysql">drop table tableName;
 </code></pre>
 <h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><pre class=" language-mysql"><code class="language-mysql">create database databaseName;
 </code></pre>
@@ -563,7 +565,7 @@
 <p>以student 表为例:</p>
 <pre class=" language-mysql"><code class="language-mysql">delete from student where id = 2;
 </code></pre>
-<p>上诉命令，意思是删除 student 表 中  id 为 2 的记录。</p>
+<p>上述命令，意思是删除 student 表 中  id 为 2 的记录。</p>
 <p>删除后的表查询结果如下：</p>
 <pre class=" language-mysql"><code class="language-mysql">mysql> select * from student;
 +----+----------+--------+------------+-------+
@@ -590,6 +592,369 @@ where name = 'BingoLin' ;
 |  1 | BingoLin | 0      | 1995-02-01 | NULL  |
 +----+----------+--------+------------+-------+
 1 row in set (0.00 sec)
+</code></pre>
+<h2 id="建表约束"><a href="#建表约束" class="headerlink" title="建表约束"></a>建表约束</h2><h3 id="1-主键约束"><a href="#1-主键约束" class="headerlink" title="1.主键约束"></a>1.主键约束</h3><p>作用：唯一确定一张表中的一条记录。增加主键约束之后，使字段不重复且不为空；</p>
+<p>以创建user表为例：</p>
+<pre class=" language-mysql"><code class="language-mysql">create table user(
+id int primary key,
+name varchar(20)
+);
+</code></pre>
+<p>向user表添加记录：</p>
+<pre class=" language-mysql"><code class="language-mysql">insert into user values(1,'BingoLin');
+</code></pre>
+<p> 添加记录后表查询结果如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> select * from user;
++----+----------+
+| id | name     |
++----+----------+
+|  1 | BingoLin |
++----+----------+
+1 row in set (0.00 sec)
+</code></pre>
+<p>表结构如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc user;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p>可以看到：id 的Null字段值为No,即 id 不为空；id 的 Key 字段值为 PRI,即（primary）</p>
+<h3 id="2-复合主键"><a href="#2-复合主键" class="headerlink" title="2.复合主键"></a>2.复合主键</h3><p>以创建user2表为例：</p>
+<pre class=" language-mysql"><code class="language-mysql">create table user2(
+id int,
+name varchar(20),
+password varchar(20),
+primary key(id,name)
+);
+</code></pre>
+<p>向user2添加记录；</p>
+<pre class=" language-mysql"><code class="language-mysql">insert into user2 values(1,'BingoLin','123456');
+insert into user2 values(2,'BingoLi','123456');
+insert into user2 values(3,'BingoLin','123456');
+</code></pre>
+<p>添加记录后表查询结果如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> select * from user2;
++----+----------+----------+
+| id | name     | password |
++----+----------+----------+
+|  1 | BingoLin | 123456   |
+|  2 | BingoLi  | 123456   |
+|  3 | BingoLin | 123456   |
++----+----------+----------+
+3 rows in set (0.00 sec)
+</code></pre>
+<p>表结构如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc user2;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| name     | varchar(20) | NO   | PRI | NULL    |       |
+| password | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+</code></pre>
+<p>可以看到，添加 复合主键 的字段不为空且不重复。没有添加复合主键的字段值允许相同；</p>
+<h3 id="3-自增约束"><a href="#3-自增约束" class="headerlink" title="3.自增约束"></a>3.自增约束</h3><p>以创建user3为例：</p>
+<pre class=" language-mysql"><code class="language-mysql">create table user3(
+id int primary key auto_increment,
+name varchar(20)
+);
+</code></pre>
+<p>向user3添加记录</p>
+<pre class=" language-mysql"><code class="language-mysql">insert into user3(name) values ('BingoLin');
+insert into user3(name) values ('BingoLi');
+</code></pre>
+<p>添加记录后表查询结果如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> select * from user3;
++----+----------+
+| id | name     |
++----+----------+
+|  1 | BingoLin |
+|  2 | BingoLi  |
++----+----------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p>表结构如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc user3;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p>说明：auto_increment 表示自增。可以看到 id 添加了auto_increment 属性后，即使没有自定义id 值，也能自动生成id </p>
+<h3 id="4-唯一约束"><a href="#4-唯一约束" class="headerlink" title="4.唯一约束"></a>4.唯一约束</h3><p>以创建user4为例：</p>
+<pre class=" language-mysql"><code class="language-mysql">create table user4(
+id int primary key auto_increment,
+name varchar(20) unique key
+);
+</code></pre>
+<p>向user4 添加记录</p>
+<pre class=" language-mysql"><code class="language-mysql">insert into user4(name) values('BingoLin');
+insert into user4(name) values('BingoLi');
+</code></pre>
+<p>添加记录后表结构查询如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> select * from user4;
++----+----------+
+| id | name     |
++----+----------+
+|  2 | BingoLi  |
+|  1 | BingoLin |
++----+----------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p>表结构如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc user4;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | YES  | UNI | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p>说明：可以看到，name 所在的 Key 的值是UNI 即Unique，</p>
+<p>此时,如果还插入相同的name值的记录，比如：</p>
+<pre class=" language-mysql"><code class="language-mysql">insert into user4(name) values('BingoLi');
+</code></pre>
+<p>  会出现错误提示：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> insert into user4(name) values('BingoLi');
+ERROR 1062 (23000): Duplicate entry 'BingoLi' for key 'user4.name'
+</code></pre>
+<p>注意：主键约束(primary key) 包含了唯一约束。</p>
+<h3 id="5-非空约束"><a href="#5-非空约束" class="headerlink" title="5.非空约束"></a>5.非空约束</h3><p>以创建user5表为例：</p>
+<pre class=" language-mysql"><code class="language-mysql">create table user5(
+id int primary key auto_increment,
+name varchar(20) not null,
+idCard varchar(20) unique key not null
+);
+</code></pre>
+<p>向user5添加记录</p>
+<pre class=" language-mysql"><code class="language-mysql">insert into user5(name,idCard) values ('BingoLin','123456');
+insert into user5(name,idCard) values ('BingoLi','33144245');
+</code></pre>
+<p>添加记录后表查询结果如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> select * from user5;
++----+----------+----------+
+| id | name     | idCard   |
++----+----------+----------+
+|  1 | BingoLin | 123456   |
+|  2 | BingoLi  | 33144245 |
++----+----------+----------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p>表结构如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc user5;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(20) | NO   |     | NULL    |                |
+| idCard | varchar(20) | NO   | UNI | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+</code></pre>
+<p>说明：name,idCard 都设置了 not null ,即非空。此时，如果只添加含有name的记录：</p>
+<pre class=" language-mysql"><code class="language-mysql">insert into user5(name) values('Bingo');
+</code></pre>
+<p>则会出现错误：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> insert into user5(name) values('Bingo');
+ERROR 1364 (HY000): Field 'idCard' doesn't have a default value
+</code></pre>
+<p>只添加含有idCard 的记录也会出错；</p>
+<p>结论：两个非空参数必须一起设置；</p>
+<h3 id="6-默认约束"><a href="#6-默认约束" class="headerlink" title="6.默认约束"></a>6.默认约束</h3><p>以创建user6表为例：</p>
+<pre class=" language-mysql"><code class="language-mysql">create table user6(
+id int primary key auto_increment,
+name varchar(20) not null,
+idCard varchar(20) unique key not null ,
+status int default 0 comment'用户状态 0:启用 1:封禁 默认:0'
+);
+</code></pre>
+<p>向user6添加记录：</p>
+<pre class=" language-mysql"><code class="language-mysql">insert into user6(name,idCard) values ('BingoLin','123456');
+insert into user6(name,idCard) values ('BingoLi','1234567');
+</code></pre>
+<p>添加记录后表查询如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> select * from user6;
++----+----------+---------+--------+
+| id | name     | idCard  | status |
++----+----------+---------+--------+
+|  1 | BingoLin | 123456  |      0 |
+|  2 | BingoLi  | 1234567 |      0 |
++----+----------+---------+--------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p>说明：没有设置status的值，默认为0。</p>
+<p>表结构如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc user6;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(20) | NO   |     | NULL    |                |
+| idCard | varchar(20) | NO   | UNI | NULL    |                |
+| status | int         | YES  |     | 0       |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+</code></pre>
+<h3 id="7-外键约束"><a href="#7-外键约束" class="headerlink" title="7.外键约束"></a>7.外键约束</h3><p>以创建classes表、student表为例：</p>
+<pre class=" language-mysql"><code class="language-mysql">create table classes(
+id int primary key auto_increment,
+name varchar(20) unique not null 
+);
+</code></pre>
+<p>向classes表中添加数据：</p>
+<pre class=" language-mysql"><code class="language-mysql">insert into classes(name) values('一班');
+insert into classes(name) values('二班');
+insert into classes(name) values('三班');
+insert into classes(name) values('四班');
+</code></pre>
+<p>添加记录后表查询如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> select * from classes;
++----+--------+
+| id | name   |
++----+--------+
+|  1 | 一班   |
+|  2 | 二班   |
+|  3 | 三班   |
+|  4 | 四班   |
++----+--------+
+4 rows in set (0.00 sec)
+</code></pre>
+<p>表结构如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc classes;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | NO   | UNI | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p>现在创建student表：</p>
+<pre class=" language-mysql"><code class="language-mysql">create table student(
+id int primary key auto_increment,
+name varchar(20) not null,
+idCard varchar(20) unique key not null,
+class_id int,
+foreign key(class_id) references classes(id)
+);
+</code></pre>
+<p>注：foreign key 外键；references 参考</p>
+<p>向student表添加数据：</p>
+<pre class=" language-mysql"><code class="language-mysql">insert into student(name,idCard,class_id) values ('BingoLin',123456,1);
+insert into student(name,idCard,class_id) values ('BingoLi',223456,2);
+insert into student(name,idCard,class_id) values ('BingoL',323456,3);
+insert into student(name,idCard,class_id) values ('Bingo',423456,4);
+</code></pre>
+<p>添加记录后表查询结果如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> select * from student;
++----+----------+--------+----------+
+| id | name     | idCard | class_id |
++----+----------+--------+----------+
+|  1 | BingoLin | 123456 |        1 |
+|  2 | BingoLi  | 223456 |        2 |
+|  3 | BingoL   | 323456 |        3 |
+|  4 | Bingo    | 423456 |        4 |
++----+----------+--------+----------+
+4 rows in set (0.00 sec)
+</code></pre>
+<p>  表结构如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc student;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int         | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(20) | NO   |     | NULL    |                |
+| idCard   | varchar(20) | NO   | UNI | NULL    |                |
+| class_id | int         | YES  | MUL | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+</code></pre>
+<p>说明：因为存在外键，如果想在student表添加班级为5的数据，是行不通的，因为classes表还没有五班的数据：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> insert into student(name,idCard,class_id) values ('BingoLin',523456,5);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`school`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`))
+</code></pre>
+<p>并且，因为student表中属于一班的同学是存在的，那么将无法删除classes表中一班的数据：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> delete from classes where name = '一班';
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`school`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `classes` (`id`))
+</code></pre>
+<p>办法：只有先删除掉student表中关于一班的所有数据，才能在classes表中删除一班的数据。</p>
+<h3 id="8-建表之后再添加-删除主键约束"><a href="#8-建表之后再添加-删除主键约束" class="headerlink" title="8.建表之后再添加/删除主键约束"></a>8.建表之后再添加/删除主键约束</h3><p>以创建user8为例：</p>
+<pre class=" language-mysql"><code class="language-mysql">create table user8(
+id int,
+name varchar(20)
+);
+</code></pre>
+<p>表结构如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc user8;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p>为user8表id 添加主键约束：</p>
+<pre class=" language-mysql"><code class="language-mysql">alter table user8 add primary key(id);
+</code></pre>
+<p>添加主键约束后表结构如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc user8;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p>将user8表id 删除主键约束：</p>
+<pre class=" language-mysql"><code class="language-mysql">alter table user8 drop primary key;
+</code></pre>
+<p>删除主键约束后表结构如下：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc user8;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   |     | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p>也可以再使用modify 修改字段从而添加主键约束：</p>
+<pre class=" language-mysql"><code class="language-mysql">alter table user8 modify id int primary key;
+</code></pre>
+<p>修改后查看表结构：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc user8;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+</code></pre>
+<p>给主键设置自增：</p>
+<pre class=" language-mysql"><code class="language-mysql">alter table user8 modify id int  auto_increment;
+</code></pre>
+<p>给主键设置自增后表结构：</p>
+<pre class=" language-mysql"><code class="language-mysql">mysql> desc user8;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
 </code></pre>
 
                 
@@ -1071,7 +1436,7 @@ where name = 'BingoLin' ;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">1.9k</span>&nbsp;字
+                class="white-color">3.7k</span>&nbsp;字
             
             
             
