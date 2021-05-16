@@ -6,7 +6,7 @@
   <link href="https://bingo-lin.github.io/atom.xml" rel="self"/>
   
   <link href="https://bingo-lin.github.io/"/>
-  <updated>2021-05-15T13:08:24.853Z</updated>
+  <updated>2021-05-16T15:47:32.989Z</updated>
   <id>https://bingo-lin.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mysql Select</title>
+    <link href="https://bingo-lin.github.io/posts/35760.html"/>
+    <id>https://bingo-lin.github.io/posts/35760.html</id>
+    <published>2021-05-16T13:57:12.000Z</published>
+    <updated>2021-05-16T15:47:32.989Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;mysql select 命令练习学习笔记&lt;/p&gt;
+&lt;p&gt;本人学习笔记数据来源：b站视频&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Mysql" scheme="https://bingo-lin.github.io/categories/Mysql/"/>
+    
+    
+    <category term="Mysql" scheme="https://bingo-lin.github.io/tags/Mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>Mysql Order</title>
