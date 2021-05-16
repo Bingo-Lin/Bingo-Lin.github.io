@@ -32,7 +32,7 @@
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="BingoLin" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 
@@ -427,16 +427,19 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="Smartmontools"><a href="#Smartmontools" class="headerlink" title="Smartmontools"></a>Smartmontools</h2><p>在Terminal执行以下命令:</p>
-<pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> smartmontools <span class="token comment" spellcheck="true">#安装</span>
-diskutil list <span class="token comment" spellcheck="true">#查找要测试「卷」的驱动器标识符</span>
-smartctl -a /dev/disk0 <span class="token comment" spellcheck="true">#获取指定驱动器的 SMART 状态</span>
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> smartmontools <span class="token comment">#安装</span>
+diskutil list <span class="token comment">#查找要测试「卷」的驱动器标识符</span>
+smartctl -a /dev/disk0 <span class="token comment">#获取指定驱动器的 SMART 状态</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -915,7 +918,7 @@ smartctl -a /dev/disk0 <span class="token comment" spellcheck="true">#获取指�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">5.1k</span>&nbsp;字
+                class="white-color">5.2k</span>&nbsp;字
             
             
             

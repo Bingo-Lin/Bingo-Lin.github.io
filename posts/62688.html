@@ -32,7 +32,7 @@
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="BingoLin" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 
@@ -427,22 +427,29 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> mysql 
+                <h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> mysql 
 mysql.server start
-mysql_secure_installation <span class="token comment" spellcheck="true">#根据提示设置</span>
-</code></pre>
+mysql_secure_installation <span class="token comment">#根据提示设置</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <p>注意一定要先运行第2步，再运行第3步，否则可能会出现以下错误：Error: Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)</p>
-<h2 id="Create-user"><a href="#Create-user" class="headerlink" title="Create user"></a>Create user</h2><pre class=" language-bash"><code class="language-bash">mysql -uroot -p
-</code></pre>
+<h2 id="Create-user"><a href="#Create-user" class="headerlink" title="Create user"></a>Create user</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mysql -uroot -p<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>输入管理员密码后进入mysql界面</p>
-<pre class=" language-bash"><code class="language-bash">create user <span class="token string">'xxx'</span>@<span class="token string">'%'</span> identified by <span class="token string">'xyz'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">#指定任何ip的名为xxx的用户登录,密码为xyz</span>
-grant all privileges  on *.*  to <span class="token string">"xxx"</span>@<span class="token string">'%'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">#授权xxx用户对所有数据库中文件有任何操作，此时xxx用户拥有除了grant这个命令外的所有的权限，grant这个命令是root才有的</span>
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">create user <span class="token string">'xxx'</span>@<span class="token string">'%'</span> identified by <span class="token string">'xyz'</span><span class="token punctuation">;</span> <span class="token comment">#指定任何ip的名为xxx的用户登录,密码为xyz</span>
+grant all privileges  on *.*  to <span class="token string">"xxx"</span>@<span class="token string">'%'</span><span class="token punctuation">;</span> <span class="token comment">#授权xxx用户对所有数据库中文件有任何操作，此时xxx用户拥有除了grant这个命令外的所有的权限，grant这个命令是root才有的</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+
+
 
                 
             </div>
@@ -917,7 +924,7 @@ grant all privileges  on *.*  to <span class="token string">"xxx"</span>@<span c
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">5.1k</span>&nbsp;字
+                class="white-color">5.2k</span>&nbsp;字
             
             
             

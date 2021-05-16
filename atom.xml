@@ -54,7 +54,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;查看数据库&quot;&gt;&lt;a href=&quot;#查看数据库&quot; class=&quot;headerlink&quot; title=&quot;查看数据库&quot;&gt;&lt;/a&gt;查看数据库&lt;/h2&gt;&lt;pre class=&quot; language-mysql&quot;&gt;&lt;code</summary>
+    <summary type="html">&lt;h2 id=&quot;查看数据库&quot;&gt;&lt;a href=&quot;#查看数据库&quot; class=&quot;headerlink&quot; title=&quot;查看数据库&quot;&gt;&lt;/a&gt;查看数据库&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-mysql&quot;</summary>
         
       
     
@@ -79,7 +79,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;Git&quot;&gt;&lt;a href=&quot;#Git&quot; class=&quot;headerlink&quot; title=&quot;Git&quot;&gt;&lt;/a&gt;Git&lt;/h2&gt;&lt;pre class=&quot; language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;brew &lt;span</summary>
+    <summary type="html">&lt;h2 id=&quot;Git&quot;&gt;&lt;a href=&quot;#Git&quot; class=&quot;headerlink&quot; title=&quot;Git&quot;&gt;&lt;/a&gt;Git&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code</summary>
         
       
     
@@ -106,7 +106,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;Git&quot;&gt;&lt;a href=&quot;#Git&quot; class=&quot;headerlink&quot; title=&quot;Git&quot;&gt;&lt;/a&gt;Git&lt;/h2&gt;&lt;pre class=&quot; language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;brew &lt;span</summary>
+    <summary type="html">&lt;h2 id=&quot;Git&quot;&gt;&lt;a href=&quot;#Git&quot; class=&quot;headerlink&quot; title=&quot;Git&quot;&gt;&lt;/a&gt;Git&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-bash&quot; data-language=&quot;bash&quot;&gt;&lt;code</summary>
         
       
     
@@ -131,7 +131,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;Mysql&quot;&gt;&lt;a href=&quot;#Mysql&quot; class=&quot;headerlink&quot; title=&quot;Mysql&quot;&gt;&lt;/a&gt;Mysql&lt;/h2&gt;&lt;pre class=&quot; language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;brew</summary>
+    <summary type="html">&lt;h2 id=&quot;Mysql&quot;&gt;&lt;a href=&quot;#Mysql&quot; class=&quot;headerlink&quot; title=&quot;Mysql&quot;&gt;&lt;/a&gt;Mysql&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-bash&quot;</summary>
         
       
     
@@ -233,7 +233,7 @@
         
         
     <summary type="html">&lt;h2 id=&quot;Nginx&quot;&gt;&lt;a href=&quot;#Nginx&quot; class=&quot;headerlink&quot; title=&quot;Nginx&quot;&gt;&lt;/a&gt;Nginx&lt;/h2&gt;&lt;p&gt;1.安装&lt;/p&gt;
-&lt;pre class=&quot; language-bash&quot;&gt;&lt;code</summary>
+&lt;pre class=&quot;line-numbers language-bash&quot;</summary>
         
       
     

@@ -32,7 +32,7 @@
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="BingoLin" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 
@@ -427,14 +427,17 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="Youtube-dl"><a href="#Youtube-dl" class="headerlink" title="Youtube-dl"></a>Youtube-dl</h2><p>使用<code>--output-dir</code>/<code>-o</code> 设定输出路径,</p>
-<pre class=" language-bash"><code class="language-bash">youtube-dl -o <span class="token string">'/Volumes/BingoLinData/Downloads/%(title)s.%(ext)s'</span>  https://www.youtube.com/watch?v<span class="token operator">=</span>HOyTH0QQvwk
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">youtube-dl -o <span class="token string">'/Volumes/BingoLinData/Downloads/%(title)s.%(ext)s'</span>  https://www.youtube.com/watch?v<span class="token operator">=</span>HOyTH0QQvwk<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 
                 
             </div>
@@ -909,7 +912,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">5.1k</span>&nbsp;字
+                class="white-color">5.2k</span>&nbsp;字
             
             
             

@@ -32,7 +32,7 @@
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="BingoLin" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 
@@ -431,25 +431,28 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">git</span>
-<span class="token function">which</span> <span class="token function">git</span> <span class="token comment" spellcheck="true">#查看git路径 确保使用最新的git</span>
+                <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">git</span>
+<span class="token function">which</span> <span class="token function">git</span> <span class="token comment">#查看git路径 确保使用最新的git</span>
 
-<span class="token comment" spellcheck="true">#配置git</span>
+<span class="token comment">#配置git</span>
 <span class="token function">git</span> config --global user.name <span class="token string">"BingoLin"</span> 
 <span class="token function">git</span> config --global user.email BingoLin@pm.me
 
-<span class="token comment" spellcheck="true">#配置ssh key</span>
+<span class="token comment">#配置ssh key</span>
 ssh-keygen -t rsa -C <span class="token string">"BingoLin@pm.me"</span>
-<span class="token function">cat</span> /Users/bingolin/.ssh/id_rsa.pub <span class="token comment" spellcheck="true">#打开id_rsa.pub文件，复制里面的key 数据</span>
-</code></pre>
+<span class="token function">cat</span> /Users/bingolin/.ssh/id_rsa.pub <span class="token comment">#打开id_rsa.pub文件，复制里面的key 数据</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>注册GitHub网站后，点击头像，setting ，找到ssh and GPG keys ,按提示添加 刚复制的 key 数据</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">ssh</span> -T git@github.com <span class="token comment" spellcheck="true">#验证</span>
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -T git@github.com <span class="token comment">#验证</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>出现 Hi Bingo-Lin! You’ve successfully authenticated, but GitHub does not provide shell access. 即链接成功。</p>
 
                 
@@ -929,7 +932,7 @@ ssh-keygen -t rsa -C <span class="token string">"BingoLin@pm.me"</span>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">5.1k</span>&nbsp;字
+                class="white-color">5.2k</span>&nbsp;字
             
             
             

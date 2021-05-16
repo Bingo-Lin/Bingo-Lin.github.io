@@ -32,7 +32,7 @@
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="BingoLin" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 
@@ -410,7 +410,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    225
+                    229
                 </div>
                 
 
@@ -427,6 +427,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/libs/prism/prism.css">
+        
 
         
 
@@ -434,37 +437,38 @@
             <div id="articleContent">
                 <p>从<code>MacOS Catalina</code>开始默认终端已经是<code>zsh</code>。</p>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>使用以下命令可以查看当前终端，</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token keyword">echo</span> <span class="token variable">$SHELL</span>
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token environment constant">$SHELL</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p><strong>如果不是<code>/bin/zsh</code>，执行以下命令切换到<code>zsh</code>，否则跳过此步。</strong></p>
-<pre class=" language-bash"><code class="language-bash">chsh -s /bin/zsh
-</code></pre>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> vim
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">chsh -s /bin/zsh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">vim</span>
 brew <span class="token function">install</span> <span class="token function">git</span>
 
-<span class="token comment" spellcheck="true"># 下载oh-my-zsh</span>
+<span class="token comment"># 下载oh-my-zsh</span>
 <span class="token function">git</span> clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
-<span class="token comment" spellcheck="true"># 创建一个新的配置文件</span>
+<span class="token comment"># 创建一个新的配置文件</span>
 <span class="token function">cp</span> ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 
-<span class="token comment" spellcheck="true"># 授权，如果不授权每次会有警告</span>
-<span class="token function">chmod</span> 755 /usr/local/share/zsh
-<span class="token function">chmod</span> 755 /usr/local/share/zsh/site-functions
-</code></pre>
+<span class="token comment"># 授权，如果不授权每次会有警告</span>
+<span class="token function">chmod</span> <span class="token number">755</span> /usr/local/share/zsh
+<span class="token function">chmod</span> <span class="token number">755</span> /usr/local/share/zsh/site-functions<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>退出并重启终端 command q</p>
-<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 下载命令高亮插件</span>
+<h2 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 下载命令高亮插件</span>
 <span class="token function">git</span> clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
 
-<span class="token comment" spellcheck="true"># 配置插件生效</span>
-<span class="token keyword">echo</span> <span class="token string">'# 命令高亮\nsource ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'</span> <span class="token operator">>></span> ~/.zshrc
+<span class="token comment"># 配置插件生效</span>
+<span class="token builtin class-name">echo</span> <span class="token string">'# 命令高亮<span class="token entity" title="\n">\n</span>source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'</span> <span class="token operator">&gt;&gt;</span> ~/.zshrc
 
-<span class="token comment" spellcheck="true"># 下载命令提示插件</span>
+<span class="token comment"># 下载命令提示插件</span>
 <span class="token function">git</span> clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
-<span class="token comment" spellcheck="true"># 配置插件生效</span>
-<span class="token keyword">echo</span> <span class="token string">'# 命令提示\nsource ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh'</span> <span class="token operator">>></span> ~/.zshrc
-</code></pre>
+<span class="token comment"># 配置插件生效</span>
+<span class="token builtin class-name">echo</span> <span class="token string">'# 命令提示<span class="token entity" title="\n">\n</span>source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh'</span> <span class="token operator">&gt;&gt;</span> ~/.zshrc
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -931,7 +935,7 @@ brew <span class="token function">install</span> <span class="token function">gi
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">5.1k</span>&nbsp;字
+                class="white-color">5.2k</span>&nbsp;字
             
             
             

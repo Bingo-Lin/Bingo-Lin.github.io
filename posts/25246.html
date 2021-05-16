@@ -32,7 +32,7 @@
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="BingoLin" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 
 
@@ -427,20 +427,23 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><pre class=" language-bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">git</span> 
-<span class="token function">git</span> clone git@github.com:Bingo-Lin/Bingo-Lin.github.io.git  <span class="token comment" spellcheck="true">#将GitHub上的仓库克隆到本地 </span>
-</code></pre>
+                <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">git</span> 
+<span class="token function">git</span> clone git@github.com:Bingo-Lin/Bingo-Lin.github.io.git  <span class="token comment">#将GitHub上的仓库克隆到本地 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>对本地仓库进行操作后</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> add <span class="token keyword">.</span> <span class="token comment" spellcheck="true">#将文件添加到本地仓库（ .代表添加所有文件 ）</span>
-<span class="token function">git</span> commit -m <span class="token string">"添加本次提交的名称"</span>  <span class="token comment" spellcheck="true">#将文件提交到本地仓库</span>
-<span class="token function">git</span> push <span class="token comment" spellcheck="true">#上传到GitHub</span>
-<span class="token function">git</span> pull <span class="token comment" spellcheck="true">#从Github拉取最新更新并合并到本地仓库</span>
-</code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> <span class="token comment">#将文件添加到本地仓库（ .代表添加所有文件 ）</span>
+<span class="token function">git</span> commit -m <span class="token string">"添加本次提交的名称"</span>  <span class="token comment">#将文件提交到本地仓库</span>
+<span class="token function">git</span> push <span class="token comment">#上传到GitHub</span>
+<span class="token function">git</span> pull <span class="token comment">#从Github拉取最新更新并合并到本地仓库</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -919,7 +922,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">5.1k</span>&nbsp;字
+                class="white-color">5.2k</span>&nbsp;字
             
             
             
