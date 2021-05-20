@@ -410,14 +410,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.8k
+                    2.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    15 分
                 </div>
                 
 
@@ -883,6 +883,39 @@ mysql&gt; select * from score;
 | 3-245 | 操作系统        |        71.5000 |
 | 6-166 | 数字电路        |        80.0000 |
 +-------+-----------------+----------------+
+3 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>或者不考虑 c_name</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select c_no , avg(sc_degree) from score where s_no in (select s_no from student where s_class= '95031') group by c_no;
++-------+----------------+
+| c_no  | avg(sc_degree) |
++-------+----------------+
+| 3-105 |        82.0000 |
+| 3-245 |        71.5000 |
+| 6-166 |        80.0000 |
++-------+----------------+
+3 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>或者</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select c_no , avg(sc_degree) from score left join student on score.s_no = student.s_no where student.s_class = '95031' group by score.c_no;
++-------+----------------+
+| c_no  | avg(sc_degree) |
++-------+----------------+
+| 3-105 |        82.0000 |
+| 3-245 |        71.5000 |
+| 6-166 |        80.0000 |
++-------+----------------+
+3 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>或者</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select score.c_no ,avg(sc_degree) from score ,student where score.s_no = student.s_no and student.s_class = '95031' group by score.c_no;
++-------+----------------+
+| c_no  | avg(sc_degree) |
++-------+----------------+
+| 3-105 |        82.0000 |
+| 3-245 |        71.5000 |
+| 6-166 |        80.0000 |
++-------+----------------+
 3 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
@@ -1361,7 +1394,7 @@ mysql&gt; select * from score;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">6.5k</span>&nbsp;字
+                class="white-color">6.7k</span>&nbsp;字
             
             
             
