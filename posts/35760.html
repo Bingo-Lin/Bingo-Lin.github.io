@@ -403,21 +403,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-05-20
+                    2021-05-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    2.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    14 分
                 </div>
                 
 
@@ -874,6 +874,16 @@ mysql&gt; select * from score;
 | 赵铁柱    | 数字电路        |        81 |
 +-----------+-----------------+-----------+
 9 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="17-查询班级是’95031’班学生每门课的平均分"><a href="#17-查询班级是’95031’班学生每门课的平均分" class="headerlink" title="17.查询班级是’95031’班学生每门课的平均分"></a>17.查询班级是’95031’班学生每门课的平均分</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select score.c_no , c_name , avg(sc_degree) from student , course,score  where course.c_no = score.c_no and score.s_no = student.s_no and s_class = '95031' group by score.c_no ;
++-------+-----------------+----------------+
+| c_no  | c_name          | avg(sc_degree) |
++-------+-----------------+----------------+
+| 3-105 | 计算机导论      |        82.0000 |
+| 3-245 | 操作系统        |        71.5000 |
+| 6-166 | 数字电路        |        80.0000 |
++-------+-----------------+----------------+
+3 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -1351,7 +1361,7 @@ mysql&gt; select * from score;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">6.4k</span>&nbsp;字
+                class="white-color">6.5k</span>&nbsp;字
             
             
             
