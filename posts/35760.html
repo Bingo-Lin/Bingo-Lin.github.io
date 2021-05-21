@@ -403,21 +403,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-05-21
+                    2021-05-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.9k
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    18 分
                 </div>
                 
 
@@ -918,6 +918,80 @@ mysql&gt; select * from score;
 +-------+----------------+
 3 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="18-查询选修”3-105”课程的成绩高于’109’号同学’3-105’成绩-的所有同学的记录"><a href="#18-查询选修”3-105”课程的成绩高于’109’号同学’3-105’成绩-的所有同学的记录" class="headerlink" title="18.查询选修”3-105”课程的成绩高于’109’号同学’3-105’成绩 的所有同学的记录"></a>18.查询选修”3-105”课程的成绩高于’109’号同学’3-105’成绩 的所有同学的记录</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select * from student , score having student.s_no = score.s_no and  score.c_no = '3-105'  and  score.sc_degree &gt; (select sc_degree from score where s_no = '109' and c_no = '3-105') ;
++------+--------+----------+---------------------+---------+------+-------+-----------+
+| s_no | s_name | s_gender | s_birthday          | s_class | s_no | c_no  | sc_degree |
++------+--------+----------+---------------------+---------+------+-------+-----------+
+| 103  | 王丽   | 女       | 1976-01-23 00:00:00 | 95033   | 103  | 3-105 |        92 |
+| 105  | 王芳   | 女       | 1975-02-10 00:00:00 | 95031   | 105  | 3-105 |        88 |
++------+--------+----------+---------------------+---------+------+-------+-----------+
+2 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="19-查询成绩高于学号为’109’-课程号为’3-105’的成绩的所有记录"><a href="#19-查询成绩高于学号为’109’-课程号为’3-105’的成绩的所有记录" class="headerlink" title="19.查询成绩高于学号为’109’,课程号为’3-105’的成绩的所有记录"></a>19.查询成绩高于学号为’109’,课程号为’3-105’的成绩的所有记录</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select * from score where sc_degree &gt; (select sc_degree from score where s_no = '109' and c_no = '3-105');
++------+-------+-----------+
+| s_no | c_no  | sc_degree |
++------+-------+-----------+
+| 103  | 3-105 |        92 |
+| 103  | 3-245 |        86 |
+| 103  | 6-166 |        85 |
+| 105  | 3-105 |        88 |
+| 105  | 6-166 |        79 |
+| 109  | 6-166 |        81 |
++------+-------+-----------+
+6 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>或者：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select * from student ,score , course where student.s_no = score.s_no and score.c_no = course.c_no and score.sc_degree &gt; (select sc_degree from score where s_no = '109' and c_no = '3-105');
++------+-----------+----------+---------------------+---------+------+-------+-----------+-------+-----------------+------+
+| s_no | s_name    | s_gender | s_birthday          | s_class | s_no | c_no  | sc_degree | c_no  | c_name          | t_no |
++------+-----------+----------+---------------------+---------+------+-------+-----------+-------+-----------------+------+
+| 103  | 王丽      | 女       | 1976-01-23 00:00:00 | 95033   | 103  | 3-105 |        92 | 3-105 | 计算机导论      | 825  |
+| 103  | 王丽      | 女       | 1976-01-23 00:00:00 | 95033   | 103  | 3-245 |        86 | 3-245 | 操作系统        | 804  |
+| 103  | 王丽      | 女       | 1976-01-23 00:00:00 | 95033   | 103  | 6-166 |        85 | 6-166 | 数字电路        | 856  |
+| 105  | 王芳      | 女       | 1975-02-10 00:00:00 | 95031   | 105  | 3-105 |        88 | 3-105 | 计算机导论      | 825  |
+| 105  | 王芳      | 女       | 1975-02-10 00:00:00 | 95031   | 105  | 6-166 |        79 | 6-166 | 数字电路        | 856  |
+| 109  | 赵铁柱    | 男       | 1974-06-03 00:00:00 | 95031   | 109  | 6-166 |        81 | 6-166 | 数字电路        | 856  |
++------+-----------+----------+---------------------+---------+------+-------+-----------+-------+-----------------+------+
+6 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="20-查询所有学号为108-101的同学同年出生的所有学生的s-no-s-name和s-birthday"><a href="#20-查询所有学号为108-101的同学同年出生的所有学生的s-no-s-name和s-birthday" class="headerlink" title="20.查询所有学号为108.101的同学同年出生的所有学生的s_no,s_name和s_birthday"></a>20.查询所有学号为108.101的同学同年出生的所有学生的s_no,s_name和s_birthday</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select s_no , s_name , s_birthday from student where year(s_birthday) in (select year(s_birthday) from student where s_no in( '101','108'));
++------+-----------+---------------------+
+| s_no | s_name    | s_birthday          |
++------+-----------+---------------------+
+| 101  | 曾华      | 1977-09-01 00:00:00 |
+| 102  | 匡明      | 1975-10-02 00:00:00 |
+| 105  | 王芳      | 1975-02-10 00:00:00 |
+| 108  | 张全蛋    | 1975-02-10 00:00:00 |
++------+-----------+---------------------+
+4 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="21-查询-张旭-教师任课的学生的成绩"><a href="#21-查询-张旭-教师任课的学生的成绩" class="headerlink" title="21.查询 张旭 教师任课的学生的成绩"></a>21.查询 张旭 教师任课的学生的成绩</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select student.s_name,score.sc_degree from score,course,student,teacher where score.s_no = student.s_no and score.c_no = course.c_no and course.t_no = teacher.t_no and teacher.t_name = '张旭';
++-----------+-----------+
+| s_name    | sc_degree |
++-----------+-----------+
+| 王丽      |        85 |
+| 王芳      |        79 |
+| 赵铁柱    |        81 |
++-----------+-----------+
+3 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="22-查询选修课程的同学人数多余-5-人的教师姓名"><a href="#22-查询选修课程的同学人数多余-5-人的教师姓名" class="headerlink" title="22.查询选修课程的同学人数多余 5 人的教师姓名"></a>22.查询选修课程的同学人数多余 5 人的教师姓名</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select teacher.t_name from (select c_no ,count(c_no) c  from score group by c_no) t , course,teacher where t.c_no  = course.c_no and course.t_no = teacher.t_no and t.c &gt; 5;
+Empty set (0.01 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>为了效果,添加数据:</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">INSERT INTO score VALUES('101','3-105','90');
+INSERT INTO score VALUES('102','3-105','91');
+INSERT INTO score VALUES('104','3-105','89');<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>再次查询：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select teacher.t_name from (select c_no ,count(c_no) c  from score group by c_no) t , course,teacher where t.c_no  = course.c_no and course.t_no = teacher.t_no and t.c &gt; 5;
++--------+
+| t_name |
++--------+
+| 王萍   |
++--------+
+1 row in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1394,7 +1468,7 @@ mysql&gt; select * from score;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">6.7k</span>&nbsp;字
+                class="white-color">7.3k</span>&nbsp;字
             
             
             
