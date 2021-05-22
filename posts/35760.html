@@ -410,14 +410,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    4.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    18 分
+                    24 分
                 </div>
                 
 
@@ -992,6 +992,126 @@ INSERT INTO score VALUES('104','3-105','89');<span aria-hidden="true" class="lin
 +--------+
 1 row in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="23-查询95033班和95031班全体学生的记录"><a href="#23-查询95033班和95031班全体学生的记录" class="headerlink" title="23.查询95033班和95031班全体学生的记录"></a>23.查询95033班和95031班全体学生的记录</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select * from student where s_class in ('95031','95033') order by s_class;
++------+-----------+----------+---------------------+---------+
+| s_no | s_name    | s_gender | s_birthday          | s_class |
++------+-----------+----------+---------------------+---------+
+| 102  | 匡明      | 男       | 1975-10-02 00:00:00 | 95031   |
+| 105  | 王芳      | 女       | 1975-02-10 00:00:00 | 95031   |
+| 106  | 陆军      | 男       | 1974-06-03 00:00:00 | 95031   |
+| 108  | 张全蛋    | 男       | 1975-02-10 00:00:00 | 95031   |
+| 109  | 赵铁柱    | 男       | 1974-06-03 00:00:00 | 95031   |
+| 101  | 曾华      | 男       | 1977-09-01 00:00:00 | 95033   |
+| 103  | 王丽      | 女       | 1976-01-23 00:00:00 | 95033   |
+| 104  | 李军      | 男       | 1976-02-20 00:00:00 | 95033   |
+| 107  | 王尼玛    | 男       | 1976-02-20 00:00:00 | 95033   |
++------+-----------+----------+---------------------+---------+
+9 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="24-查询存在85分以上成绩的课程c-no"><a href="#24-查询存在85分以上成绩的课程c-no" class="headerlink" title="24.查询存在85分以上成绩的课程c_no"></a>24.查询存在85分以上成绩的课程c_no</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select distinct(course.c_no) , course.c_name , teacher.t_name  from course , score ,teacher where course.c_no = score.c_no and course.t_no = teacher.t_no and score.sc_degree &gt; '85';
++-------+-----------------+--------+
+| c_no  | c_name          | t_name |
++-------+-----------------+--------+
+| 3-105 | 计算机导论      | 王萍   |
+| 3-245 | 操作系统        | 李诚   |
++-------+-----------------+--------+
+2 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="25-查出所有’计算机系’-教师所教课程的成绩表"><a href="#25-查出所有’计算机系’-教师所教课程的成绩表" class="headerlink" title="25.查出所有’计算机系’ 教师所教课程的成绩表"></a>25.查出所有’计算机系’ 教师所教课程的成绩表</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select teacher.t_name,teacher.t_depart,course.c_name , student.s_name ,  score.sc_degree from student, course,score,teacher where student.s_no = score.s_no and score.c_no = course.c_no and course.t_no = teacher.t_no and teacher.t_depart = '计算机系';
++--------+--------------+-----------------+-----------+-----------+
+| t_name | t_depart     | c_name          | s_name    | sc_degree |
++--------+--------------+-----------------+-----------+-----------+
+| 李诚   | 计算机系     | 操作系统        | 王丽      |        86 |
+| 李诚   | 计算机系     | 操作系统        | 王芳      |        75 |
+| 李诚   | 计算机系     | 操作系统        | 赵铁柱    |        68 |
+| 王萍   | 计算机系     | 计算机导论      | 曾华      |        90 |
+| 王萍   | 计算机系     | 计算机导论      | 匡明      |        91 |
+| 王萍   | 计算机系     | 计算机导论      | 王丽      |        92 |
+| 王萍   | 计算机系     | 计算机导论      | 李军      |        89 |
+| 王萍   | 计算机系     | 计算机导论      | 王芳      |        88 |
+| 王萍   | 计算机系     | 计算机导论      | 赵铁柱    |        76 |
++--------+--------------+-----------------+-----------+-----------+
+9 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="26-查询’计算机系’与’电子工程系’-不同职称的教师的name和rof"><a href="#26-查询’计算机系’与’电子工程系’-不同职称的教师的name和rof" class="headerlink" title="26.查询’计算机系’与’电子工程系’ 不同职称的教师的name和rof"></a>26.查询’计算机系’与’电子工程系’ 不同职称的教师的name和rof</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select * from teacher where t_depart = '计算机系' and t_rof not in (select t_rof from teacher where t_depart = '电子工程系') union select * from teacher where t_depart = '电子工程系' and t_rof not in (select t_rof from teacher where t_depart = '计算机系');
++------+--------+----------+---------------------+-----------+-----------------+
+| t_no | t_name | t_gender | t_birthday          | t_rof     | t_depart        |
++------+--------+----------+---------------------+-----------+-----------------+
+| 804  | 李诚   | 男       | 1958-12-02 00:00:00 | 副教授    | 计算机系        |
+| 856  | 张旭   | 男       | 1969-03-12 00:00:00 | 讲师      | 电子工程系      |
++------+--------+----------+---------------------+-----------+-----------------+
+2 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="27-查询选修编号为”3-105”课程且成绩至少高于选修编号为’3-245’同学的c-no-s-no和sc-degree-并且按照sc-degree从高到地次序排序"><a href="#27-查询选修编号为”3-105”课程且成绩至少高于选修编号为’3-245’同学的c-no-s-no和sc-degree-并且按照sc-degree从高到地次序排序" class="headerlink" title="27, 查询选修编号为”3-105”课程且成绩至少高于选修编号为’3-245’同学的c_no,s_no和sc_degree,并且按照sc_degree从高到地次序排序"></a>27, 查询选修编号为”3-105”课程且成绩至少高于选修编号为’3-245’同学的c_no,s_no和sc_degree,并且按照sc_degree从高到地次序排序</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select student.s_name , student.s_no, score.c_no , score.sc_degree from student,score where student.s_no = score.s_no and score.c_no = '3-105' and score.sc_degree &gt; any(select sc_degree from score where c_no = '3-245' ) order by score.sc_degree desc;
++-----------+------+-------+-----------+
+| s_name    | s_no | c_no  | sc_degree |
++-----------+------+-------+-----------+
+| 王丽      | 103  | 3-105 |        92 |
+| 匡明      | 102  | 3-105 |        91 |
+| 曾华      | 101  | 3-105 |        90 |
+| 李军      | 104  | 3-105 |        89 |
+| 王芳      | 105  | 3-105 |        88 |
+| 赵铁柱    | 109  | 3-105 |        76 |
++-----------+------+-------+-----------+
+6 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="28-查询选修编号为”3-105”且成绩高于选修编号为”3-245”课程的同学c-no-s-no和sc-degree"><a href="#28-查询选修编号为”3-105”且成绩高于选修编号为”3-245”课程的同学c-no-s-no和sc-degree" class="headerlink" title="28.查询选修编号为”3-105”且成绩高于选修编号为”3-245”课程的同学c_no.s_no和sc_degree"></a>28.查询选修编号为”3-105”且成绩高于选修编号为”3-245”课程的同学c_no.s_no和sc_degree</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select student.s_name , student.s_no, score.c_no , score.sc_degree from student,score where student.s_no = score.s_no and score.c_no = '3-105' and score.sc_degree &gt; all(select sc_degree from score where c_no = '3-245' ) order by score.sc_degree desc;
++--------+------+-------+-----------+
+| s_name | s_no | c_no  | sc_degree |
++--------+------+-------+-----------+
+| 王丽   | 103  | 3-105 |        92 |
+| 匡明   | 102  | 3-105 |        91 |
+| 曾华   | 101  | 3-105 |        90 |
+| 李军   | 104  | 3-105 |        89 |
+| 王芳   | 105  | 3-105 |        88 |
++--------+------+-------+-----------+
+5 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>备注：any: 若数组A中的值比数组B中的任何值都大,则A要和B中最小值比较。</p>
+<p>all：若数组A中的值比数组B中的所有值都大,则A要和B中最大值比较。</p>
+<h3 id="29-查询所有教师和同学的-name-sex-birthday"><a href="#29-查询所有教师和同学的-name-sex-birthday" class="headerlink" title="29. 查询所有教师和同学的 name ,sex, birthday"></a>29. 查询所有教师和同学的 name ,sex, birthday</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select t_name name ,t_gender gender , t_birthday birthday  from teacher union select s_name name,s_gender gender , s_birthday birthday from student;
++-----------+--------+---------------------+
+| name      | gender | birthday            |
++-----------+--------+---------------------+
+| 李诚      | 男     | 1958-12-02 00:00:00 |
+| 王萍      | 女     | 1972-05-05 00:00:00 |
+| 刘冰      | 女     | 1977-08-14 00:00:00 |
+| 张旭      | 男     | 1969-03-12 00:00:00 |
+| 曾华      | 男     | 1977-09-01 00:00:00 |
+| 匡明      | 男     | 1975-10-02 00:00:00 |
+| 王丽      | 女     | 1976-01-23 00:00:00 |
+| 李军      | 男     | 1976-02-20 00:00:00 |
+| 王芳      | 女     | 1975-02-10 00:00:00 |
+| 陆军      | 男     | 1974-06-03 00:00:00 |
+| 王尼玛    | 男     | 1976-02-20 00:00:00 |
+| 张全蛋    | 男     | 1975-02-10 00:00:00 |
+| 赵铁柱    | 男     | 1974-06-03 00:00:00 |
++-----------+--------+---------------------+
+13 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="30-查询所有’女’教师和’女’学生的name-sex-birthday"><a href="#30-查询所有’女’教师和’女’学生的name-sex-birthday" class="headerlink" title="30.查询所有’女’教师和’女’学生的name,sex,birthday"></a>30.查询所有’女’教师和’女’学生的name,sex,birthday</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select t_name name ,t_gender gender , t_birthday birthday  from teacher where t_gender = '女' union select s_name name,s_gender gender , s_birthday birthday from student where s_gender = '女' ; 
++--------+--------+---------------------+
+| name   | gender | birthday            |
++--------+--------+---------------------+
+| 王萍   | 女     | 1972-05-05 00:00:00 |
+| 刘冰   | 女     | 1977-08-14 00:00:00 |
+| 王丽   | 女     | 1976-01-23 00:00:00 |
+| 王芳   | 女     | 1975-02-10 00:00:00 |
++--------+--------+---------------------+
+4 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="31-查询成绩比该课程平均成绩低的同学的成绩表"><a href="#31-查询成绩比该课程平均成绩低的同学的成绩表" class="headerlink" title="31.查询成绩比该课程平均成绩低的同学的成绩表"></a>31.查询成绩比该课程平均成绩低的同学的成绩表</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select student.s_name,score.c_no,course.c_name,score.sc_degree from score , (select c_no , avg(sc_degree) avg from score group by c_no ) t , student,course  where score.s_no = student.s_no and  score.c_no = course.c_no and score.c_no = t.c_no and score.sc_degree &lt; t.avg  order by student.s_name desc ;
++-----------+-------+-----------------+-----------+
+| s_name    | c_no  | c_name          | sc_degree |
++-----------+-------+-----------------+-----------+
+| 赵铁柱    | 3-105 | 计算机导论      |        76 |
+| 赵铁柱    | 3-245 | 操作系统        |        68 |
+| 赵铁柱    | 6-166 | 数字电路        |        81 |
+| 王芳      | 3-245 | 操作系统        |        75 |
+| 王芳      | 6-166 | 数字电路        |        79 |
++-----------+-------+-----------------+-----------+
+5 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1468,7 +1588,7 @@ INSERT INTO score VALUES('104','3-105','89');<span aria-hidden="true" class="lin
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.3k</span>&nbsp;字
+                class="white-color">8.6k</span>&nbsp;字
             
             
             
