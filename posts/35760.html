@@ -410,14 +410,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.8k
+                    6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    24 分
+                    31 分
                 </div>
                 
 
@@ -1069,7 +1069,7 @@ INSERT INTO score VALUES('104','3-105','89');<span aria-hidden="true" class="lin
 
 <p>备注：any: 若数组A中的值比数组B中的任何值都大,则A要和B中最小值比较。</p>
 <p>all：若数组A中的值比数组B中的所有值都大,则A要和B中最大值比较。</p>
-<h3 id="29-查询所有教师和同学的-name-sex-birthday"><a href="#29-查询所有教师和同学的-name-sex-birthday" class="headerlink" title="29. 查询所有教师和同学的 name ,sex, birthday"></a>29. 查询所有教师和同学的 name ,sex, birthday</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select t_name name ,t_gender gender , t_birthday birthday  from teacher union select s_name name,s_gender gender , s_birthday birthday from student;
+<h3 id="29-查询所有教师和同学的-name-gender-birthday"><a href="#29-查询所有教师和同学的-name-gender-birthday" class="headerlink" title="29. 查询所有教师和同学的 name ,gender, birthday"></a>29. 查询所有教师和同学的 name ,gender, birthday</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select t_name name ,t_gender gender , t_birthday birthday  from teacher union select s_name name,s_gender gender , s_birthday birthday from student;
 +-----------+--------+---------------------+
 | name      | gender | birthday            |
 +-----------+--------+---------------------+
@@ -1089,7 +1089,7 @@ INSERT INTO score VALUES('104','3-105','89');<span aria-hidden="true" class="lin
 +-----------+--------+---------------------+
 13 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="30-查询所有’女’教师和’女’学生的name-sex-birthday"><a href="#30-查询所有’女’教师和’女’学生的name-sex-birthday" class="headerlink" title="30.查询所有’女’教师和’女’学生的name,sex,birthday"></a>30.查询所有’女’教师和’女’学生的name,sex,birthday</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select t_name name ,t_gender gender , t_birthday birthday  from teacher where t_gender = '女' union select s_name name,s_gender gender , s_birthday birthday from student where s_gender = '女' ; 
+<h3 id="30-查询所有’女’教师和’女’学生的name-gender-birthday"><a href="#30-查询所有’女’教师和’女’学生的name-gender-birthday" class="headerlink" title="30.查询所有’女’教师和’女’学生的name,gender,birthday"></a>30.查询所有’女’教师和’女’学生的name,gender,birthday</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select t_name name ,t_gender gender , t_birthday birthday  from teacher where t_gender = '女' union select s_name name,s_gender gender , s_birthday birthday from student where s_gender = '女' ; 
 +--------+--------+---------------------+
 | name   | gender | birthday            |
 +--------+--------+---------------------+
@@ -1111,6 +1111,162 @@ INSERT INTO score VALUES('104','3-105','89');<span aria-hidden="true" class="lin
 | 王芳      | 6-166 | 数字电路        |        79 |
 +-----------+-------+-----------------+-----------+
 5 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="32-查询所有任课教师的t-name-和-t-depart-要在分数表中可以查得到"><a href="#32-查询所有任课教师的t-name-和-t-depart-要在分数表中可以查得到" class="headerlink" title="32.查询所有任课教师的t_name 和 t_depart(要在分数表中可以查得到)"></a>32.查询所有任课教师的t_name 和 t_depart(要在分数表中可以查得到)</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select distinct(teacher.t_name) , teacher.t_depart,score.c_no from score ,course ,teacher where score.c_no = course.c_no and course.t_no = teacher.t_no;
++--------+-----------------+-------+
+| t_name | t_depart        | c_no  |
++--------+-----------------+-------+
+| 李诚   | 计算机系        | 3-245 |
+| 王萍   | 计算机系        | 3-105 |
+| 张旭   | 电子工程系      | 6-166 |
++--------+-----------------+-------+
+3 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="33-查出至少有2名男生的班号"><a href="#33-查出至少有2名男生的班号" class="headerlink" title="33.查出至少有2名男生的班号"></a>33.查出至少有2名男生的班号</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select s_class from student where s_gender = '男' group by s_class having count(s_class) &gt; '2';
++---------+
+| s_class |
++---------+
+| 95033   |
+| 95031   |
++---------+
+2 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="34-查询student-表中-不姓”王”的同学的记录"><a href="#34-查询student-表中-不姓”王”的同学的记录" class="headerlink" title="34.查询student 表中 不姓”王”的同学的记录"></a>34.查询student 表中 不姓”王”的同学的记录</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select * from student where s_name not like '王%';
++------+-----------+----------+---------------------+---------+
+| s_no | s_name    | s_gender | s_birthday          | s_class |
++------+-----------+----------+---------------------+---------+
+| 101  | 曾华      | 男       | 1977-09-01 00:00:00 | 95033   |
+| 102  | 匡明      | 男       | 1975-10-02 00:00:00 | 95031   |
+| 104  | 李军      | 男       | 1976-02-20 00:00:00 | 95033   |
+| 106  | 陆军      | 男       | 1974-06-03 00:00:00 | 95031   |
+| 108  | 张全蛋    | 男       | 1975-02-10 00:00:00 | 95031   |
+| 109  | 赵铁柱    | 男       | 1974-06-03 00:00:00 | 95031   |
++------+-----------+----------+---------------------+---------+
+6 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="35-查询student-中每个学生的姓名和年龄-当前时间-出生年份"><a href="#35-查询student-中每个学生的姓名和年龄-当前时间-出生年份" class="headerlink" title="35. 查询student 中每个学生的姓名和年龄(当前时间 - 出生年份)"></a>35. 查询student 中每个学生的姓名和年龄(当前时间 - 出生年份)</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select s_name , year(now()) - year(s_birthday) age from student;
++-----------+------+
+| s_name    | age  |
++-----------+------+
+| 曾华      |   44 |
+| 匡明      |   46 |
+| 王丽      |   45 |
+| 李军      |   45 |
+| 王芳      |   46 |
+| 陆军      |   47 |
+| 王尼玛    |   45 |
+| 张全蛋    |   46 |
+| 赵铁柱    |   47 |
++-----------+------+
+9 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="36-查询student中最大和最小的-s-birthday的值"><a href="#36-查询student中最大和最小的-s-birthday的值" class="headerlink" title="36. 查询student中最大和最小的 s_birthday的值"></a>36. 查询student中最大和最小的 s_birthday的值</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select max(s_birthday),min(s_birthday) from student;
++---------------------+---------------------+
+| max(s_birthday)     | min(s_birthday)     |
++---------------------+---------------------+
+| 1977-09-01 00:00:00 | 1974-06-03 00:00:00 |
++---------------------+---------------------+
+1 row in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="37-以班级号和年龄从大到小的顺序查询student表中的全部记录"><a href="#37-以班级号和年龄从大到小的顺序查询student表中的全部记录" class="headerlink" title="37.以班级号和年龄从大到小的顺序查询student表中的全部记录"></a>37.以班级号和年龄从大到小的顺序查询student表中的全部记录</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select * from student order by s_class desc ,s_birthday asc;
++------+-----------+----------+---------------------+---------+
+| s_no | s_name    | s_gender | s_birthday          | s_class |
++------+-----------+----------+---------------------+---------+
+| 103  | 王丽      | 女       | 1976-01-23 00:00:00 | 95033   |
+| 104  | 李军      | 男       | 1976-02-20 00:00:00 | 95033   |
+| 107  | 王尼玛    | 男       | 1976-02-20 00:00:00 | 95033   |
+| 101  | 曾华      | 男       | 1977-09-01 00:00:00 | 95033   |
+| 106  | 陆军      | 男       | 1974-06-03 00:00:00 | 95031   |
+| 109  | 赵铁柱    | 男       | 1974-06-03 00:00:00 | 95031   |
+| 105  | 王芳      | 女       | 1975-02-10 00:00:00 | 95031   |
+| 108  | 张全蛋    | 男       | 1975-02-10 00:00:00 | 95031   |
+| 102  | 匡明      | 男       | 1975-10-02 00:00:00 | 95031   |
++------+-----------+----------+---------------------+---------+
+9 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="38-查询”男”教师-及其所上的课"><a href="#38-查询”男”教师-及其所上的课" class="headerlink" title="38.查询”男”教师 及其所上的课"></a>38.查询”男”教师 及其所上的课</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select teacher.t_no , teacher.t_name , teacher.t_gender , course.c_no , course.c_name from teacher , course where teacher.t_no = course.t_no and teacher.t_gender = '男' ;
++------+--------+----------+-------+--------------+
+| t_no | t_name | t_gender | c_no  | c_name       |
++------+--------+----------+-------+--------------+
+| 804  | 李诚   | 男       | 3-245 | 操作系统     |
+| 856  | 张旭   | 男       | 6-166 | 数字电路     |
++------+--------+----------+-------+--------------+
+2 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="39-查询最高分同学的s-no-c-no-和-sc-degree"><a href="#39-查询最高分同学的s-no-c-no-和-sc-degree" class="headerlink" title="39.查询最高分同学的s_no c_no 和 sc_degree;"></a>39.查询最高分同学的s_no c_no 和 sc_degree;</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select student.s_name , student.s_no , score.c_no , score.sc_degree from student , score where student.s_no = score.s_no and sc_degree in (select max(sc_degree) from score);
++--------+------+-------+-----------+
+| s_name | s_no | c_no  | sc_degree |
++--------+------+-------+-----------+
+| 王丽   | 103  | 3-105 |        92 |
++--------+------+-------+-----------+
+1 row in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="40-查询和”李军”同性别的所有同学的s-name"><a href="#40-查询和”李军”同性别的所有同学的s-name" class="headerlink" title="40. 查询和”李军”同性别的所有同学的s_name"></a>40. 查询和”李军”同性别的所有同学的s_name</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select * from student where s_gender = (select s_gender from student where s_name = '李军');
++------+-----------+----------+---------------------+---------+
+| s_no | s_name    | s_gender | s_birthday          | s_class |
++------+-----------+----------+---------------------+---------+
+| 101  | 曾华      | 男       | 1977-09-01 00:00:00 | 95033   |
+| 102  | 匡明      | 男       | 1975-10-02 00:00:00 | 95031   |
+| 104  | 李军      | 男       | 1976-02-20 00:00:00 | 95033   |
+| 106  | 陆军      | 男       | 1974-06-03 00:00:00 | 95031   |
+| 107  | 王尼玛    | 男       | 1976-02-20 00:00:00 | 95033   |
+| 108  | 张全蛋    | 男       | 1975-02-10 00:00:00 | 95031   |
+| 109  | 赵铁柱    | 男       | 1974-06-03 00:00:00 | 95031   |
++------+-----------+----------+---------------------+---------+
+7 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="41-查询和”李军”同性别并且同班的所有同学的s-name"><a href="#41-查询和”李军”同性别并且同班的所有同学的s-name" class="headerlink" title="41.查询和”李军”同性别并且同班的所有同学的s_name"></a>41.查询和”李军”同性别并且同班的所有同学的s_name</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select * from student where s_gender = (select s_gender from student where s_name = '李军') and s_class = (select s_class from student where s_name = '李军');
++------+-----------+----------+---------------------+---------+
+| s_no | s_name    | s_gender | s_birthday          | s_class |
++------+-----------+----------+---------------------+---------+
+| 101  | 曾华      | 男       | 1977-09-01 00:00:00 | 95033   |
+| 104  | 李军      | 男       | 1976-02-20 00:00:00 | 95033   |
+| 107  | 王尼玛    | 男       | 1976-02-20 00:00:00 | 95033   |
++------+-----------+----------+---------------------+---------+
+3 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="42-查询所有选修’计算机导论’课程的’男’同学的成绩表"><a href="#42-查询所有选修’计算机导论’课程的’男’同学的成绩表" class="headerlink" title="42. 查询所有选修’计算机导论’课程的’男’同学的成绩表"></a>42. 查询所有选修’计算机导论’课程的’男’同学的成绩表</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select student.s_no , student.s_name , student.s_gender, course.c_no , course.c_name ,score.sc_degree from student , course , score where score.s_no = student.s_no and score.c_no = course.c_no and student.s_gender = '男' and course.c_name = '计算机导论';
++------+-----------+----------+-------+-----------------+-----------+
+| s_no | s_name    | s_gender | c_no  | c_name          | sc_degree |
++------+-----------+----------+-------+-----------------+-----------+
+| 101  | 曾华      | 男       | 3-105 | 计算机导论      |        90 |
+| 102  | 匡明      | 男       | 3-105 | 计算机导论      |        91 |
+| 104  | 李军      | 男       | 3-105 | 计算机导论      |        89 |
+| 109  | 赵铁柱    | 男       | 3-105 | 计算机导论      |        76 |
++------+-----------+----------+-------+-----------------+-----------+
+4 rows in set (0.01 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="43-假设使用了以下命令建立了一个grade表-查询所有同学的s-no-c-no-和grade列"><a href="#43-假设使用了以下命令建立了一个grade表-查询所有同学的s-no-c-no-和grade列" class="headerlink" title="43. 假设使用了以下命令建立了一个grade表,查询所有同学的s_no , c_no 和grade列"></a>43. 假设使用了以下命令建立了一个grade表,查询所有同学的s_no , c_no 和grade列</h3><p>创建的grade表：</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">create table grade(
+	low int(3),
+	up  int(3),
+	grade char(1)
+)
+INSERT INTO grade VALUES(90,100,'A');
+INSERT INTO grade VALUES(80,89,'B');
+INSERT INTO grade VALUES(70,79,'c');
+INSERT INTO grade VALUES(60,69,'D');
+INSERT INTO grade VALUES(0,59,'E');<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>查询所有同学的s_no , c_no 和grade列:</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; select score.s_no , student.s_no  , score.c_no , course.c_name , grade.grade from score , grade , student , course  where score.s_no = student.s_no and score.c_no = course.c_no and score.sc_degree between low and up;
++------+------+-------+-----------------+-------+
+| s_no | s_no | c_no  | c_name          | grade |
++------+------+-------+-----------------+-------+
+| 101  | 101  | 3-105 | 计算机导论      | A     |
+| 102  | 102  | 3-105 | 计算机导论      | A     |
+| 103  | 103  | 3-105 | 计算机导论      | A     |
+| 103  | 103  | 3-245 | 操作系统        | B     |
+| 103  | 103  | 6-166 | 数字电路        | B     |
+| 104  | 104  | 3-105 | 计算机导论      | B     |
+| 105  | 105  | 3-105 | 计算机导论      | B     |
+| 105  | 105  | 3-245 | 操作系统        | c     |
+| 105  | 105  | 6-166 | 数字电路        | c     |
+| 109  | 109  | 3-105 | 计算机导论      | c     |
+| 109  | 109  | 3-245 | 操作系统        | D     |
+| 109  | 109  | 6-166 | 数字电路        | B     |
++------+------+-------+-----------------+-------+
+12 rows in set (0.00 sec)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -1404,13 +1560,13 @@ INSERT INTO score VALUES('104','3-105','89');<span aria-hidden="true" class="lin
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/51460.html">
+                <a href="/posts/0.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/16.jpg" class="responsive-img" alt="Mysql Order">
+                        <img src="https://cdn.jsdelivr.net/gh/Bingo-Lin/Bingo-Lin.github.io/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">Mysql Order</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1425,23 +1581,11 @@ INSERT INTO score VALUES('104','3-105','89');<span aria-hidden="true" class="lin
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Mysql/" class="post-category">
-                                    Mysql
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Bingo Lin
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Mysql/">
-                        <span class="chip bg-color">Mysql</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -1588,7 +1732,7 @@ INSERT INTO score VALUES('104','3-105','89');<span aria-hidden="true" class="lin
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">8.6k</span>&nbsp;字
+                class="white-color">9.8k</span>&nbsp;字
             
             
             
