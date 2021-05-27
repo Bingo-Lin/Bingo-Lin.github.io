@@ -151,27 +151,6 @@
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/tags/Mysql/</loc>
-    <lastmod>2021-05-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bingo-lin.github.io/tags/Sql-Server/</loc>
-    <lastmod>2021-05-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bingo-lin.github.io/tags/Youtube-dl/</loc>
-    <lastmod>2021-05-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bingo-lin.github.io/tags/MNMP/</loc>
     <lastmod>2021-05-27</lastmod>
     <changefreq>daily</changefreq>
@@ -193,6 +172,13 @@
   </url>
   
   <url>
+    <loc>https://bingo-lin.github.io/tags/Mysql/</loc>
+    <lastmod>2021-05-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://bingo-lin.github.io/tags/Smartmontools/</loc>
     <lastmod>2021-05-27</lastmod>
     <changefreq>daily</changefreq>
@@ -201,6 +187,20 @@
   
   <url>
     <loc>https://bingo-lin.github.io/tags/You-get/</loc>
+    <lastmod>2021-05-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingo-lin.github.io/tags/Sql-Server/</loc>
+    <lastmod>2021-05-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingo-lin.github.io/tags/Youtube-dl/</loc>
     <lastmod>2021-05-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
