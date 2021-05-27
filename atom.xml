@@ -6,7 +6,7 @@
   <link href="https://bingo-lin.github.io/atom.xml" rel="self"/>
   
   <link href="https://bingo-lin.github.io/"/>
-  <updated>2021-05-22T11:38:07.869Z</updated>
+  <updated>2021-05-27T16:31:26.435Z</updated>
   <id>https://bingo-lin.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Sql Server</title>
+    <link href="https://bingo-lin.github.io/posts/8109.html"/>
+    <id>https://bingo-lin.github.io/posts/8109.html</id>
+    <published>2021-05-27T16:19:33.000Z</published>
+    <updated>2021-05-27T16:31:26.435Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;创建数据库&quot;&gt;&lt;a href=&quot;#创建数据库&quot; class=&quot;headerlink&quot; title=&quot;创建数据库&quot;&gt;&lt;/a&gt;创建数据库&lt;/h2&gt;&lt;p&gt;登入SSMS,连接Sql Server 后，点击新建查询，在弹出的面板中输入：&lt;/p&gt;
+&lt;pre</summary>
+        
+      
+    
+    
+    
+    <category term="Win10" scheme="https://bingo-lin.github.io/categories/Win10/"/>
+    
+    
+    <category term="Sql-Server" scheme="https://bingo-lin.github.io/tags/Sql-Server/"/>
+    
+  </entry>
   
   <entry>
     <title>Mysql Select</title>
