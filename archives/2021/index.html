@@ -424,8 +424,10 @@
                             <div class="summary block-with-text">
                                 
                                     创建数据库登入SSMS,连接Sql Server 后，点击新建查询，在弹出的面板中输入：
-if exists (select * from sys.databases where name = 'DBtest')
-	drop databas
+create database DBtest
+
+或者创建数据库,自定义属性：
+if exists (select * from sys.databas
                                 
                             </div>
                             <div class="publish-info">

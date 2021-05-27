@@ -410,7 +410,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    167
+                    177
                 </div>
                 
 
@@ -436,10 +436,11 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>登入SSMS,连接Sql Server 后，点击新建查询，在弹出的面板中输入：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">database</span> DBtest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>或者创建数据库,自定义属性：</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">if</span> <span class="token keyword">exists</span> <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> sys<span class="token punctuation">.</span><span class="token keyword">databases</span> <span class="token keyword">where</span> name <span class="token operator">=</span> <span class="token string">'DBtest'</span><span class="token punctuation">)</span>
 	<span class="token keyword">drop</span> <span class="token keyword">database</span> DBtest  <span class="token comment">--简单粗暴，在工作中慎用。</span>
-	
-<span class="token comment">--创建数据库</span>
 <span class="token keyword">create</span> <span class="token keyword">database</span> DBtest
 <span class="token keyword">on</span>  <span class="token comment">--数据文件 </span>
 <span class="token punctuation">(</span>
@@ -454,7 +455,8 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
 	filename <span class="token operator">=</span> <span class="token string">'C:\test\test3\DBtest_log.mdf'</span><span class="token punctuation">,</span> <span class="token comment">--物理路径</span>
 	size <span class="token operator">=</span> <span class="token number">8</span>MB <span class="token punctuation">,</span> <span class="token comment">--初始大小</span>
 	filegrowth <span class="token operator">=</span> <span class="token number">20</span><span class="token operator">%</span> <span class="token comment">--文件增长方式 或者 filegrowth = 2MB，即可以百分比设置，或者具体增长大小。</span>
-<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
