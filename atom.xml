@@ -6,7 +6,7 @@
   <link href="https://bingo-lin.github.io/atom.xml" rel="self"/>
   
   <link href="https://bingo-lin.github.io/"/>
-  <updated>2021-05-27T16:44:08.809Z</updated>
+  <updated>2021-05-27T16:44:08.000Z</updated>
   <id>https://bingo-lin.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://bingo-lin.github.io/posts/8109.html"/>
     <id>https://bingo-lin.github.io/posts/8109.html</id>
     <published>2021-05-27T16:19:33.000Z</published>
-    <updated>2021-05-27T16:44:08.809Z</updated>
+    <updated>2021-05-27T16:44:08.000Z</updated>
     
     
       
@@ -47,7 +47,7 @@
     <link href="https://bingo-lin.github.io/posts/35760.html"/>
     <id>https://bingo-lin.github.io/posts/35760.html</id>
     <published>2021-05-16T13:57:12.000Z</published>
-    <updated>2021-05-22T11:38:07.869Z</updated>
+    <updated>2021-05-22T11:38:07.000Z</updated>
     
     
       
@@ -73,7 +73,7 @@
     <link href="https://bingo-lin.github.io/posts/51460.html"/>
     <id>https://bingo-lin.github.io/posts/51460.html</id>
     <published>2021-05-11T16:14:41.000Z</published>
-    <updated>2021-05-22T11:39:49.376Z</updated>
+    <updated>2021-05-22T11:39:49.000Z</updated>
     
     
       
@@ -98,7 +98,7 @@
     <link href="https://bingo-lin.github.io/posts/25144.html"/>
     <id>https://bingo-lin.github.io/posts/25144.html</id>
     <published>2021-04-22T06:55:02.000Z</published>
-    <updated>2021-05-11T16:19:37.580Z</updated>
+    <updated>2021-05-11T16:19:37.000Z</updated>
     
     
       
@@ -125,7 +125,7 @@
     <link href="https://bingo-lin.github.io/posts/25246.html"/>
     <id>https://bingo-lin.github.io/posts/25246.html</id>
     <published>2021-04-22T06:47:20.000Z</published>
-    <updated>2021-04-22T14:10:33.031Z</updated>
+    <updated>2021-04-22T14:10:33.000Z</updated>
     
     
       
@@ -150,7 +150,7 @@
     <link href="https://bingo-lin.github.io/posts/62688.html"/>
     <id>https://bingo-lin.github.io/posts/62688.html</id>
     <published>2021-04-22T06:40:00.000Z</published>
-    <updated>2021-05-11T16:45:02.788Z</updated>
+    <updated>2021-05-11T16:45:02.000Z</updated>
     
     
       
@@ -175,7 +175,7 @@
     <link href="https://bingo-lin.github.io/posts/1439.html"/>
     <id>https://bingo-lin.github.io/posts/1439.html</id>
     <published>2021-04-22T06:34:52.000Z</published>
-    <updated>2021-04-23T02:31:34.538Z</updated>
+    <updated>2021-04-23T02:31:34.000Z</updated>
     
     
       
@@ -200,7 +200,7 @@
     <link href="https://bingo-lin.github.io/posts/21982.html"/>
     <id>https://bingo-lin.github.io/posts/21982.html</id>
     <published>2021-04-22T06:31:31.000Z</published>
-    <updated>2021-04-29T16:31:42.532Z</updated>
+    <updated>2021-04-29T16:31:42.000Z</updated>
     
     
       
@@ -225,7 +225,7 @@
     <link href="https://bingo-lin.github.io/posts/7.html"/>
     <id>https://bingo-lin.github.io/posts/7.html</id>
     <published>2021-04-22T06:24:50.000Z</published>
-    <updated>2021-04-22T14:10:33.034Z</updated>
+    <updated>2021-04-22T14:10:33.000Z</updated>
     
     
       
@@ -251,7 +251,7 @@
     <link href="https://bingo-lin.github.io/posts/16928.html"/>
     <id>https://bingo-lin.github.io/posts/16928.html</id>
     <published>2021-04-22T05:33:00.000Z</published>
-    <updated>2021-04-22T14:10:33.032Z</updated>
+    <updated>2021-04-22T14:10:33.000Z</updated>
     
     
       
@@ -279,7 +279,7 @@
     <link href="https://bingo-lin.github.io/posts/26062.html"/>
     <id>https://bingo-lin.github.io/posts/26062.html</id>
     <published>2021-04-22T05:19:56.000Z</published>
-    <updated>2021-04-22T14:10:33.033Z</updated>
+    <updated>2021-04-22T14:10:33.000Z</updated>
     
     
       
@@ -297,27 +297,6 @@
     
     
     <category term="Terminal" scheme="https://bingo-lin.github.io/tags/Terminal/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://bingo-lin.github.io/posts/16107.html"/>
-    <id>https://bingo-lin.github.io/posts/16107.html</id>
-    <published>2021-04-21T01:35:51.376Z</published>
-    <updated>2021-04-22T14:10:33.037Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
