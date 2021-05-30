@@ -403,21 +403,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-05-28
+                    2021-05-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    177
+                    458
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -435,12 +435,14 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>登入SSMS,连接Sql Server 后，点击新建查询，在弹出的面板中输入：</p>
+                <p>注意：本人学习数据来源：b站：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XV411C7TP?p=1">https://www.bilibili.com/video/BV1XV411C7TP?p=1</a></p>
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>登入SSMS,连接Sql Server 后，点击新建查询，在弹出的面板中输入：</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">database</span> DBtest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>或者创建数据库,自定义属性：</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">if</span> <span class="token keyword">exists</span> <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> sys<span class="token punctuation">.</span><span class="token keyword">databases</span> <span class="token keyword">where</span> name <span class="token operator">=</span> <span class="token string">'DBtest'</span><span class="token punctuation">)</span>
 	<span class="token keyword">drop</span> <span class="token keyword">database</span> DBtest  <span class="token comment">--简单粗暴，在工作中慎用。</span>
+	
 <span class="token keyword">create</span> <span class="token keyword">database</span> DBtest
 <span class="token keyword">on</span>  <span class="token comment">--数据文件 </span>
 <span class="token punctuation">(</span>
@@ -456,7 +458,44 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
 	size <span class="token operator">=</span> <span class="token number">8</span>MB <span class="token punctuation">,</span> <span class="token comment">--初始大小</span>
 	filegrowth <span class="token operator">=</span> <span class="token number">20</span><span class="token operator">%</span> <span class="token comment">--文件增长方式 或者 filegrowth = 2MB，即可以百分比设置，或者具体增长大小。</span>
 <span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h2><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">if</span> <span class="token keyword">exists</span><span class="token punctuation">(</span><span class="token keyword">select</span><span class="token operator">*</span><span class="token keyword">from</span> sys<span class="token punctuation">.</span>objects <span class="token keyword">where</span> name <span class="token operator">=</span> <span class="token string">'Department'</span> <span class="token operator">and</span> <span class="token keyword">type</span> <span class="token operator">=</span> <span class="token string">'U'</span><span class="token punctuation">)</span>
+ <span class="token keyword">drop</span> <span class="token keyword">table</span> Department <span class="token comment">--超级危险，慎用</span>
+
+<span class="token keyword">use</span> DBtest <span class="token comment">--切换数据库</span>
+
+<span class="token comment">--创建表基本语法</span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> Department<span class="token punctuation">(</span>
+ D_Id <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token keyword">identity</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">--identity(1,1):自动增长，初始值1，每次增长1。</span>
+ D_Name nvarchar<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+ D_Remark <span class="token keyword">text</span> <span class="token comment">--部门描述</span>
+<span class="token punctuation">)</span>    
+<span class="token comment">--char:定长</span>
+<span class="token comment">--varchar:变长</span>
+<span class="token comment">--text:长文本(效率较低)</span>
+<span class="token comment">--char,varchar,text前面加n:存储unicode字符，对中文比较友好</span>
+<span class="token comment">--比如：varchar(100):存储100个字母或者50个汉字</span>
+<span class="token comment">--nvarchar(100):存储100个字母或者100个汉字</span>
+
+<span class="token keyword">create</span> <span class="token keyword">table</span> <span class="token punctuation">[</span>Rank<span class="token punctuation">]</span><span class="token punctuation">(</span>
+ R_Id <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token keyword">identity</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">--identity(1,1):自动增长，初始值1，每次增长1。</span>
+ R_Name nvarchar<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+ R_Remark <span class="token keyword">text</span>     
+<span class="token punctuation">)</span>  
+
+<span class="token keyword">create</span> <span class="token keyword">table</span> People <span class="token punctuation">(</span>
+ P_Id <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token keyword">identity</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">--identity(1,1):自动增长，初始值1，每次增长1。</span>
+ D_Id <span class="token keyword">int</span> <span class="token keyword">references</span> Department<span class="token punctuation">(</span>D_Id<span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token punctuation">,</span> <span class="token comment">--引用外键</span>
+ R_Id <span class="token keyword">int</span> <span class="token keyword">references</span> <span class="token punctuation">[</span>Rank<span class="token punctuation">]</span><span class="token punctuation">(</span>R_Id<span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token punctuation">,</span>   
+ P_Name nvarchar<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+ P_Gender nvarchar<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">default</span><span class="token punctuation">(</span><span class="token string">'男'</span><span class="token punctuation">)</span> <span class="token keyword">check</span><span class="token punctuation">(</span>P_Gender <span class="token operator">=</span> <span class="token string">'男'</span><span class="token operator">or</span> P_Gender <span class="token operator">=</span> <span class="token string">'女'</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token punctuation">,</span>
+ P_Birthday smalldatetime <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+ P_Salary <span class="token keyword">decimal</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">check</span><span class="token punctuation">(</span>P_Salary <span class="token operator">&gt;=</span> <span class="token number">1000</span> <span class="token operator">and</span>  P_Salary <span class="token operator">&lt;=</span> <span class="token number">1000000</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token punctuation">,</span>
+ P_Phone <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token keyword">unique</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+ P_Address <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+ P_AddTime smalldatetime <span class="token keyword">default</span><span class="token punctuation">(</span>getdate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -934,7 +973,7 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">9.9k</span>&nbsp;字
+                class="white-color">10.2k</span>&nbsp;字
             
             
             
