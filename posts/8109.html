@@ -403,21 +403,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-05-30
+                    2021-06-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    458
+                    810
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -496,6 +496,68 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
  P_Address <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
  P_AddTime smalldatetime <span class="token keyword">default</span><span class="token punctuation">(</span>getdate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token punctuation">)</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="修改表结构"><a href="#修改表结构" class="headerlink" title="修改表结构"></a>修改表结构</h2><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> DBtest
+
+<span class="token comment">--添加列</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> People <span class="token keyword">add</span> P_Mail <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span>
+
+<span class="token comment">--删除列</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> People <span class="token keyword">drop</span> <span class="token keyword">column</span> P_Mail 
+
+<span class="token comment">--修改列  </span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> People <span class="token keyword">alter</span> <span class="token keyword">column</span> P_Address <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="维护约束-删除，添加"><a href="#维护约束-删除，添加" class="headerlink" title="维护约束(删除，添加)"></a>维护约束(删除，添加)</h2><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">--删除约束</span>
+<span class="token comment">--语法：alter table tableName drop constraint constrantName</span>
+<span class="token comment">--例子：删除月薪的约束</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> People <span class="token keyword">drop</span> <span class="token keyword">constraint</span> CK__People__P_Salary__38996AB5
+
+<span class="token comment">--添加约束(check约束)</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> tableName <span class="token keyword">add</span> <span class="token keyword">constraint</span> constraintName <span class="token keyword">check</span> <span class="token punctuation">(</span>表达式<span class="token punctuation">)</span> 
+<span class="token comment">--例子：添加工资字段约束，工资必须在1000-1000000之间</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> People <span class="token keyword">add</span> <span class="token keyword">constraint</span> CK__People__P_Salary <span class="token keyword">check</span> <span class="token punctuation">(</span>P_Salary <span class="token operator">&gt;=</span> <span class="token number">1000</span> <span class="token operator">and</span> P_Salary <span class="token operator">&lt;=</span> <span class="token number">1000000</span><span class="token punctuation">)</span>
+
+<span class="token comment">--添加约束(主键约束) 语法：</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> tableName <span class="token keyword">add</span> <span class="token keyword">constraint</span> constraintName  <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">(</span>列名<span class="token punctuation">)</span>
+
+<span class="token comment">--添加约束(唯一约束) 语法：</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> tableName <span class="token keyword">add</span> <span class="token keyword">constraint</span> constraintName  <span class="token keyword">unique</span><span class="token punctuation">(</span>列名<span class="token punctuation">)</span>
+
+<span class="token comment">--添加约束(默认值) 语法：</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> tableName <span class="token keyword">add</span> <span class="token keyword">constraint</span> constraintName  <span class="token keyword">default</span> 默认值 <span class="token keyword">for</span> 列名 
+
+<span class="token comment">--添加约束(外键) 语法：</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> tableName <span class="token keyword">add</span> <span class="token keyword">constraint</span> constraintName  <span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>列名<span class="token punctuation">)</span> <span class="token keyword">references</span> 关联表名<span class="token punctuation">(</span>列名<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="向表插入数据"><a href="#向表插入数据" class="headerlink" title="向表插入数据"></a>向表插入数据</h2><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> DBtest
+
+<span class="token comment">--向部门表插入数据</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Department<span class="token punctuation">(</span>D_Name<span class="token punctuation">,</span>D_Remark<span class="token punctuation">)</span> 
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'市场部'</span><span class="token punctuation">,</span><span class="token string">'......'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Department<span class="token punctuation">(</span>D_Name<span class="token punctuation">,</span>D_Remark<span class="token punctuation">)</span> 
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'软件部'</span><span class="token punctuation">,</span><span class="token string">'......'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Department<span class="token punctuation">(</span>D_Name<span class="token punctuation">,</span>D_Remark<span class="token punctuation">)</span> 
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'企划部'</span><span class="token punctuation">,</span><span class="token string">'......'</span><span class="token punctuation">)</span>
+<span class="token comment">--简写</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Department <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'硬件部'</span><span class="token punctuation">,</span><span class="token string">'......'</span><span class="token punctuation">)</span>
+<span class="token comment">--一次性插入多行数据</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Department<span class="token punctuation">(</span>D_Name<span class="token punctuation">,</span>D_Remark<span class="token punctuation">)</span> 
+<span class="token keyword">select</span> <span class="token string">'测试部'</span><span class="token punctuation">,</span><span class="token string">'......'</span> <span class="token keyword">union</span> 
+<span class="token keyword">select</span> <span class="token string">'实施部'</span><span class="token punctuation">,</span><span class="token string">'......'</span> <span class="token keyword">union</span> 
+<span class="token keyword">select</span> <span class="token string">'产品部'</span><span class="token punctuation">,</span><span class="token string">'......'</span>  
+
+ <span class="token comment">--向职级表插入数据</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span><span class="token punctuation">[</span>Rank<span class="token punctuation">]</span><span class="token punctuation">(</span>R_Name<span class="token punctuation">,</span>R_Remark<span class="token punctuation">)</span> 
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'初级'</span><span class="token punctuation">,</span><span class="token string">'......'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span><span class="token punctuation">[</span>Rank<span class="token punctuation">]</span><span class="token punctuation">(</span>R_Name<span class="token punctuation">,</span>R_Remark<span class="token punctuation">)</span> 
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'中级'</span><span class="token punctuation">,</span><span class="token string">'......'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span><span class="token punctuation">[</span>Rank<span class="token punctuation">]</span><span class="token punctuation">(</span>R_Name<span class="token punctuation">,</span>R_Remark<span class="token punctuation">)</span> 
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'高级'</span><span class="token punctuation">,</span><span class="token string">'......'</span><span class="token punctuation">)</span>
+
+ <span class="token comment">--向员工表插入数据</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> People<span class="token punctuation">(</span>D_Id<span class="token punctuation">,</span>R_Id<span class="token punctuation">,</span>P_Name<span class="token punctuation">,</span>P_Gender<span class="token punctuation">,</span>P_Birthday<span class="token punctuation">,</span>P_Salary<span class="token punctuation">,</span>P_Phone<span class="token punctuation">,</span>P_Address<span class="token punctuation">)</span> 
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'刘备'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'1995-2-1'</span><span class="token punctuation">,</span><span class="token number">10000</span><span class="token punctuation">,</span><span class="token string">'13858888888'</span><span class="token punctuation">,</span><span class="token string">'中国'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -973,7 +1035,7 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.2k</span>&nbsp;字
+                class="white-color">10.5k</span>&nbsp;字
             
             
             
