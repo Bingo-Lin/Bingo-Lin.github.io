@@ -4,7 +4,7 @@
   <url>
     <loc>https://bingo-lin.github.io/posts/8109.html</loc>
     
-    <lastmod>2021-06-01</lastmod>
+    <lastmod>2021-06-03</lastmod>
     
   </url>
   
@@ -58,14 +58,14 @@
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/posts/26062.html</loc>
+    <loc>https://bingo-lin.github.io/posts/25246.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/posts/25246.html</loc>
+    <loc>https://bingo-lin.github.io/posts/26062.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
@@ -123,78 +123,78 @@
 
   <url>
     <loc>https://bingo-lin.github.io/</loc>
-    <lastmod>2021-06-01</lastmod>
+    <lastmod>2021-06-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://bingo-lin.github.io/tags/MNMP/</loc>
-    <lastmod>2021-06-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bingo-lin.github.io/tags/WordPress/</loc>
-    <lastmod>2021-06-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bingo-lin.github.io/tags/Git/</loc>
-    <lastmod>2021-06-01</lastmod>
+    <lastmod>2021-06-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingo-lin.github.io/tags/Github/</loc>
-    <lastmod>2021-06-01</lastmod>
+    <lastmod>2021-06-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingo-lin.github.io/tags/MNMP/</loc>
+    <lastmod>2021-06-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingo-lin.github.io/tags/WordPress/</loc>
+    <lastmod>2021-06-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingo-lin.github.io/tags/Mysql/</loc>
-    <lastmod>2021-06-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bingo-lin.github.io/tags/Sql-Server/</loc>
-    <lastmod>2021-06-01</lastmod>
+    <lastmod>2021-06-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingo-lin.github.io/tags/Terminal/</loc>
-    <lastmod>2021-06-01</lastmod>
+    <lastmod>2021-06-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingo-lin.github.io/tags/Sql-Server/</loc>
+    <lastmod>2021-06-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingo-lin.github.io/tags/You-get/</loc>
-    <lastmod>2021-06-01</lastmod>
+    <lastmod>2021-06-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingo-lin.github.io/tags/Smartmontools/</loc>
-    <lastmod>2021-06-01</lastmod>
+    <lastmod>2021-06-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingo-lin.github.io/tags/Youtube-dl/</loc>
-    <lastmod>2021-06-01</lastmod>
+    <lastmod>2021-06-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -203,21 +203,21 @@
   
   <url>
     <loc>https://bingo-lin.github.io/categories/MacOS/</loc>
-    <lastmod>2021-06-01</lastmod>
+    <lastmod>2021-06-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingo-lin.github.io/categories/Mysql/</loc>
-    <lastmod>2021-06-01</lastmod>
+    <lastmod>2021-06-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingo-lin.github.io/categories/Win10/</loc>
-    <lastmod>2021-06-01</lastmod>
+    <lastmod>2021-06-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

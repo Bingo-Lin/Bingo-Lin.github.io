@@ -403,21 +403,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-02
+                    2021-06-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    810
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    5 分
                 </div>
                 
 
@@ -558,6 +558,32 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
  <span class="token comment">--向员工表插入数据</span>
 <span class="token keyword">insert</span> <span class="token keyword">into</span> People<span class="token punctuation">(</span>D_Id<span class="token punctuation">,</span>R_Id<span class="token punctuation">,</span>P_Name<span class="token punctuation">,</span>P_Gender<span class="token punctuation">,</span>P_Birthday<span class="token punctuation">,</span>P_Salary<span class="token punctuation">,</span>P_Phone<span class="token punctuation">,</span>P_Address<span class="token punctuation">)</span> 
 <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'刘备'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'1995-2-1'</span><span class="token punctuation">,</span><span class="token number">10000</span><span class="token punctuation">,</span><span class="token string">'13858888888'</span><span class="token punctuation">,</span><span class="token string">'中国'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="数据修改和删除"><a href="#数据修改和删除" class="headerlink" title="数据修改和删除"></a>数据修改和删除</h2><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> DBtest
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> Department
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> <span class="token punctuation">[</span>Rank<span class="token punctuation">]</span>
+
+<span class="token comment">--修改表数据</span>
+<span class="token comment">--语法：update 表名 set 字段1 = 值1 ，字段2 = 值2  where 语法</span>
+<span class="token comment">--例子：每个人加薪1000元</span>
+<span class="token keyword">update</span> People <span class="token keyword">set</span> P_Salary <span class="token operator">=</span> P_Salary <span class="token operator">+</span> <span class="token number">1000</span>
+<span class="token comment">--例子：为刘备加薪1000</span>
+<span class="token keyword">update</span> People <span class="token keyword">set</span> P_Salary <span class="token operator">=</span> P_Salary <span class="token operator">+</span> <span class="token number">1000</span> <span class="token keyword">where</span> P_Name <span class="token operator">=</span> <span class="token string">'刘备'</span>
+
+<span class="token comment">--删除表数据</span>
+<span class="token comment">--语法：delete from 表名 where 条件</span>
+<span class="token comment">--例子：删除员工表所有记录</span>
+<span class="token keyword">delete</span> <span class="token keyword">from</span> People<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>drop,truncate,delete简单区别：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">--关于删除(drop,truncate,delete)</span>
+<span class="token keyword">delete</span> <span class="token keyword">from</span> People <span class="token comment">--删除表数据，表对象和表结构依然存在</span>
+<span class="token keyword">truncate</span> <span class="token keyword">table</span> People <span class="token comment">--删除表数据(清空数据)，表对象和表结构依然存在</span>
+<span class="token keyword">drop</span> <span class="token keyword">table</span> People <span class="token comment">--删除表对象(删除最彻底)</span>
+<span class="token comment">--truncate ,delete 区别：</span>
+<span class="token comment">--truncate 清空所有数据，不能有条件。同时已经自动编号1，2，3，4 ...仍存在。即，原先表中有1，2，3，4.然后truncate 后，再添加数据，自动编号仍是1234</span>
+<span class="token comment">--delete 可以删除所有数据，也可以带条件删除符合条件的数据。同时，已经自动编号的编号将永远消失。即，原先表中有1，2，3，4.然后delete 后，再添加数据，自动编号将变成5，6，7，8</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -1035,7 +1061,7 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.5k</span>&nbsp;字
+                class="white-color">10.8k</span>&nbsp;字
             
             
             
