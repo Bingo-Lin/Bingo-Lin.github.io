@@ -403,21 +403,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-04
+                    2021-06-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
 
@@ -584,6 +584,51 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
 <span class="token comment">--truncate ,delete 区别：</span>
 <span class="token comment">--truncate 清空所有数据，不能有条件。同时已经自动编号1，2，3，4 ...仍存在。即，原先表中有1，2，3，4.然后truncate 后，再添加数据，自动编号仍是1234</span>
 <span class="token comment">--delete 可以删除所有数据，也可以带条件删除符合条件的数据。同时，已经自动编号的编号将永远消失。即，原先表中有1，2，3，4.然后delete 后，再添加数据，自动编号将变成5，6，7，8</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h2><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> DBtest
+<span class="token comment">--查询所有列所有行</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> Department
+
+<span class="token comment">--查询指定列(姓名，性别，生日，月薪，电话)</span>
+<span class="token keyword">select</span> P_Name<span class="token punctuation">,</span>P_Gender<span class="token punctuation">,</span>P_Birthday<span class="token punctuation">,</span>P_Salary<span class="token punctuation">,</span>P_Phone <span class="token keyword">from</span> People 
+
+<span class="token comment">--查询指定列(姓名，性别，生日，月薪，电话)(显示中文列名 )</span>
+<span class="token keyword">select</span> P_Name 姓名<span class="token punctuation">,</span>P_Gender 性别<span class="token punctuation">,</span>P_Birthday 生日<span class="token punctuation">,</span>P_Salary 月薪<span class="token punctuation">,</span>P_Phone 电话 <span class="token keyword">from</span> People 
+
+ <span class="token comment">--查询出员工所在的城市(去掉重复数据)</span>
+ <span class="token keyword">select</span> <span class="token keyword">distinct</span><span class="token punctuation">(</span>P_Address<span class="token punctuation">)</span> <span class="token keyword">from</span> People
+
+ <span class="token comment">--假设准备加工资（上调20%），查询出加工资后的员工数据</span>
+ <span class="token keyword">select</span> P_Name<span class="token punctuation">,</span>P_Gender<span class="token punctuation">,</span>P_Salary<span class="token punctuation">,</span>P_Salary<span class="token operator">*</span><span class="token number">1.2</span> 加薪后工资 <span class="token keyword">from</span> People<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> DBtest
+<span class="token comment">--查询性别为女的员工信息</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People <span class="token keyword">where</span> P_Gender <span class="token operator">=</span> <span class="token string">'女'</span>
+
+<span class="token comment">--查询工资大于等于10000元的员工信息</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People <span class="token keyword">where</span> P_Salary <span class="token operator">&gt;=</span> <span class="token number">10000</span>
+
+<span class="token comment">--查询出性别为女，工资大于等于10000元的员工信息（多样性）</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People <span class="token keyword">where</span> P_Gender <span class="token operator">=</span> <span class="token string">'女'</span> <span class="token operator">and</span> P_Salary <span class="token operator">&gt;=</span> <span class="token number">10000</span>
+
+<span class="token comment">--查询出出生年月在1980-1-1之后，而且月薪大于等于10000的女员工</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People <span class="token keyword">where</span> P_Birthday <span class="token operator">&gt;=</span> <span class="token string">'1980-1-1'</span> <span class="token operator">and</span> P_Salary <span class="token operator">&gt;=</span> <span class="token number">10000</span> <span class="token operator">and</span> P_Gender <span class="token operator">=</span> <span class="token string">'女'</span>
+
+<span class="token comment">--查询月薪大于等于10000的员工，或者月薪大于等于8000的女员工</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People <span class="token keyword">where</span> P_Salary <span class="token operator">&gt;=</span> <span class="token number">10000</span> <span class="token operator">or</span> <span class="token punctuation">(</span>P_Salary <span class="token operator">&gt;=</span> <span class="token number">8000</span> <span class="token operator">and</span> P_Gender <span class="token operator">=</span> <span class="token string">'女'</span><span class="token punctuation">)</span>
+
+<span class="token comment">--查询月薪在10000-20000之间的员工信息</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People <span class="token keyword">where</span> P_Salary <span class="token operator">between</span> <span class="token number">10000</span> <span class="token operator">and</span> <span class="token number">20000</span>
+
+<span class="token comment">--查询出地址在武汉或者北京的员工信息</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People <span class="token keyword">where</span> P_Address <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token string">'北京'</span><span class="token punctuation">,</span><span class="token string">'武汉'</span><span class="token punctuation">)</span>
+
+<span class="token comment">--排序</span>
+<span class="token comment">--查询所有员工信息，根据工资排序，降序</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People <span class="token keyword">order</span> <span class="token keyword">by</span> P_Salary <span class="token keyword">desc</span>
+
+<span class="token comment">--查询所有员工信息，根据工资排序，升序 asc 排序是默认的</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People <span class="token keyword">order</span> <span class="token keyword">by</span> P_Salary <span class="token keyword">asc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -1061,7 +1106,7 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10.8k</span>&nbsp;字
+                class="white-color">11.2k</span>&nbsp;字
             
             
             
