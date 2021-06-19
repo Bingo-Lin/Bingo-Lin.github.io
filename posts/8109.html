@@ -403,21 +403,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-09
+                    2021-06-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    8 分
                 </div>
                 
 
@@ -654,7 +654,45 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
 <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People <span class="token keyword">where</span> <span class="token punctuation">(</span><span class="token keyword">month</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">6</span> <span class="token operator">and</span> <span class="token keyword">day</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">22</span><span class="token punctuation">)</span> <span class="token operator">or</span>  <span class="token punctuation">(</span><span class="token keyword">month</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">7</span> <span class="token operator">and</span> <span class="token keyword">day</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">22</span><span class="token punctuation">)</span>
 
 <span class="token comment">--查询出工资比刘备高的人的信息</span>
-<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People <span class="token keyword">where</span> P_Salary <span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token keyword">select</span> P_Salary <span class="token keyword">from</span> People <span class="token keyword">where</span> P_Name <span class="token operator">=</span> <span class="token string">'刘备'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People <span class="token keyword">where</span> P_Salary <span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token keyword">select</span> P_Salary <span class="token keyword">from</span> People <span class="token keyword">where</span> P_Name <span class="token operator">=</span> <span class="token string">'刘备'</span><span class="token punctuation">)</span>
+
+<span class="token comment">--查询所有员工信息，添加一列，显示生肖</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token punctuation">,</span> 
+ <span class="token keyword">case</span>
+  <span class="token keyword">when</span> <span class="token keyword">year</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span> <span class="token operator">=</span> <span class="token number">4</span> <span class="token keyword">then</span> <span class="token string">'鼠'</span>
+  <span class="token keyword">when</span> <span class="token keyword">year</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span> <span class="token operator">=</span> <span class="token number">5</span> <span class="token keyword">then</span> <span class="token string">'牛'</span>
+  <span class="token keyword">when</span> <span class="token keyword">year</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span> <span class="token operator">=</span> <span class="token number">6</span> <span class="token keyword">then</span> <span class="token string">'虎'</span>
+  <span class="token keyword">when</span> <span class="token keyword">year</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span> <span class="token operator">=</span> <span class="token number">7</span> <span class="token keyword">then</span> <span class="token string">'兔'</span>
+  <span class="token keyword">when</span> <span class="token keyword">year</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span> <span class="token operator">=</span> <span class="token number">8</span> <span class="token keyword">then</span> <span class="token string">'龙'</span> 
+  <span class="token keyword">when</span> <span class="token keyword">year</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span> <span class="token operator">=</span> <span class="token number">9</span> <span class="token keyword">then</span> <span class="token string">'蛇'</span>
+  <span class="token keyword">when</span> <span class="token keyword">year</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span> <span class="token operator">=</span> <span class="token number">10</span> <span class="token keyword">then</span> <span class="token string">'马'</span>
+  <span class="token keyword">when</span> <span class="token keyword">year</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span> <span class="token operator">=</span> <span class="token number">11</span> <span class="token keyword">then</span> <span class="token string">'羊'</span>
+  <span class="token keyword">when</span> <span class="token keyword">year</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span> <span class="token operator">=</span> <span class="token number">0</span> <span class="token keyword">then</span> <span class="token string">'猴'</span>
+  <span class="token keyword">when</span> <span class="token keyword">year</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword">then</span> <span class="token string">'鸡'</span>
+  <span class="token keyword">when</span> <span class="token keyword">year</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span> <span class="token operator">=</span> <span class="token number">2</span> <span class="token keyword">then</span> <span class="token string">'狗'</span>
+  <span class="token keyword">when</span> <span class="token keyword">year</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span> <span class="token operator">=</span> <span class="token number">3</span> <span class="token keyword">then</span> <span class="token string">'猪'</span>
+  <span class="token keyword">else</span> <span class="token string">''</span>
+ <span class="token keyword">end</span> <span class="token string">'the Chinese Zodiac'</span>
+<span class="token keyword">from</span> People
+
+<span class="token comment">--查询所有员工信息，添加一列，显示生肖(简化写法)</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token punctuation">,</span> 
+ <span class="token keyword">case</span> <span class="token keyword">year</span><span class="token punctuation">(</span>P_Birthday<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">12</span>
+  <span class="token keyword">when</span> <span class="token number">4</span> <span class="token keyword">then</span> <span class="token string">'鼠'</span>
+  <span class="token keyword">when</span> <span class="token number">5</span> <span class="token keyword">then</span> <span class="token string">'牛'</span>
+  <span class="token keyword">when</span> <span class="token number">6</span> <span class="token keyword">then</span> <span class="token string">'虎'</span>
+  <span class="token keyword">when</span> <span class="token number">7</span> <span class="token keyword">then</span> <span class="token string">'兔'</span>
+  <span class="token keyword">when</span> <span class="token number">8</span> <span class="token keyword">then</span> <span class="token string">'龙'</span> 
+  <span class="token keyword">when</span> <span class="token number">9</span> <span class="token keyword">then</span> <span class="token string">'蛇'</span>
+  <span class="token keyword">when</span> <span class="token number">10</span> <span class="token keyword">then</span> <span class="token string">'马'</span>
+  <span class="token keyword">when</span> <span class="token number">11</span> <span class="token keyword">then</span> <span class="token string">'羊'</span>
+  <span class="token keyword">when</span> <span class="token number">0</span> <span class="token keyword">then</span> <span class="token string">'猴'</span>
+  <span class="token keyword">when</span> <span class="token number">1</span> <span class="token keyword">then</span> <span class="token string">'鸡'</span>
+  <span class="token keyword">when</span> <span class="token number">2</span> <span class="token keyword">then</span> <span class="token string">'狗'</span>
+  <span class="token keyword">when</span> <span class="token number">3</span> <span class="token keyword">then</span> <span class="token string">'猪'</span>
+  <span class="token keyword">else</span> <span class="token string">''</span>
+ <span class="token keyword">end</span> <span class="token string">'the Chinese Zodiac'</span>
+<span class="token keyword">from</span> People<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -1132,7 +1170,7 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">11.5k</span>&nbsp;字
+                class="white-color">11.6k</span>&nbsp;字
             
             
             
