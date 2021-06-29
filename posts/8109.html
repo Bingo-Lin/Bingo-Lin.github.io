@@ -1173,7 +1173,7 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
 <span class="token keyword">select</span> <span class="token variable">@A_Id</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> A_Id <span class="token keyword">from</span> AccountInfo <span class="token keyword">where</span> A_Code <span class="token operator">=</span> <span class="token string">'420107199602034138'</span><span class="token punctuation">)</span>
 <span class="token keyword">select</span> B_CardNo 卡号<span class="token punctuation">,</span> B_Money 余额 <span class="token keyword">from</span> BankCard <span class="token keyword">where</span> BankCard<span class="token punctuation">.</span>B_A_Id <span class="token operator">=</span> <span class="token variable">@A_Id</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="go语句"><a href="#go语句" class="headerlink" title="go语句"></a>go语句</h2><p>（1）等待go语句前的代码执行完成后，再执行go后面的代码。</p>
+<h3 id="go语句"><a href="#go语句" class="headerlink" title="go语句"></a>go语句</h3><p>（1）等待go语句前的代码执行完成后，再执行go后面的代码。</p>
 <p>（2）批处理语句的结束标志。</p>
 <p>下面的@num变量作用域为全局</p>
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">declare</span> <span class="token variable">@num</span> <span class="token keyword">int</span>
