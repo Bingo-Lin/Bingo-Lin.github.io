@@ -403,21 +403,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-20
+                    2021-06-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.3k
+                    6.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    28 分
+                    30 分
                 </div>
                 
 
@@ -1127,6 +1127,66 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
 <span class="token keyword">insert</span> <span class="token keyword">into</span> CardTransfer<span class="token punctuation">(</span>C_NoOut<span class="token punctuation">,</span>C_NoIn<span class="token punctuation">,</span>C_TransferMoney<span class="token punctuation">,</span>C_TransferTime<span class="token punctuation">)</span>
 <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'6225125478544587'</span><span class="token punctuation">,</span><span class="token string">'6225547854125656'</span><span class="token punctuation">,</span><span class="token number">1000</span><span class="token punctuation">,</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="使用T-SQL编程"><a href="#使用T-SQL编程" class="headerlink" title="使用T-SQL编程"></a>使用T-SQL编程</h2><h3 id="信息打印"><a href="#信息打印" class="headerlink" title="信息打印"></a>信息打印</h3><p>print:直接打印消息</p>
+<p>select:在表格中打印消息，可以设置多列，以及每一列的名字</p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>T-SQL中变量分为局部变量和全局变量</p>
+<p>局部变量：（1）以@作为前缀（2）先声明，在赋值</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">declare</span> <span class="token variable">@str</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span>
+<span class="token keyword">set</span> <span class="token variable">@str</span> <span class="token operator">=</span> <span class="token string">'BingoLin'</span> <span class="token comment">--或者select @str = 'BingoLin'</span>
+<span class="token keyword">print</span> <span class="token variable">@str</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>备注：set赋值和select赋值区别：</p>
+<p>set：赋给变量指定的值</p>
+<p>select：一般用于从表中查询出的数据，查询记录如果有多条，将最后一条记录的值赋给变量，</p>
+<p>例如：</p>
+<p>select @变量名 = 字段名 from 表名</p>
+<p>在赋值过程中，如果是表中查询的数据，如果记录只有一条，使用set和select都可以，但是习惯上使用select。</p>
+<p>全局变量：（1）以@@作为前缀（2）由系统进行定义和维护,只读</p>
+<p>@@ERROR：返回执行的上一个语句的错误号</p>
+<p>@@IDENTITY：返回最后插入的标识值</p>
+<p>@@MAX_CONNECTIONS：返回允许同时进行的最大用户连接数</p>
+<p>@@ROWCOUNT：返回受上一语句影响的行数</p>
+<p>@@SERVERNAME：返回运行 SQL Server 的本地服务器的名称</p>
+<p>@@SERVICENAME：返回 SQL Server 正在其下运行的注册表项的名称</p>
+<p>@@TRANCOUNT：返回当前连接的活动事务数</p>
+<p>@@LOCK_TIMEOUT：返回当前会话的当前锁定超时设置（毫秒）</p>
+<p>变量示例：</p>
+<p>(1)为赵云此人进行开户开卡操作，赵云身份证：420107199904054233</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> DBtest
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> AccountInfo
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> BankCard
+<span class="token keyword">declare</span> <span class="token variable">@AccountId</span> <span class="token keyword">int</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> AccountInfo<span class="token punctuation">(</span>A_Code<span class="token punctuation">,</span>A_Phone<span class="token punctuation">,</span>A_RealName<span class="token punctuation">,</span>A_OpenTime<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'420107199904054233'</span><span class="token punctuation">,</span><span class="token string">'15878547898'</span><span class="token punctuation">,</span><span class="token string">'赵云'</span><span class="token punctuation">,</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">set</span> <span class="token variable">@AccountId</span> <span class="token operator">=</span> @<span class="token variable">@identity</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> BankCard<span class="token punctuation">(</span>B_CardNo<span class="token punctuation">,</span>B_A_Id<span class="token punctuation">,</span>B_Pwd<span class="token punctuation">,</span>B_Money<span class="token punctuation">,</span>B_State<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'6225123412357896'</span><span class="token punctuation">,</span><span class="token variable">@AccountId</span><span class="token punctuation">,</span><span class="token string">'123456'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>(2)需要求出张飞的银行卡卡号和余额，张飞身份证：420107199602034138</p>
+<p>方案一：连接查询</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> B_CardNo 卡号<span class="token punctuation">,</span> B_Money 余额 <span class="token keyword">from</span> BankCard 
+<span class="token keyword">left</span> <span class="token keyword">join</span> AccountInfo <span class="token keyword">on</span> BankCard<span class="token punctuation">.</span>B_A_Id <span class="token operator">=</span> AccountInfo<span class="token punctuation">.</span>A_Id
+<span class="token keyword">where</span> A_Code <span class="token operator">=</span> <span class="token string">'420107199602034138'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>方案二：使用变量</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">declare</span> <span class="token variable">@A_Id</span> <span class="token keyword">int</span>
+<span class="token keyword">select</span> <span class="token variable">@A_Id</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> A_Id <span class="token keyword">from</span> AccountInfo <span class="token keyword">where</span> A_Code <span class="token operator">=</span> <span class="token string">'420107199602034138'</span><span class="token punctuation">)</span>
+<span class="token keyword">select</span> B_CardNo 卡号<span class="token punctuation">,</span> B_Money 余额 <span class="token keyword">from</span> BankCard <span class="token keyword">where</span> BankCard<span class="token punctuation">.</span>B_A_Id <span class="token operator">=</span> <span class="token variable">@A_Id</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="go语句"><a href="#go语句" class="headerlink" title="go语句"></a>go语句</h2><p>（1）等待go语句前的代码执行完成后，再执行go后面的代码。</p>
+<p>（2）批处理语句的结束标志。</p>
+<p>下面的@num变量作用域为全局</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">declare</span> <span class="token variable">@num</span> <span class="token keyword">int</span>
+<span class="token keyword">set</span> <span class="token variable">@num</span> <span class="token operator">=</span> <span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>下面的@num变量的作用域是局部，只在两个go之间可以使用，最后一行代码会报错</p>
+<p>………sql代码</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">go
+<span class="token keyword">declare</span> <span class="token variable">@num</span> <span class="token keyword">int</span>
+<span class="token keyword">set</span> <span class="token variable">@num</span> <span class="token operator">=</span> <span class="token number">0</span>
+go
+<span class="token keyword">set</span> <span class="token variable">@num</span> <span class="token operator">=</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1603,7 +1663,7 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">15.9k</span>&nbsp;字
+                class="white-color">16.5k</span>&nbsp;字
             
             
             
