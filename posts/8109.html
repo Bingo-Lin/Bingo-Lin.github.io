@@ -403,21 +403,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-06-30
+                    2021-07-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.8k
+                    7.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    30 分
+                    33 分
                 </div>
                 
 
@@ -1187,6 +1187,86 @@ log <span class="token keyword">on</span> <span class="token comment">--日志�
 go
 <span class="token keyword">set</span> <span class="token variable">@num</span> <span class="token operator">=</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>T-SQL中使用的运算符分为7种</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">算数运算符：加（<span class="token operator">+</span>）、减（<span class="token operator">-</span>）、乘（<span class="token operator">*</span>）、除（<span class="token operator">/</span>）、模（<span class="token operator">%</span>） 
+逻辑运算符：<span class="token operator">AND</span>、<span class="token operator">OR</span>、<span class="token operator">LIKE</span>、<span class="token operator">BETWEEN</span>、<span class="token operator">IN</span>、<span class="token keyword">EXISTS</span>、<span class="token operator">NOT</span>、<span class="token keyword">ALL</span>、<span class="token keyword">ANY</span>、 
+赋值运算符：<span class="token operator">=</span> 
+字符串运算符：<span class="token operator">+</span> 
+比较运算符：<span class="token operator">=</span>、<span class="token operator">&gt;</span>、<span class="token operator">&lt;</span>、<span class="token operator">&gt;=</span>、<span class="token operator">&lt;=</span>、<span class="token operator">&lt;&gt;</span> 
+位运算符：<span class="token operator">|</span>、<span class="token operator">&amp;</span>、<span class="token operator">^</span> 
+复合运算符：<span class="token operator">+</span><span class="token operator">=</span>、<span class="token operator">-</span><span class="token operator">=</span>、<span class="token operator">/</span><span class="token operator">=</span>、<span class="token operator">%</span><span class="token operator">=</span>、<span class="token operator">*</span><span class="token operator">=</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>示例：</p>
+<p>已知长方形的长和宽，求长方形的周长和面积：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">declare</span> <span class="token variable">@c</span> <span class="token keyword">int</span> <span class="token operator">=</span> <span class="token number">5</span>
+<span class="token keyword">declare</span> <span class="token variable">@k</span> <span class="token keyword">int</span> <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token keyword">declare</span> <span class="token variable">@zc</span> <span class="token keyword">int</span>
+<span class="token keyword">declare</span> <span class="token variable">@mj</span> <span class="token keyword">int</span>
+<span class="token keyword">set</span> <span class="token variable">@zc</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token variable">@c</span><span class="token operator">+</span><span class="token variable">@k</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">2</span>
+<span class="token keyword">set</span> <span class="token variable">@mj</span> <span class="token operator">=</span> <span class="token variable">@c</span> <span class="token operator">*</span> <span class="token variable">@k</span>
+<span class="token keyword">print</span> <span class="token string">'周长为:'</span> <span class="token operator">+</span> <span class="token keyword">Convert</span><span class="token punctuation">(</span><span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token variable">@zc</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span> <span class="token string">'面积为:'</span> <span class="token operator">+</span> <span class="token keyword">Convert</span><span class="token punctuation">(</span><span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token variable">@mj</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>查询银行卡状态为冻结为”1”，并且余额超过1000的银行卡信息:</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> BankCard <span class="token keyword">where</span> B_State <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">and</span> B_Money <span class="token operator">&gt;</span> <span class="token number">1000</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>关羽身份证：420107199507104133，关羽到银行来开户，查询身份证在账户表是否存在，不存在则进行开户开卡，存在则不开户直接开卡:</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> DBtest
+go
+<span class="token keyword">declare</span> <span class="token variable">@A_Id</span> <span class="token keyword">int</span>
+<span class="token keyword">if</span> <span class="token keyword">exists</span><span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> AccountInfo <span class="token keyword">where</span> A_Code <span class="token operator">=</span> <span class="token string">'420107199507104133'</span><span class="token punctuation">)</span>
+    <span class="token keyword">begin</span>       
+        <span class="token keyword">select</span> <span class="token variable">@A_Id</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> A_Id <span class="token keyword">from</span> AccountInfo <span class="token keyword">where</span> A_Code <span class="token operator">=</span> <span class="token string">'420107199507104133'</span><span class="token punctuation">)</span>
+        <span class="token keyword">insert</span> <span class="token keyword">into</span> BankCard<span class="token punctuation">(</span>B_CardNo<span class="token punctuation">,</span>B_A_Id<span class="token punctuation">,</span>B_Pwd<span class="token punctuation">,</span>B_Money<span class="token punctuation">,</span>B_State<span class="token punctuation">)</span>
+        <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'6225456875357896'</span><span class="token punctuation">,</span><span class="token variable">@A_Id</span><span class="token punctuation">,</span><span class="token string">'123456'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>              
+    <span class="token keyword">end</span>
+<span class="token keyword">else</span>
+    <span class="token keyword">begin</span>
+        <span class="token keyword">insert</span> <span class="token keyword">into</span> AccountInfo<span class="token punctuation">(</span>A_Code<span class="token punctuation">,</span>A_Phone<span class="token punctuation">,</span>A_RealName<span class="token punctuation">,</span>A_OpenTime<span class="token punctuation">)</span>
+        <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'420107199507104133'</span><span class="token punctuation">,</span><span class="token string">'13335645213'</span><span class="token punctuation">,</span><span class="token string">'关羽'</span><span class="token punctuation">,</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">set</span> <span class="token variable">@A_Id</span> <span class="token operator">=</span> @<span class="token variable">@identity</span>
+        <span class="token keyword">insert</span> <span class="token keyword">into</span> BankCard<span class="token punctuation">(</span>B_CardNo<span class="token punctuation">,</span>B_A_Id<span class="token punctuation">,</span>B_Pwd<span class="token punctuation">,</span>B_Money<span class="token punctuation">,</span>B_State<span class="token punctuation">)</span>
+        <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'6225456875357896'</span><span class="token punctuation">,</span><span class="token variable">@A_Id</span><span class="token punctuation">,</span><span class="token string">'123456'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>      
+    <span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>扩展：上面需求添加一个限制即一个人最多只能开3张银行卡:</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> DBtest
+go
+<span class="token keyword">declare</span> <span class="token variable">@A_Id</span> <span class="token keyword">int</span>
+<span class="token keyword">declare</span> <span class="token variable">@count</span> <span class="token keyword">int</span>
+<span class="token keyword">if</span> <span class="token keyword">exists</span><span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> AccountInfo <span class="token keyword">where</span> A_Code <span class="token operator">=</span> <span class="token string">'420107199507104133'</span><span class="token punctuation">)</span>
+    <span class="token keyword">begin</span>       
+        <span class="token keyword">select</span> <span class="token variable">@A_Id</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> A_Id <span class="token keyword">from</span> AccountInfo <span class="token keyword">where</span> A_Code <span class="token operator">=</span> <span class="token string">'420107199507104133'</span><span class="token punctuation">)</span>
+        <span class="token keyword">select</span> <span class="token variable">@count</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> BankCard <span class="token keyword">where</span> B_A_Id <span class="token operator">=</span> <span class="token variable">@A_Id</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token variable">@count</span> <span class="token operator">&lt;=</span> <span class="token number">2</span>
+            <span class="token keyword">begin</span>
+                <span class="token keyword">insert</span> <span class="token keyword">into</span> BankCard<span class="token punctuation">(</span>B_CardNo<span class="token punctuation">,</span>B_A_Id<span class="token punctuation">,</span>B_Pwd<span class="token punctuation">,</span>B_Money<span class="token punctuation">,</span>B_State<span class="token punctuation">)</span>
+                <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'6225456875357898'</span><span class="token punctuation">,</span><span class="token variable">@A_Id</span><span class="token punctuation">,</span><span class="token string">'123456'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>  
+            <span class="token keyword">end</span> 
+        <span class="token keyword">else</span>
+            <span class="token keyword">begin</span>
+                <span class="token keyword">print</span> <span class="token string">'一个人最多只能办理三张银行卡'</span>
+            <span class="token keyword">end</span>     
+    <span class="token keyword">end</span>
+<span class="token keyword">else</span>
+    <span class="token keyword">begin</span>
+        <span class="token keyword">insert</span> <span class="token keyword">into</span> AccountInfo<span class="token punctuation">(</span>A_Code<span class="token punctuation">,</span>A_Phone<span class="token punctuation">,</span>A_RealName<span class="token punctuation">,</span>A_OpenTime<span class="token punctuation">)</span>
+        <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'420107199507104133'</span><span class="token punctuation">,</span><span class="token string">'13335645213'</span><span class="token punctuation">,</span><span class="token string">'关羽'</span><span class="token punctuation">,</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">set</span> <span class="token variable">@A_Id</span> <span class="token operator">=</span> @<span class="token variable">@identity</span>
+        <span class="token keyword">insert</span> <span class="token keyword">into</span> BankCard<span class="token punctuation">(</span>B_CardNo<span class="token punctuation">,</span>B_A_Id<span class="token punctuation">,</span>B_Pwd<span class="token punctuation">,</span>B_Money<span class="token punctuation">,</span>B_State<span class="token punctuation">)</span>
+        <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'6225456875357898'</span><span class="token punctuation">,</span><span class="token variable">@A_Id</span><span class="token punctuation">,</span><span class="token string">'123456'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>      
+    <span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>查询银行卡账户余额，是不是所有的账户余额都超过了3000:</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> DBtest
+go
+<span class="token keyword">if</span> <span class="token number">3000</span> <span class="token operator">&lt;</span> <span class="token keyword">ALL</span><span class="token punctuation">(</span><span class="token keyword">select</span> B_Money <span class="token keyword">from</span> BankCard<span class="token punctuation">)</span> 
+    <span class="token keyword">print</span> <span class="token string">'所有账户余额都超过了3000'</span>
+<span class="token keyword">else</span>
+    <span class="token keyword">print</span> <span class="token string">'存在有余额不超过3000的账户'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 
                 
             </div>
@@ -1663,7 +1743,7 @@ go
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">16.5k</span>&nbsp;字
+                class="white-color">17k</span>&nbsp;字
             
             
             
