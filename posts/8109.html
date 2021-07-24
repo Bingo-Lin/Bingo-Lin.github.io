@@ -403,21 +403,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-04
+                    2021-07-25
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.3k
+                    7.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    33 分
+                    35 分
                 </div>
                 
 
@@ -1265,8 +1265,86 @@ go
 <span class="token keyword">else</span>
     <span class="token keyword">print</span> <span class="token string">'存在有余额不超过3000的账户'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><h3 id="一、选择分之结构"><a href="#一、选择分之结构" class="headerlink" title="一、选择分之结构"></a>一、选择分之结构</h3><p>（1）某用户银行卡号为“6225547854125656”，该用户执行取钱操作，取钱5000元，余额充足则进行取钱操作，并提示”取钱成功”，否则提示“余额不足”。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> DBtest
+go
 
+<span class="token keyword">declare</span> <span class="token variable">@balance</span> money
+<span class="token keyword">select</span> <span class="token variable">@balance</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> B_Money <span class="token keyword">from</span> BankCard <span class="token keyword">where</span> B_CardNo<span class="token operator">=</span><span class="token string">'6225547854125656'</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> <span class="token variable">@balance</span> <span class="token operator">&gt;=</span> <span class="token number">5000</span>
+    <span class="token keyword">begin</span>
+        <span class="token keyword">update</span> BankCard <span class="token keyword">set</span> B_Money <span class="token operator">=</span> B_Money <span class="token operator">-</span> <span class="token number">5000</span>
+        <span class="token keyword">insert</span> <span class="token keyword">into</span> CardExchange<span class="token punctuation">(</span>C_No<span class="token punctuation">,</span>C_MoneyInBank<span class="token punctuation">,</span>C_MoneyOutBank<span class="token punctuation">,</span>C_ExchangeTime<span class="token punctuation">)</span>
+        <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'6225547854125656'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">5000</span><span class="token punctuation">,</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">end</span>
+<span class="token keyword">else</span>
+    <span class="token keyword">print</span> <span class="token string">'余额不足'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>（2）查询银行卡信息，将银行卡状态1,2,3,4分别转换为汉字“正常,挂失,冻结,注销”，并且根据银行卡余额显示银行卡等级 30万以下为“普通用户”,30万及以上为”VIP用户”，显示列分别为卡号，身份证，姓名，余额，用户等级，银行卡状态。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> DBtest
+go
+
+<span class="token keyword">select</span> B_CardNo 卡号<span class="token punctuation">,</span>A_Code 身份证<span class="token punctuation">,</span>A_RealName 姓名<span class="token punctuation">,</span>B_Money 余额<span class="token punctuation">,</span>
+<span class="token keyword">case</span>
+    <span class="token keyword">when</span> B_Money <span class="token operator">&lt;</span> <span class="token number">300000</span> <span class="token keyword">then</span> <span class="token string">'普通用户'</span>
+    <span class="token keyword">else</span> <span class="token string">'VIP用户'</span> 
+<span class="token keyword">end</span> 用户等级<span class="token punctuation">,</span>
+<span class="token keyword">case</span>
+    <span class="token keyword">when</span> B_State <span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword">then</span> <span class="token string">'正常'</span>
+    <span class="token keyword">when</span> B_State <span class="token operator">=</span> <span class="token number">2</span> <span class="token keyword">then</span> <span class="token string">'挂失'</span>
+    <span class="token keyword">when</span> B_State <span class="token operator">=</span> <span class="token number">3</span> <span class="token keyword">then</span> <span class="token string">'冻结'</span>
+    <span class="token keyword">when</span> B_State <span class="token operator">=</span> <span class="token number">4</span> <span class="token keyword">then</span> <span class="token string">'注销'</span>
+    <span class="token keyword">else</span> <span class="token string">'异常'</span> 
+<span class="token keyword">end</span> 卡状态
+<span class="token keyword">from</span> BankCard <span class="token keyword">inner</span> <span class="token keyword">join</span> AccountInfo <span class="token keyword">on</span> BankCard<span class="token punctuation">.</span>B_A_Id <span class="token operator">=</span> AccountInfo<span class="token punctuation">.</span>A_Id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>或者：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> B_CardNo 卡号<span class="token punctuation">,</span>A_Code 身份证<span class="token punctuation">,</span>A_RealName 姓名<span class="token punctuation">,</span>B_Money 余额<span class="token punctuation">,</span>
+<span class="token keyword">case</span>
+    <span class="token keyword">when</span> B_Money <span class="token operator">&lt;</span> <span class="token number">300000</span> <span class="token keyword">then</span> <span class="token string">'普通用户'</span>
+    <span class="token keyword">else</span> <span class="token string">'VIP用户'</span> 
+<span class="token keyword">end</span> 用户等级<span class="token punctuation">,</span>
+<span class="token keyword">case</span> B_State
+    <span class="token keyword">when</span>  <span class="token number">1</span> <span class="token keyword">then</span> <span class="token string">'正常'</span>
+    <span class="token keyword">when</span>  <span class="token number">2</span> <span class="token keyword">then</span> <span class="token string">'挂失'</span>
+    <span class="token keyword">when</span>  <span class="token number">3</span> <span class="token keyword">then</span> <span class="token string">'冻结'</span>
+    <span class="token keyword">when</span>  <span class="token number">4</span> <span class="token keyword">then</span> <span class="token string">'注销'</span>
+    <span class="token keyword">else</span> <span class="token string">'异常'</span>
+<span class="token keyword">end</span> 卡状态
+<span class="token keyword">from</span> BankCard <span class="token keyword">inner</span> <span class="token keyword">join</span> AccountInfo <span class="token keyword">on</span> BankCard<span class="token punctuation">.</span>B_A_Id <span class="token operator">=</span> AccountInfo<span class="token punctuation">.</span>A_Id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="二、循环结构"><a href="#二、循环结构" class="headerlink" title="二、循环结构"></a>二、循环结构</h3><p>（1）循环打印1-10。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">declare</span> <span class="token variable">@i</span> <span class="token keyword">int</span>  <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">while</span> <span class="token variable">@i</span> <span class="token operator">&lt;=</span> <span class="token number">10</span>
+<span class="token keyword">begin</span>
+    <span class="token keyword">print</span> <span class="token variable">@i</span>
+    <span class="token keyword">set</span> <span class="token variable">@i</span> <span class="token operator">=</span> <span class="token variable">@i</span> <span class="token operator">+</span> <span class="token number">1</span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（2）循环打印九九乘法表</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">declare</span> <span class="token variable">@i</span> <span class="token keyword">int</span> <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">declare</span> <span class="token variable">@str</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span>
+<span class="token keyword">while</span> <span class="token variable">@i</span><span class="token operator">&lt;=</span><span class="token number">9</span>
+<span class="token keyword">begin</span>
+    <span class="token keyword">declare</span> <span class="token variable">@j</span> <span class="token keyword">int</span> <span class="token operator">=</span> <span class="token number">1</span>
+    <span class="token keyword">set</span> <span class="token variable">@str</span> <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token keyword">while</span> <span class="token variable">@j</span> <span class="token operator">&lt;=</span> <span class="token variable">@i</span>
+    <span class="token keyword">begin</span>
+        <span class="token comment">--方案一</span>
+        <span class="token comment">--set @str = @str + cast(@i as varchar(2)) + '*' + cast(@j as varchar(2)) + </span>
+        <span class="token comment">--'=' + cast(@i*@j as varchar(2)) + CHAR(9)</span>
+        <span class="token comment">--方案二</span>
+        <span class="token keyword">set</span> <span class="token variable">@str</span> <span class="token operator">=</span> <span class="token variable">@str</span> <span class="token operator">+</span> <span class="token keyword">Convert</span><span class="token punctuation">(</span><span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token variable">@i</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'*'</span> <span class="token operator">+</span> <span class="token keyword">Convert</span><span class="token punctuation">(</span><span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token variable">@j</span><span class="token punctuation">)</span> <span class="token operator">+</span> 
+        <span class="token string">'='</span> <span class="token operator">+</span> <span class="token keyword">Convert</span><span class="token punctuation">(</span><span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token variable">@i</span><span class="token operator">*</span><span class="token variable">@j</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span>       
+        <span class="token keyword">set</span> <span class="token variable">@j</span> <span class="token operator">=</span> <span class="token variable">@j</span> <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token keyword">end</span>
+    <span class="token keyword">print</span> <span class="token variable">@str</span>
+    <span class="token keyword">set</span> <span class="token variable">@i</span> <span class="token operator">=</span> <span class="token variable">@i</span> <span class="token operator">+</span> <span class="token number">1</span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>备注：</p>
+<p>（1）特殊字符：制表符 CHAR(9)；换行符 CHAR(10)；回车 CHAR(13)；</p>
+<p>（2）循环中若出现break和CONTINUE,作用与Java，C#等语言一致。</p>
 
                 
             </div>
@@ -1743,7 +1821,7 @@ go
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">17k</span>&nbsp;字
+                class="white-color">17.5k</span>&nbsp;字
             
             
             
