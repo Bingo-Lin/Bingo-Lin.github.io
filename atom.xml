@@ -6,7 +6,7 @@
   <link href="https://bingo-lin.github.io/atom.xml" rel="self"/>
   
   <link href="https://bingo-lin.github.io/"/>
-  <updated>2021-07-24T17:03:33.869Z</updated>
+  <updated>2021-08-08T07:56:24.177Z</updated>
   <id>https://bingo-lin.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mood</title>
+    <link href="https://bingo-lin.github.io/posts/27147.html"/>
+    <id>https://bingo-lin.github.io/posts/27147.html</id>
+    <published>2021-08-08T07:24:11.000Z</published>
+    <updated>2021-08-08T07:56:24.177Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Some words are  just  a waste of time … maybe not.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Life  Advice : don’t lose important people because of hard</summary>
+        
+      
+    
+    
+    
+    <category term="Daily" scheme="https://bingo-lin.github.io/categories/Daily/"/>
+    
+    
+    <category term="Mood" scheme="https://bingo-lin.github.io/tags/Mood/"/>
+    
+  </entry>
   
   <entry>
     <title>Sql Server</title>
