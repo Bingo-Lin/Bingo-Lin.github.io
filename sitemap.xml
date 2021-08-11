@@ -72,14 +72,14 @@
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/posts/16928.html</loc>
+    <loc>https://bingo-lin.github.io/posts/26062.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/posts/26062.html</loc>
+    <loc>https://bingo-lin.github.io/posts/16928.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
@@ -144,13 +144,6 @@
 
   
   <url>
-    <loc>https://bingo-lin.github.io/tags/Consolation/</loc>
-    <lastmod>2021-08-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bingo-lin.github.io/tags/Git/</loc>
     <lastmod>2021-08-11</lastmod>
     <changefreq>daily</changefreq>
@@ -159,6 +152,13 @@
   
   <url>
     <loc>https://bingo-lin.github.io/tags/Github/</loc>
+    <lastmod>2021-08-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingo-lin.github.io/tags/Terminal/</loc>
     <lastmod>2021-08-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -179,13 +179,6 @@
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/tags/Terminal/</loc>
-    <lastmod>2021-08-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bingo-lin.github.io/tags/Mood/</loc>
     <lastmod>2021-08-11</lastmod>
     <changefreq>daily</changefreq>
@@ -200,6 +193,13 @@
   </url>
   
   <url>
+    <loc>https://bingo-lin.github.io/tags/Sql-Server/</loc>
+    <lastmod>2021-08-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://bingo-lin.github.io/tags/Smartmontools/</loc>
     <lastmod>2021-08-11</lastmod>
     <changefreq>daily</changefreq>
@@ -207,7 +207,7 @@
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/tags/Sql-Server/</loc>
+    <loc>https://bingo-lin.github.io/tags/Youtube-dl/</loc>
     <lastmod>2021-08-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -221,7 +221,7 @@
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/tags/Youtube-dl/</loc>
+    <loc>https://bingo-lin.github.io/tags/Consolation/</loc>
     <lastmod>2021-08-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -230,14 +230,14 @@
 
   
   <url>
-    <loc>https://bingo-lin.github.io/categories/Daily/</loc>
+    <loc>https://bingo-lin.github.io/categories/MacOS/</loc>
     <lastmod>2021-08-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/categories/MacOS/</loc>
+    <loc>https://bingo-lin.github.io/categories/Daily/</loc>
     <lastmod>2021-08-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
