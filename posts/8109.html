@@ -403,21 +403,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-11
+                    2021-08-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.3k
+                    11.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    46 分
+                    51 分
                 </div>
                 
 
@@ -1632,6 +1632,168 @@ go<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><
     <span class="token keyword">end</span>
 <span class="token keyword">close</span> CURSORMember<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="函数-存储过程-触发器"><a href="#函数-存储过程-触发器" class="headerlink" title="函数-存储过程-触发器"></a>函数-存储过程-触发器</h2><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>函数分为（1）系统函数，（2）自定义函数。</p>
+<p>其中自定义函数又可以分为（1）标量值函数（返回单个值），（2）表值函数（返回查询结果）</p>
+<p>本文主要介绍自定义函数的使用。</p>
+<p>（1）编写一个函数求该银行的金额总和,然后函数调用</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> DBtest
+go
+<span class="token keyword">create</span> <span class="token keyword">function</span> GetSumCardMoney<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">returns</span> money 
+<span class="token keyword">as</span>
+<span class="token keyword">begin</span>
+    <span class="token keyword">declare</span> <span class="token variable">@AllMOney</span> money
+    <span class="token keyword">select</span> <span class="token variable">@AllMOney</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">SUM</span><span class="token punctuation">(</span>B_Money<span class="token punctuation">)</span> <span class="token keyword">from</span> BankCard<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token variable">@AllMOney</span>
+<span class="token keyword">end</span>
+go
+<span class="token keyword">select</span> dbo<span class="token punctuation">.</span>GetSumCardMoney<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>上述函数没有参数，下面介绍有参数的函数的定义及使用</p>
+<p>（2）传入账户编号，返回账户真实姓名</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">function</span> GetNameById<span class="token punctuation">(</span><span class="token variable">@AccountId</span> <span class="token keyword">int</span><span class="token punctuation">)</span>
+<span class="token keyword">returns</span>  <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span>
+<span class="token keyword">as</span>
+<span class="token keyword">begin</span>
+    <span class="token keyword">declare</span> <span class="token variable">@RealName</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span>
+    <span class="token keyword">select</span> <span class="token variable">@RealName</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> A_RealName <span class="token keyword">from</span> AccountInfo <span class="token keyword">where</span> A_Id <span class="token operator">=</span> <span class="token variable">@AccountId</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token variable">@RealName</span>
+<span class="token keyword">end</span>
+go
+<span class="token keyword">print</span> dbo<span class="token punctuation">.</span>GetNameById<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（3）传递开始时间和结束时间，返回交易记录（存钱取钱），交易记录中包含 真实姓名，卡号，存钱金额，取钱金额，交易时间。</p>
+<p>方案一（逻辑复杂，函数内容除了返回结果的sql语句还有其他内容，例如定义变量等）：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">function</span> GetExchangeByTime<span class="token punctuation">(</span><span class="token variable">@StartTime</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token variable">@EndTime</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">returns</span> <span class="token variable">@ExchangeTable</span> <span class="token keyword">table</span>
+<span class="token punctuation">(</span>
+    RealName <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment">--真实姓名</span>
+    CardNo <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span>    <span class="token comment">--卡号</span>
+    MoneyInBank money<span class="token punctuation">,</span>     <span class="token comment">--存钱金额</span>
+    MoneyOutBank money<span class="token punctuation">,</span>    <span class="token comment">--取钱金额</span>
+    ExchangeTime smalldatetime  <span class="token comment">--交易时间</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">as</span>
+<span class="token keyword">begin</span>
+    <span class="token keyword">insert</span> <span class="token keyword">into</span> <span class="token variable">@ExchangeTable</span>
+    <span class="token keyword">select</span> AccountInfo<span class="token punctuation">.</span>A_RealName<span class="token punctuation">,</span>CardExchange<span class="token punctuation">.</span>C_No<span class="token punctuation">,</span>CardExchange<span class="token punctuation">.</span>C_MoneyInBank<span class="token punctuation">,</span>
+    CardExchange<span class="token punctuation">.</span>C_MoneyOutBank<span class="token punctuation">,</span>CardExchange<span class="token punctuation">.</span>C_ExchangeTime <span class="token keyword">from</span> CardExchange
+    <span class="token keyword">left</span> <span class="token keyword">join</span> BankCard <span class="token keyword">on</span> CardExchange<span class="token punctuation">.</span>C_No <span class="token operator">=</span> BankCard<span class="token punctuation">.</span>B_CardNo
+    <span class="token keyword">left</span> <span class="token keyword">join</span> AccountInfo <span class="token keyword">on</span> BankCard<span class="token punctuation">.</span>B_A_Id <span class="token operator">=</span> AccountInfo<span class="token punctuation">.</span>A_Id
+    <span class="token keyword">where</span> CardExchange<span class="token punctuation">.</span>C_ExchangeTime <span class="token operator">between</span> <span class="token variable">@StartTime</span><span class="token operator">+</span><span class="token string">' 00:00:00'</span> <span class="token operator">and</span> <span class="token variable">@EndTime</span><span class="token operator">+</span><span class="token string">' 23:59:59'</span>
+    <span class="token keyword">return</span>
+<span class="token keyword">end</span>
+go
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> GetExchangeByTime<span class="token punctuation">(</span><span class="token string">'2018-6-1'</span><span class="token punctuation">,</span><span class="token string">'2021-7-1'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>方案二（逻辑简单，函数内容直接是一条sql查询语句）：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">function</span> GetExchangeByTime<span class="token punctuation">(</span><span class="token variable">@StartTime</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token variable">@EndTime</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">returns</span> <span class="token keyword">table</span>
+<span class="token keyword">as</span>
+    <span class="token keyword">return</span>
+    <span class="token keyword">select</span> AccountInfo<span class="token punctuation">.</span>A_RealName<span class="token punctuation">,</span>CardExchange<span class="token punctuation">.</span>C_No<span class="token punctuation">,</span>CardExchange<span class="token punctuation">.</span>C_MoneyInBank<span class="token punctuation">,</span>
+    CardExchange<span class="token punctuation">.</span>C_MoneyOutBank<span class="token punctuation">,</span>CardExchange<span class="token punctuation">.</span>C_ExchangeTime <span class="token keyword">from</span> CardExchange
+    <span class="token keyword">left</span> <span class="token keyword">join</span> BankCard <span class="token keyword">on</span> CardExchange<span class="token punctuation">.</span>C_No <span class="token operator">=</span> BankCard<span class="token punctuation">.</span>B_CardNo
+    <span class="token keyword">left</span> <span class="token keyword">join</span> AccountInfo <span class="token keyword">on</span> BankCard<span class="token punctuation">.</span>B_A_Id <span class="token operator">=</span> AccountInfo<span class="token punctuation">.</span>A_Id
+    <span class="token keyword">where</span> CardExchange<span class="token punctuation">.</span>C_ExchangeTime <span class="token operator">between</span> <span class="token variable">@StartTime</span><span class="token operator">+</span><span class="token string">' 00:00:00'</span> <span class="token operator">and</span> <span class="token variable">@EndTime</span><span class="token operator">+</span><span class="token string">' 23:59:59'</span>
+go
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> GetExchangeByTime<span class="token punctuation">(</span><span class="token string">'2018-6-19'</span><span class="token punctuation">,</span><span class="token string">'2021-7-19'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（4）查询银行卡信息，将银行卡状态1,2,3,4分别转换为汉字“正常,挂失,冻结,注销”，根据银行卡余额显示银行卡等级 30万以下为“普通用户”,30万及以上为”VIP用户”，分别显示卡号，身份证，姓名，余额，用户等级，银行卡状态。</p>
+<p>方案一：直接在sql语句中使用case when</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> AccountInfo
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> BankCard
+<span class="token keyword">select</span> B_Money 卡号<span class="token punctuation">,</span>A_Code 身份证<span class="token punctuation">,</span>A_RealName 姓名<span class="token punctuation">,</span>B_Money 余额<span class="token punctuation">,</span>
+<span class="token keyword">case</span>
+    <span class="token keyword">when</span> B_Money <span class="token operator">&lt;</span> <span class="token number">300000</span> <span class="token keyword">then</span> <span class="token string">'普通用户'</span>
+    <span class="token keyword">else</span> <span class="token string">'VIP用户'</span> 
+<span class="token keyword">end</span> 用户等级<span class="token punctuation">,</span>
+<span class="token keyword">case</span>
+    <span class="token keyword">when</span> B_State <span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword">then</span> <span class="token string">'正常'</span>
+    <span class="token keyword">when</span> B_State <span class="token operator">=</span> <span class="token number">2</span> <span class="token keyword">then</span> <span class="token string">'挂失'</span>
+    <span class="token keyword">when</span> B_State <span class="token operator">=</span> <span class="token number">3</span> <span class="token keyword">then</span> <span class="token string">'冻结'</span>
+    <span class="token keyword">when</span> B_State <span class="token operator">=</span> <span class="token number">4</span> <span class="token keyword">then</span> <span class="token string">'注销'</span>
+    <span class="token keyword">else</span> <span class="token string">'异常'</span>
+<span class="token keyword">end</span> 卡状态
+<span class="token keyword">from</span> BankCard <span class="token keyword">inner</span> <span class="token keyword">join</span> AccountInfo <span class="token keyword">on</span> BankCard<span class="token punctuation">.</span>B_A_Id <span class="token operator">=</span> AccountInfo<span class="token punctuation">.</span>A_Id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>方案二：将等级和状态用函数实现</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">function</span> GetGradeByMoney<span class="token punctuation">(</span><span class="token variable">@myMoney</span> <span class="token keyword">int</span><span class="token punctuation">)</span>
+<span class="token keyword">returns</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token keyword">as</span>
+<span class="token keyword">begin</span>
+    <span class="token keyword">declare</span> <span class="token variable">@result</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token variable">@myMoney</span> <span class="token operator">&lt;</span> <span class="token number">30000</span> 
+        <span class="token keyword">set</span> <span class="token variable">@result</span> <span class="token operator">=</span> <span class="token string">'普通用户'</span>
+    <span class="token keyword">else</span>
+        <span class="token keyword">set</span> <span class="token variable">@result</span> <span class="token operator">=</span> <span class="token string">'VIP用户'</span>
+    <span class="token keyword">return</span> <span class="token variable">@result</span>
+<span class="token keyword">end</span>
+go
+
+<span class="token keyword">create</span> <span class="token keyword">function</span> GetStatusByNumber<span class="token punctuation">(</span><span class="token variable">@myNum</span> <span class="token keyword">int</span><span class="token punctuation">)</span>
+<span class="token keyword">returns</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token keyword">as</span>
+<span class="token keyword">begin</span>
+    <span class="token keyword">declare</span> <span class="token variable">@result</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token variable">@myNum</span> <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token keyword">set</span> <span class="token variable">@result</span> <span class="token operator">=</span> <span class="token string">'正常'</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token variable">@myNum</span> <span class="token operator">=</span> <span class="token number">2</span>
+        <span class="token keyword">set</span> <span class="token variable">@result</span> <span class="token operator">=</span> <span class="token string">'挂失'</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token variable">@myNum</span> <span class="token operator">=</span> <span class="token number">3</span>
+        <span class="token keyword">set</span> <span class="token variable">@result</span> <span class="token operator">=</span> <span class="token string">'冻结'</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token variable">@myNum</span> <span class="token operator">=</span> <span class="token number">4</span>
+        <span class="token keyword">set</span> <span class="token variable">@result</span> <span class="token operator">=</span> <span class="token string">'注销'</span>
+    <span class="token keyword">else</span>
+        <span class="token keyword">set</span> <span class="token variable">@result</span> <span class="token operator">=</span> <span class="token string">'异常'</span>  
+    <span class="token keyword">return</span> <span class="token variable">@result</span>
+<span class="token keyword">end</span>
+go
+
+<span class="token keyword">select</span> B_CardNo 卡号<span class="token punctuation">,</span>A_Code 身份证<span class="token punctuation">,</span>A_RealName 姓名<span class="token punctuation">,</span>B_Money 余额<span class="token punctuation">,</span>
+dbo<span class="token punctuation">.</span>GetGradeByMoney<span class="token punctuation">(</span>B_Money<span class="token punctuation">)</span> 账户等级<span class="token punctuation">,</span>dbo<span class="token punctuation">.</span>GetStatusByNumber<span class="token punctuation">(</span>B_State<span class="token punctuation">)</span> 卡状态
+<span class="token keyword">from</span> BankCard <span class="token keyword">inner</span> <span class="token keyword">join</span> AccountInfo <span class="token keyword">on</span> BankCard<span class="token punctuation">.</span>B_A_Id <span class="token operator">=</span> AccountInfo<span class="token punctuation">.</span>A_Id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（5）编写函数，根据出生日期求年龄，年龄求实岁，例如：</p>
+<p> 生日为2000-5-5，当前为2018-5-4，年龄为17岁<br>​ 生日为2000-5-5，当前为2018-5-6，年龄为18岁</p>
+<p>测试数据如下：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Emp
+<span class="token punctuation">(</span>
+    EmpId <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token keyword">identity</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">--自动编号</span>
+    empName <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">--姓名</span>
+    empSex <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>   <span class="token comment">--性别</span>
+    empBirth smalldatetime <span class="token comment">--生日</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Emp<span class="token punctuation">(</span>empName<span class="token punctuation">,</span>empSex<span class="token punctuation">,</span>empBirth<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'刘备'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'2008-5-8'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Emp<span class="token punctuation">(</span>empName<span class="token punctuation">,</span>empSex<span class="token punctuation">,</span>empBirth<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'关羽'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'1998-10-10'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Emp<span class="token punctuation">(</span>empName<span class="token punctuation">,</span>empSex<span class="token punctuation">,</span>empBirth<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'张飞'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'1999-7-5'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Emp<span class="token punctuation">(</span>empName<span class="token punctuation">,</span>empSex<span class="token punctuation">,</span>empBirth<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'赵云'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'2003-12-12'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Emp<span class="token punctuation">(</span>empName<span class="token punctuation">,</span>empSex<span class="token punctuation">,</span>empBirth<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'马超'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'2003-1-5'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Emp<span class="token punctuation">(</span>empName<span class="token punctuation">,</span>empSex<span class="token punctuation">,</span>empBirth<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'黄忠'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'1988-8-4'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Emp<span class="token punctuation">(</span>empName<span class="token punctuation">,</span>empSex<span class="token punctuation">,</span>empBirth<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'魏延'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'1998-5-2'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Emp<span class="token punctuation">(</span>empName<span class="token punctuation">,</span>empSex<span class="token punctuation">,</span>empBirth<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'简雍'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'1992-2-20'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Emp<span class="token punctuation">(</span>empName<span class="token punctuation">,</span>empSex<span class="token punctuation">,</span>empBirth<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'诸葛亮'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'1993-3-1'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Emp<span class="token punctuation">(</span>empName<span class="token punctuation">,</span>empSex<span class="token punctuation">,</span>empBirth<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'徐庶'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'1994-8-5'</span><span class="token punctuation">)</span>
+
+go
+
+<span class="token keyword">create</span> <span class="token keyword">function</span> GetAgeByBirth<span class="token punctuation">(</span><span class="token variable">@birth</span> smalldatetime<span class="token punctuation">)</span>
+<span class="token keyword">returns</span> <span class="token keyword">int</span>
+<span class="token keyword">as</span>
+<span class="token keyword">begin</span>
+    <span class="token keyword">declare</span> <span class="token variable">@age</span> <span class="token keyword">int</span>
+    <span class="token keyword">set</span> <span class="token variable">@age</span> <span class="token operator">=</span> <span class="token keyword">year</span><span class="token punctuation">(</span>getdate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token keyword">year</span><span class="token punctuation">(</span><span class="token variable">@birth</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token keyword">month</span><span class="token punctuation">(</span>getdate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token keyword">month</span><span class="token punctuation">(</span><span class="token variable">@birth</span><span class="token punctuation">)</span>
+        <span class="token keyword">set</span> <span class="token variable">@age</span> <span class="token operator">=</span> <span class="token variable">@age</span> <span class="token operator">-</span> <span class="token number">1</span>
+    <span class="token keyword">if</span> <span class="token keyword">month</span><span class="token punctuation">(</span>getdate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">month</span><span class="token punctuation">(</span><span class="token variable">@birth</span><span class="token punctuation">)</span> <span class="token operator">and</span> <span class="token keyword">day</span><span class="token punctuation">(</span>getdate<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token keyword">day</span><span class="token punctuation">(</span><span class="token variable">@birth</span><span class="token punctuation">)</span>
+        <span class="token keyword">set</span> <span class="token variable">@age</span> <span class="token operator">=</span> <span class="token variable">@age</span> <span class="token operator">-</span><span class="token number">1</span>
+    <span class="token keyword">return</span> <span class="token variable">@age</span>
+<span class="token keyword">end</span>
+
+go
+
+<span class="token keyword">select</span> <span class="token operator">*</span><span class="token punctuation">,</span>dbo<span class="token punctuation">.</span>GetAgeByBirth<span class="token punctuation">(</span>empBirth<span class="token punctuation">)</span> 年龄 <span class="token keyword">from</span> Emp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -2106,7 +2268,7 @@ go<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">20.3k</span>&nbsp;字
+                class="white-color">21.4k</span>&nbsp;字
             
             
             
