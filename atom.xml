@@ -6,7 +6,7 @@
   <link href="https://bingo-lin.github.io/atom.xml" rel="self"/>
   
   <link href="https://bingo-lin.github.io/"/>
-  <updated>2021-08-12T03:02:14.025Z</updated>
+  <updated>2021-08-13T03:11:07.665Z</updated>
   <id>https://bingo-lin.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Python</title>
+    <link href="https://bingo-lin.github.io/posts/43687.html"/>
+    <id>https://bingo-lin.github.io/posts/43687.html</id>
+    <published>2021-08-13T03:10:18.000Z</published>
+    <updated>2021-08-13T03:11:07.665Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Hello</summary>
+        
+      
+    
+    
+    
+    <category term="Python" scheme="https://bingo-lin.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://bingo-lin.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Consolation</title>
     <link href="https://bingo-lin.github.io/posts/51757.html"/>
     <id>https://bingo-lin.github.io/posts/51757.html</id>
     <published>2021-08-09T01:57:45.000Z</published>
-    <updated>2021-08-12T03:02:14.025Z</updated>
+    <updated>2021-08-13T02:00:54.974Z</updated>
     
     
       
@@ -50,7 +75,7 @@
     <link href="https://bingo-lin.github.io/posts/27147.html"/>
     <id>https://bingo-lin.github.io/posts/27147.html</id>
     <published>2021-08-08T07:24:11.000Z</published>
-    <updated>2021-08-12T03:01:21.673Z</updated>
+    <updated>2021-08-13T02:00:07.213Z</updated>
     
     
       
@@ -78,7 +103,7 @@
     <link href="https://bingo-lin.github.io/posts/8109.html"/>
     <id>https://bingo-lin.github.io/posts/8109.html</id>
     <published>2021-05-27T16:19:33.000Z</published>
-    <updated>2021-08-12T02:54:18.172Z</updated>
+    <updated>2021-08-13T03:09:48.951Z</updated>
     
     
       

@@ -403,21 +403,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-08-12
+                    2021-08-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    11.3k
+                    12.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    51 分
+                    57 分
                 </div>
                 
 
@@ -1794,6 +1794,201 @@ go
 
 <span class="token keyword">select</span> <span class="token operator">*</span><span class="token punctuation">,</span>dbo<span class="token punctuation">.</span>GetAgeByBirth<span class="token punctuation">(</span>empBirth<span class="token punctuation">)</span> 年龄 <span class="token keyword">from</span> Emp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>触发器分类：（1） “Instead of”触发器（2）“After”触发器<br>“Instead of”触发器：在执行操作之前被执行<br>“After”触发器：在执行操作之后被执行</p>
+<p>触发器中后面的案例中需要用到的表及测试数据如下:</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">use</span> DBtest
+go
+
+<span class="token comment">--部门</span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> Department1
+<span class="token punctuation">(</span>
+    DepartmentId <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token punctuation">,</span> <span class="token comment">--主键，自动增长</span>
+    DepartmentName nvarchar<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">--部门名称</span>
+<span class="token punctuation">)</span>
+<span class="token comment">--人员信息</span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> People1
+<span class="token punctuation">(</span>
+    PeopleId <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span> <span class="token keyword">identity</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">--主键,自动增长</span>
+    DepartmentId <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">--部门编号,外键,与部门表关联</span>
+    PeopleName nvarchar<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">--人员姓名</span>
+    PeopleSex nvarchar<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">--人员性别</span>
+    PeoplePhone nvarchar<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">--电话，联系方式</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Department1<span class="token punctuation">(</span>DepartmentId<span class="token punctuation">,</span>DepartmentName<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'001'</span><span class="token punctuation">,</span><span class="token string">'总经办'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Department1<span class="token punctuation">(</span>DepartmentId<span class="token punctuation">,</span>DepartmentName<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'002'</span><span class="token punctuation">,</span><span class="token string">'市场部'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Department1<span class="token punctuation">(</span>DepartmentId<span class="token punctuation">,</span>DepartmentName<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'003'</span><span class="token punctuation">,</span><span class="token string">'人事部'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Department1<span class="token punctuation">(</span>DepartmentId<span class="token punctuation">,</span>DepartmentName<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'004'</span><span class="token punctuation">,</span><span class="token string">'财务部'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Department1<span class="token punctuation">(</span>DepartmentId<span class="token punctuation">,</span>DepartmentName<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'005'</span><span class="token punctuation">,</span><span class="token string">'软件部'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> People1<span class="token punctuation">(</span>DepartmentId<span class="token punctuation">,</span>PeopleName<span class="token punctuation">,</span>PeopleSex<span class="token punctuation">,</span>PeoplePhone<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'001'</span><span class="token punctuation">,</span><span class="token string">'刘备'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'13558785478'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> People1<span class="token punctuation">(</span>DepartmentId<span class="token punctuation">,</span>PeopleName<span class="token punctuation">,</span>PeopleSex<span class="token punctuation">,</span>PeoplePhone<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'001'</span><span class="token punctuation">,</span><span class="token string">'关羽'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'13558788785'</span><span class="token punctuation">)</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> People1<span class="token punctuation">(</span>DepartmentId<span class="token punctuation">,</span>PeopleName<span class="token punctuation">,</span>PeopleSex<span class="token punctuation">,</span>PeoplePhone<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'002'</span><span class="token punctuation">,</span><span class="token string">'张飞'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'13698547125'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（1）假设有部门表和员工表，在添加员工的时候，该员工的部门编号如果在部门表中找不到，则自动添加部门信息，部门名称为”新部门”。</p>
+<p>编写触发器：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">trigger</span> tri_InsertPeople <span class="token keyword">on</span> People1
+<span class="token keyword">after</span> <span class="token keyword">insert</span>
+<span class="token keyword">as</span>
+<span class="token keyword">if</span> <span class="token operator">not</span> <span class="token keyword">exists</span><span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> Department1 <span class="token keyword">where</span> DepartmentId <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> DepartmentId <span class="token keyword">from</span> inserted<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">insert</span> <span class="token keyword">into</span> Department1<span class="token punctuation">(</span>DepartmentId<span class="token punctuation">,</span>DepartmentName<span class="token punctuation">)</span>
+    <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">select</span> DepartmentId <span class="token keyword">from</span> inserted<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'新部门'</span><span class="token punctuation">)</span>
+go
+
+<span class="token keyword">insert</span> People1<span class="token punctuation">(</span>DepartmentId<span class="token punctuation">,</span>PeopleName<span class="token punctuation">,</span>PeopleSex<span class="token punctuation">,</span>PeoplePhone<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'009'</span><span class="token punctuation">,</span><span class="token string">'赵云'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'13854587456'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（2）触发器实现，删除一个部门的时候将部门下所有员工全部删除。</p>
+<p>编写触发器：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">trigger</span> tri_DeleteDept <span class="token keyword">on</span> Department1
+<span class="token keyword">after</span> <span class="token keyword">delete</span>
+<span class="token keyword">as</span>
+<span class="token keyword">delete</span> <span class="token keyword">from</span> People1 <span class="token keyword">where</span> People1<span class="token punctuation">.</span>DepartmentId <span class="token operator">=</span> 
+<span class="token punctuation">(</span><span class="token keyword">select</span> DepartmentId <span class="token keyword">from</span> deleted<span class="token punctuation">)</span>
+go
+
+<span class="token keyword">delete</span> Department1 <span class="token keyword">where</span> DepartmentId <span class="token operator">=</span> <span class="token string">'001'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（3）创建一个触发器，删除一个部门的时候判断该部门下是否有员工，有则不删除，没有则删除。</p>
+<p>编写触发器：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">trigger</span> tri_DeleteDept1 <span class="token keyword">on</span> Department1
+Instead <span class="token keyword">of</span> <span class="token keyword">delete</span>
+<span class="token keyword">as</span>
+  <span class="token keyword">if</span> <span class="token operator">not</span> <span class="token keyword">exists</span><span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> People1 <span class="token keyword">where</span> DepartmentId <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> DepartmentId <span class="token keyword">from</span> deleted<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">begin</span>
+    <span class="token keyword">delete</span> <span class="token keyword">from</span> Department1 <span class="token keyword">where</span> DepartmentId <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> DepartmentId <span class="token keyword">from</span> deleted<span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+go
+
+<span class="token keyword">delete</span> Department1 <span class="token keyword">where</span> DepartmentId <span class="token operator">=</span> <span class="token string">'001'</span>
+<span class="token keyword">delete</span> Department1 <span class="token keyword">where</span> DepartmentId <span class="token operator">=</span> <span class="token string">'002'</span>
+<span class="token keyword">delete</span> Department1 <span class="token keyword">where</span> DepartmentId <span class="token operator">=</span> <span class="token string">'003'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（4）修改一个部门编号之后，将该部门下所有员工的部门编号同步进行修改</p>
+<p>编写触发器：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">trigger</span> tri_UpdateDept <span class="token keyword">on</span> Department1
+<span class="token keyword">after</span> <span class="token keyword">update</span>
+<span class="token keyword">as</span>
+    <span class="token keyword">update</span> People1 <span class="token keyword">set</span> DepartmentId <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> DepartmentId <span class="token keyword">from</span> inserted<span class="token punctuation">)</span>
+    <span class="token keyword">where</span> DepartmentId <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> DepartmentId <span class="token keyword">from</span> deleted<span class="token punctuation">)</span>
+go
+
+<span class="token keyword">update</span> Department1 <span class="token keyword">set</span> DepartmentId <span class="token operator">=</span> <span class="token string">'zjb001'</span> <span class="token keyword">where</span> DepartmentId<span class="token operator">=</span><span class="token string">'002'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>存储过程（Procedure）是SQL语句和流程控制语句的预编译集合。</p>
+<p>（1）没有输入参数，没有输出参数的存储过程。</p>
+<p>定义存储过程实现查询出账户余额最低的银行卡账户信息,显示银行卡号，姓名，账户余额</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">--方案一</span>
+<span class="token keyword">create</span> <span class="token keyword">proc</span> proc_MinMoneyCard0
+<span class="token keyword">as</span>
+    <span class="token keyword">select</span> <span class="token keyword">top</span> <span class="token number">1</span> B_CardNo 银行卡号<span class="token punctuation">,</span>A_RealName 姓名<span class="token punctuation">,</span>B_Money 余额
+    <span class="token keyword">from</span> BankCard <span class="token keyword">inner</span> <span class="token keyword">join</span> AccountInfo <span class="token keyword">on</span> BankCard<span class="token punctuation">.</span>B_A_Id <span class="token operator">=</span> AccountInfo<span class="token punctuation">.</span>A_Id
+    <span class="token keyword">order</span> <span class="token keyword">by</span> B_Money <span class="token keyword">asc</span>
+go
+
+<span class="token comment">--方案二：（余额最低，有多个人则显示结果是多个）</span>
+<span class="token keyword">create</span> <span class="token keyword">proc</span> proc_MinMoneyCard
+<span class="token keyword">as</span>
+    <span class="token keyword">select</span> B_CardNo 银行卡号<span class="token punctuation">,</span>A_RealName 姓名<span class="token punctuation">,</span>B_Money 余额
+    <span class="token keyword">from</span> BankCard <span class="token keyword">inner</span> <span class="token keyword">join</span> AccountInfo <span class="token keyword">on</span> BankCard<span class="token punctuation">.</span>B_A_Id <span class="token operator">=</span> AccountInfo<span class="token punctuation">.</span>A_Id
+    <span class="token keyword">where</span> B_Money<span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">MIN</span><span class="token punctuation">(</span>B_Money<span class="token punctuation">)</span> <span class="token keyword">from</span> BankCard<span class="token punctuation">)</span>
+go
+<span class="token comment">--执行</span>
+<span class="token keyword">exec</span> proc_MinMoneyCard<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（2）有输入参数，没有输出参数的存储过程</p>
+<p>模拟银行卡存钱操作，传入银行卡号，存钱金额，实现存钱操作</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">proc</span> proc_CunQian
+<span class="token variable">@CardNo</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token variable">@MoneyInBank</span> money
+<span class="token keyword">as</span>
+    <span class="token keyword">update</span> BankCard <span class="token keyword">set</span> B_Money <span class="token operator">=</span> B_Money <span class="token operator">+</span> <span class="token variable">@MoneyInBank</span> <span class="token keyword">where</span> B_CardNo <span class="token operator">=</span> <span class="token variable">@CardNo</span>
+    <span class="token keyword">insert</span> <span class="token keyword">into</span> CardExchange<span class="token punctuation">(</span>C_No<span class="token punctuation">,</span>C_MoneyInBank<span class="token punctuation">,</span>C_MoneyOutBank<span class="token punctuation">,</span>C_ExchangeTime<span class="token punctuation">)</span>
+    <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token variable">@CardNo</span><span class="token punctuation">,</span><span class="token variable">@MoneyInBank</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+go
+<span class="token comment">--执行</span>
+<span class="token keyword">exec</span> proc_CunQian <span class="token string">'6225125478544587'</span><span class="token punctuation">,</span><span class="token number">3000</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（3）有输入参数，没有输出参数，但是有返回值的存储过程（返回值必须整数）。</p>
+<p>模拟银行卡取钱操作，传入银行卡号，取钱金额，实现取钱操作，取钱成功，返回1，取钱失败返回-1</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">proc</span> proc_QuQian
+<span class="token variable">@CardNo</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token variable">@MoneyOutBank</span> money
+<span class="token keyword">as</span>
+    <span class="token keyword">update</span> BankCard <span class="token keyword">set</span> B_Money <span class="token operator">=</span> B_Money <span class="token operator">-</span> <span class="token variable">@MoneyOutBank</span> <span class="token keyword">where</span> B_CardNo <span class="token operator">=</span> <span class="token variable">@CardNo</span>
+    <span class="token keyword">if</span> @<span class="token variable">@ERROR</span> <span class="token operator">&lt;&gt;</span> <span class="token number">0</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span>
+    <span class="token keyword">insert</span> <span class="token keyword">into</span> CardExchange<span class="token punctuation">(</span>C_No<span class="token punctuation">,</span>C_MoneyInBank<span class="token punctuation">,</span>C_MoneyOutBank<span class="token punctuation">,</span>C_ExchangeTime<span class="token punctuation">)</span>
+    <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token variable">@CardNo</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token variable">@MoneyOutBank</span><span class="token punctuation">,</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token number">1</span>
+go
+<span class="token comment">--执行</span>
+<span class="token keyword">declare</span> <span class="token variable">@returnValue</span> <span class="token keyword">int</span>
+<span class="token keyword">exec</span> <span class="token variable">@returnValue</span> <span class="token operator">=</span> proc_QuQian <span class="token string">'6225547854125656'</span><span class="token punctuation">,</span><span class="token number">1000000</span>
+<span class="token keyword">print</span> <span class="token variable">@returnValue</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（4）有输入参数，有输出参数的存储过程</p>
+<p>查询出某时间段的银行存取款信息以及存款总金额，取款总金额，传入开始时间，结束时间，显示存取款交易信息的同时，返回存款总金额，取款总金额。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">proc</span> proc_SelectExchange
+    <span class="token variable">@startTime</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment">--开始时间</span>
+    <span class="token variable">@endTime</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>    <span class="token comment">--结束时间</span>
+    <span class="token variable">@SumIn</span> money output<span class="token punctuation">,</span>     <span class="token comment">--存款总金额</span>
+    <span class="token variable">@SumOut</span> money output    <span class="token comment">--取款总金额</span>
+<span class="token keyword">as</span>
+<span class="token keyword">select</span> <span class="token variable">@SumIn</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">SUM</span><span class="token punctuation">(</span>C_MoneyInBank<span class="token punctuation">)</span> <span class="token keyword">from</span> CardExchange 
+                <span class="token keyword">where</span> C_ExchangeTime <span class="token operator">between</span> <span class="token variable">@startTime</span><span class="token operator">+</span><span class="token string">' 00:00:00'</span> <span class="token operator">and</span> <span class="token variable">@endTime</span><span class="token operator">+</span><span class="token string">' 23:59:59'</span><span class="token punctuation">)</span>
+<span class="token keyword">select</span> <span class="token variable">@SumOut</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">SUM</span><span class="token punctuation">(</span>C_MoneyOutBank<span class="token punctuation">)</span> <span class="token keyword">from</span> CardExchange 
+                <span class="token keyword">where</span> C_ExchangeTime <span class="token operator">between</span> <span class="token variable">@startTime</span><span class="token operator">+</span><span class="token string">' 00:00:00'</span> <span class="token operator">and</span> <span class="token variable">@endTime</span><span class="token operator">+</span><span class="token string">' 23:59:59'</span><span class="token punctuation">)</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> CardExchange 
+<span class="token keyword">where</span> C_ExchangeTime <span class="token operator">between</span> <span class="token variable">@startTime</span><span class="token operator">+</span><span class="token string">' 00:00:00'</span> <span class="token operator">and</span> <span class="token variable">@endTime</span><span class="token operator">+</span><span class="token string">' 23:59:59'</span>
+go
+<span class="token comment">--执行</span>
+<span class="token keyword">declare</span> <span class="token variable">@SumIn</span> money     <span class="token comment">--存款总金额</span>
+<span class="token keyword">declare</span> <span class="token variable">@SumOut</span> money   <span class="token comment">--取款总金额</span>
+<span class="token keyword">exec</span> proc_SelectExchange <span class="token string">'2018-1-1'</span><span class="token punctuation">,</span><span class="token string">'2021-12-31'</span><span class="token punctuation">,</span><span class="token variable">@SumIn</span> output<span class="token punctuation">,</span><span class="token variable">@SumOut</span> output
+<span class="token keyword">select</span> <span class="token variable">@SumIn</span>
+<span class="token keyword">select</span> <span class="token variable">@SumOut</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（5）具有同时输入输出参数的存储过程</p>
+<p>密码升级，传入用户名和密码，如果用户名密码正确，并且密码长度&lt;8，自动升级成8位密码</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">--有输入输出参数（密码作为输入参数也作为输出参数）</span>
+<span class="token comment">--密码升级，传入用户名和密码，如果用户名密码正确，并且密码长度&lt;8，自动升级成8位密码</span>
+
+<span class="token keyword">select</span> FLOOR<span class="token punctuation">(</span>RAND<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token comment">--0-9之间随机数</span>
+go
+<span class="token keyword">create</span> <span class="token keyword">proc</span> proc_PwdUpgrade
+<span class="token variable">@cardno</span> nvarchar<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token variable">@pwd</span> nvarchar<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> output
+<span class="token keyword">as</span>
+    <span class="token keyword">if</span> <span class="token operator">not</span> <span class="token keyword">exists</span><span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> BankCard <span class="token keyword">where</span> B_A_Id<span class="token operator">=</span><span class="token variable">@cardno</span> <span class="token operator">and</span> B_Pwd<span class="token operator">=</span><span class="token variable">@pwd</span><span class="token punctuation">)</span>
+        <span class="token keyword">set</span> <span class="token variable">@pwd</span> <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token keyword">else</span>
+    <span class="token keyword">begin</span>
+        <span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span><span class="token variable">@pwd</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">8</span>
+        <span class="token keyword">begin</span>
+            <span class="token keyword">declare</span> <span class="token variable">@len</span> <span class="token keyword">int</span> <span class="token operator">=</span> <span class="token number">8</span><span class="token operator">-</span> <span class="token function">len</span><span class="token punctuation">(</span><span class="token variable">@pwd</span><span class="token punctuation">)</span>
+            <span class="token keyword">declare</span> <span class="token variable">@i</span> <span class="token keyword">int</span> <span class="token operator">=</span> <span class="token number">1</span>
+            <span class="token keyword">while</span> <span class="token variable">@i</span> <span class="token operator">&lt;=</span> <span class="token variable">@len</span>
+            <span class="token keyword">begin</span>
+
+                <span class="token keyword">set</span> <span class="token variable">@pwd</span> <span class="token operator">=</span> <span class="token variable">@pwd</span> <span class="token operator">+</span> cast<span class="token punctuation">(</span>FLOOR<span class="token punctuation">(</span>RAND<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token keyword">set</span> <span class="token variable">@i</span> <span class="token operator">=</span> <span class="token variable">@i</span><span class="token operator">+</span><span class="token number">1</span>
+            <span class="token keyword">end</span>
+            <span class="token keyword">update</span> BankCard <span class="token keyword">set</span> B_Pwd <span class="token operator">=</span> <span class="token variable">@pwd</span> <span class="token keyword">where</span> B_CardNo<span class="token operator">=</span><span class="token variable">@cardno</span>
+        <span class="token keyword">end</span>
+    <span class="token keyword">end</span>
+go
+<span class="token comment">--执行</span>
+<span class="token keyword">declare</span> <span class="token variable">@pwd</span> nvarchar<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">'123456'</span>
+<span class="token keyword">exec</span> proc_PwdUpgrade <span class="token string">'6225547854125656'</span><span class="token punctuation">,</span><span class="token variable">@pwd</span> output
+<span class="token keyword">select</span> <span class="token variable">@pwd</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -2268,7 +2463,7 @@ go
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">21.4k</span>&nbsp;字
+                class="white-color">22.8k</span>&nbsp;字
             
             
             
