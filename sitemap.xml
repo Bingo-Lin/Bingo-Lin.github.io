@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://bingo-lin.github.io/posts/27147.html</loc>
+    <loc>https://bingo-lin.github.io/posts/51757.html</loc>
     
     <lastmod>2021-08-14</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/posts/51757.html</loc>
+    <loc>https://bingo-lin.github.io/posts/27147.html</loc>
     
     <lastmod>2021-08-14</lastmod>
     
@@ -72,14 +72,14 @@
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/posts/26062.html</loc>
+    <loc>https://bingo-lin.github.io/posts/25246.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/posts/25246.html</loc>
+    <loc>https://bingo-lin.github.io/posts/26062.html</loc>
     
     <lastmod>2021-04-22</lastmod>
     
@@ -179,13 +179,6 @@
   </url>
   
   <url>
-    <loc>https://bingo-lin.github.io/tags/Mood/</loc>
-    <lastmod>2021-08-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bingo-lin.github.io/tags/MNMP/</loc>
     <lastmod>2021-08-14</lastmod>
     <changefreq>daily</changefreq>
@@ -194,6 +187,13 @@
   
   <url>
     <loc>https://bingo-lin.github.io/tags/WordPress/</loc>
+    <lastmod>2021-08-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingo-lin.github.io/tags/Mood/</loc>
     <lastmod>2021-08-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
